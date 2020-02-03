@@ -28,12 +28,14 @@ public class GameLogic : MonoBehaviour
 
     public static void GameOverLose()
     {
-        SceneManager.LoadScene("GameOver");
+        Debug.Log("Hit");
+        //SceneManager.LoadScene("GameOver");
     }
 
     public static void GameOverWin()
     {
-        SceneManager.LoadScene("Victory");
+        Debug.Log("Hit");
+        //SceneManager.LoadScene("Victory");
     }
     public static void AddLog()
     {

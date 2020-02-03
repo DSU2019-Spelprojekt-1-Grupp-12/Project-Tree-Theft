@@ -35,7 +35,7 @@ public class TowerMain : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hi");
+        
         if (other.gameObject.tag == "Player")
         {
             

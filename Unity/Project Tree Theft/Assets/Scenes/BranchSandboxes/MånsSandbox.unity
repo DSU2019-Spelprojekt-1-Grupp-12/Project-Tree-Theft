@@ -3118,9 +3118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82dd909c5b5ef64499d48e67ca7d00f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stump: {fileID: 0}
-  log: {fileID: 0}
-  hitPoints: 0
+  logPrefab: {fileID: 2338390346436623184, guid: e03310fe7ae9cf54ca2e60593c118a9d,
+    type: 3}
+  hitPoints: 20
 --- !u!1 &1303980719
 GameObject:
   m_ObjectHideFlags: 0

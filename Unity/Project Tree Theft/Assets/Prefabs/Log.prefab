@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5657821039297612293}
   - component: {fileID: 647642573724452663}
+  - component: {fileID: 6227339334706686840}
   m_Layer: 0
   m_Name: AttachPointOne
   m_TagString: AttachPoint
@@ -57,6 +58,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &6227339334706686840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13290924960572324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3520b673f416e7440ae3d8c25b570e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  log: {fileID: 2338390346436623184}
 --- !u!1 &2338390346436623184
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,6 +83,7 @@ GameObject:
   - component: {fileID: 2338390346436623185}
   - component: {fileID: 8534134581649695710}
   - component: {fileID: 4109995741322794648}
+  - component: {fileID: 667973612662819638}
   m_Layer: 0
   m_Name: Log
   m_TagString: Log
@@ -165,7 +180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 4.41}
+  m_Size: {x: 1.6, y: 3.03}
   m_EdgeRadius: 0
 --- !u!50 &4109995741322794648
 Rigidbody2D:
@@ -187,7 +202,22 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &667973612662819638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338390346436623184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4913125e9878e4a45b4d3ec89b46156a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  moveVector: {x: 0, y: 0}
+  numberOfPlayersAttached: 0
 --- !u!1 &6281778470815388338
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3186380106800192219}
   - component: {fileID: 6696042619361247248}
+  - component: {fileID: 7716253467510854026}
   m_Layer: 0
   m_Name: AttachPointTwo
   m_TagString: AttachPoint
@@ -245,3 +276,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &7716253467510854026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6281778470815388338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3520b673f416e7440ae3d8c25b570e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  log: {fileID: 2338390346436623184}

@@ -18,8 +18,6 @@ public class PlayerMain : MonoBehaviour
     public Sprite DownSprite;
     public Sprite LeftSprite;
     public Sprite RightSprite;
-
-    List<TreeMain> Tree = null;
     Vector2 movementVector = new Vector2(0f,0f);
     #endregion
 
@@ -32,13 +30,15 @@ public class PlayerMain : MonoBehaviour
     {
         checkKeys();
     }
+    void
     #endregion
 
     #region Functions
-    void initializePlayerMain()
+    int initializePlayerMain()
     {
         spriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        return 0;
     }
     void checkKeys()
     {

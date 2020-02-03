@@ -19,6 +19,7 @@ public class PlayerMain : MonoBehaviour
     public Sprite LeftSprite;
     public Sprite RightSprite;
 
+    List<TreeMain> Tree = null;
     Vector2 movementVector = new Vector2(0f,0f);
     #endregion
 
@@ -139,6 +140,11 @@ public class PlayerMain : MonoBehaviour
         rigidBody.velocity = movementVector * movementSpeed;
         movementVector.x = 0;
         movementVector.y = 0;
+    }
+
+    void attack()
+    {
+
     }
 }
 

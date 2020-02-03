@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class TreeMain : MonoBehaviour
 {
-    // Start is called before the first frame update
+    #region Components
+    public Sprite stump;
+    public Sprite log;
+
+    SpriteRenderer spriteRendererComponent;
+    #endregion
+
+    #region Variables
+    public int hitPoints;
+
+
+    #endregion
+
+    #region Core Functions
     void Start()
     {
-        
+        initializeTreeMain();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
+    #endregion
+
+    #region Functions
+    void initializeTreeMain()
+    {
+        spriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();
+    }
+
+    #endregion
 }

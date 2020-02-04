@@ -9,7 +9,7 @@ public class TreeMain : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        Test();
+        //Test();
     }
 
     // Update is called once per frame
@@ -28,24 +28,32 @@ public class TreeMain : MonoBehaviour
     }
 
     //Function for testing
-    private void Test(){
-        StartCoroutine(TestDecreasingHealth());
-    }
+    //private void Test(){
+    //    StartCoroutine(TestDecreasingHealth());
+    //}
 
     //Coroutine for testing
-    IEnumerator TestDecreasingHealth(){
-        var i = 0;
-        while (i < 11){
-            i++;
-            yield return new WaitForSecondsRealtime(1f);
-            SetDamage(2);
+    //IEnumerator TestDecreasingHealth(){
+    //    var i = 0;
+    //    while (i < 11){
+    //        i++;
+    //        yield return new WaitForSecondsRealtime(1f);
+    //        SetDamage(2);
+    //    }
+    //}
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Tools"))
+        {
+            var damage = FindObjectOfType<PlayerTool>().GetDamage();
+            SetDamage(damage);
+            Debug.Log("Tree Hit");
+        }
+        else
+        {
+            Debug.Log("Tree Not Hit");
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D other){
-        if (other.gameObject.CompareTag("Tools")){
-            int damage = 2; //var damage = other.gameObject.GetDamage();
-            SetDamage(damage);
-        }
-    } 
 }

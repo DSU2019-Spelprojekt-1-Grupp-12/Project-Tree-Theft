@@ -37,16 +37,20 @@ public class PlayerMain : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("AttachPoint"))
-        {
-            attachPoint = other.gameObject;
-        }
+        
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("AttachPoint"))
+        if (other.gameObject.CompareTag("AttachPoint") && attached == false)
         {
             attachPoint = null;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("AttachPoint") && attached == false)
+        {
+            attachPoint = other.gameObject;
         }
     }
     #endregion
@@ -228,9 +232,12 @@ public class PlayerMain : MonoBehaviour
 
     void attach() //
     {
-        attachPoint.GetComponent<AttachPoint>().attachToPlayer(gameObject);
-        attached = true;
-        Debug.Log(attached);
+        if (attachPoint != null)
+        {
+            attachPoint.GetComponent<AttachPoint>().attachToPlayer(gameObject);
+            attached = true;
+            Debug.Log(attached);
+        }
     }
     void detach()
     {

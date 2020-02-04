@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4913125e9878e4a45b4d3ec89b46156a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 2
   moveVector: {x: 0, y: 0}
   numberOfPlayersAttached: 0
 --- !u!1 &6281778470815388338

@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DirectionIndex{
+    up,
+    right,
+    down,
+    left
+}
+
 public class PlayerMain : MonoBehaviour
 {
     #region Components
@@ -19,11 +26,15 @@ public class PlayerMain : MonoBehaviour
     public Sprite LeftSprite;
     public Sprite RightSprite;
 
+    public PlayerTool tool;
+
     List<TreeMain> Tree = null;
     GameObject attachPoint = null;
     bool operationDone = false;
     Vector2 movementVector = new Vector2(0f, 0f);
     bool attached = false;
+
+    private int directionIndex;
     #endregion
 
     #region Core Functions
@@ -71,14 +82,14 @@ public class PlayerMain : MonoBehaviour
 
         if (playerNumber == 1)
         {
-            checkPlayerOneKeys(deltaXplayer1, deltaYplayer1);
+            checkPlayerOneKeys(deltaXplayer1, deltaYplayer1, tool);            
         }
         if (playerNumber == 2)
         {
-            checkPlayerTwoKeys(deltaXplayer2, deltaYplayer2);
+            checkPlayerTwoKeys(deltaXplayer2, deltaYplayer2, tool);
         }
     }
-    void checkPlayerOneKeys(float deltaX, float deltaY)
+    void checkPlayerOneKeys(float deltaX, float deltaY, PlayerTool tool)
     {
         if (attached == false)
         {                    
@@ -86,18 +97,18 @@ public class PlayerMain : MonoBehaviour
             {
                 movementVector.x = deltaX;
                 if (deltaX < 0)
-                    spriteRendererComponent.sprite = LeftSprite;
+                    SetDirectionSprite(LeftSprite, (int)DirectionIndex.left);
                 else
-                    spriteRendererComponent.sprite = RightSprite;
+                    SetDirectionSprite(RightSprite, (int)DirectionIndex.right);
             }
 
             if(deltaY > 0 || deltaY < 0)
             {
                 movementVector.y = deltaY;
                 if (deltaY < 0)
-                    spriteRendererComponent.sprite = DownSprite;
+                    SetDirectionSprite(DownSprite, (int)DirectionIndex.down);
                 else
-                    spriteRendererComponent.sprite = UpSprite;
+                    SetDirectionSprite(UpSprite, (int)DirectionIndex.up);
             }
 
             if (deltaY > 0 && deltaX < 0 || deltaY > 0 && deltaX > 0)
@@ -128,6 +139,9 @@ public class PlayerMain : MonoBehaviour
             if (operationDone != true)            
                 detach();            
         }
+
+        if (!attached && Input.GetButtonDown("Player1 Chop"))
+            tool.ChopEvent(playerNumber);
         operationDone = false;
     }
     void playerOneLogMovement(float deltaX) 
@@ -138,7 +152,7 @@ public class PlayerMain : MonoBehaviour
             attachPoint.GetComponent<AttachPoint>().moveLogHorizontal("left");
 
     }
-    void checkPlayerTwoKeys(float deltaX, float deltaY)
+    void checkPlayerTwoKeys(float deltaX, float deltaY, PlayerTool tool)
     {
         if (attached == false)
         {
@@ -146,18 +160,18 @@ public class PlayerMain : MonoBehaviour
             {
                 movementVector.x = deltaX;
                 if (deltaX < 0)
-                    spriteRendererComponent.sprite = LeftSprite;
+                    SetDirectionSprite(LeftSprite, (int)DirectionIndex.left);
                 else
-                    spriteRendererComponent.sprite = RightSprite;
+                    SetDirectionSprite(RightSprite,(int)DirectionIndex.right);
             }
 
             if (deltaY > 0 || deltaY < 0)
             {
                 movementVector.y = deltaY;
                 if (deltaY < 0)
-                    spriteRendererComponent.sprite = DownSprite;
+                    SetDirectionSprite(DownSprite, (int)DirectionIndex.down);
                 else
-                    spriteRendererComponent.sprite = UpSprite;
+                    SetDirectionSprite(UpSprite, (int)DirectionIndex.up);
             }
 
             if (deltaY > 0 && deltaX < 0 || deltaY > 0 && deltaX > 0)
@@ -187,6 +201,9 @@ public class PlayerMain : MonoBehaviour
             if (operationDone != true)
                 detach();
         }
+        if (!attached && Input.GetButton("Player2 Chop"))
+            tool.ChopEvent(playerNumber);
+        else { }
         operationDone = false;
     }
     void playerTwoLogMovement(float deltaY) //
@@ -217,6 +234,16 @@ public class PlayerMain : MonoBehaviour
         attached = false;
         Debug.Log(attached);
     }
+
+    private void SetDirectionSprite(Sprite directionSprite, int directionIndex){
+        spriteRendererComponent.sprite = directionSprite;
+        this.directionIndex = directionIndex;
+    }
+
+    [HideInInspector] public int GetDirectionSprite(){
+        return directionIndex;
+    }
+
 }
 
 #endregion

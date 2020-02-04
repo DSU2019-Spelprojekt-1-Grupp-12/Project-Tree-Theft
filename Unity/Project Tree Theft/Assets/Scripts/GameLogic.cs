@@ -67,4 +67,9 @@ public class GameLogic : MonoBehaviour
     {
         collectedLogs--;
     }
+    public static void ResetLogs()
+    {
+        collectedLogs = 0;
+    }
+
 }

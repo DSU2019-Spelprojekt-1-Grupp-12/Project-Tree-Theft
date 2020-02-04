@@ -22,6 +22,7 @@ public class ButtonCommands : MonoBehaviour
 
     public void TestLevel1()
     {
+        GameLogic.ResetLogs();
         SceneManager.LoadScene("MasterSandbox");
     }
     public void TestWin()

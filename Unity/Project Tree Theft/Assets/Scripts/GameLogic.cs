@@ -8,8 +8,10 @@ public class GameLogic : MonoBehaviour
 
 
 
-
+    public int logsToWin;
     static private int collectedLogs;
+
+
 
 
     // Start is called before the first frame update
@@ -21,8 +23,16 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (collectedLogs >= logsToWin)
+        {
+            GameOverWin();
+        }
+
+
     }
+
+
+
 
 
 

@@ -63,54 +63,48 @@ public class PlayerMain : MonoBehaviour
     }
     void checkKeys()
     {
+        var deltaXplayer1 = Input.GetAxis("Player1 Horizontal");
+        var deltaYplayer1 = Input.GetAxis("Player1 Vertical");
+
+        var deltaXplayer2 = Input.GetAxis("Player2 Horizontal");
+        var deltaYplayer2 = Input.GetAxis("Player2 Vertical");
+
         if (playerNumber == 1)
         {
-            checkPlayerOneKeys();
+            checkPlayerOneKeys(deltaXplayer1, deltaYplayer1);
         }
         if (playerNumber == 2)
         {
-            checkPlayerTwoKeys();
+            checkPlayerTwoKeys(deltaXplayer2, deltaYplayer2);
         }
     }
-    void checkPlayerOneKeys()
+    void checkPlayerOneKeys(float deltaX, float deltaY)
     {
         if (attached == false)
-        {
-            if (Input.GetKey(KeyCode.W))
+        {                    
+            if(deltaX > 0 || deltaX < 0)
             {
-                movementVector.y += 1;
-                spriteRendererComponent.sprite = UpSprite;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                movementVector.x += -1;
-                spriteRendererComponent.sprite = LeftSprite;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                movementVector.y += -1;
-                spriteRendererComponent.sprite = DownSprite;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                movementVector.x += 1;
-                spriteRendererComponent.sprite = RightSprite;
+                movementVector.x = deltaX;
+                if (deltaX < 0)
+                    spriteRendererComponent.sprite = LeftSprite;
+                else
+                    spriteRendererComponent.sprite = RightSprite;
             }
 
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+            if(deltaY > 0 || deltaY < 0)
             {
-                movementVector.y = 0;
-            }
-            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
-            {
-                movementVector.x = 0;
+                movementVector.y = deltaY;
+                if (deltaY < 0)
+                    spriteRendererComponent.sprite = DownSprite;
+                else
+                    spriteRendererComponent.sprite = UpSprite;
             }
 
-            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+            if (deltaY > 0 && deltaX < 0 || deltaY > 0 && deltaX > 0)
             {
                 spriteRendererComponent.sprite = UpSprite;
             }
-            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+            if (deltaY < 0 && deltaX < 0 || deltaY < 0 && deltaX > 0)
             {
                 spriteRendererComponent.sprite = DownSprite;
             }
@@ -121,73 +115,56 @@ public class PlayerMain : MonoBehaviour
         }
         else if(attached == true)
         {
-            playerOneLogMovement();
+            playerOneLogMovement(deltaX);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && attached == false || Input.GetKeyDown(KeyCode.LeftControl) && attached == false) //
-        {
+
+
+        if(!attached && Input.GetButtonDown("Player1 Attach")){
             attach();
             operationDone = true;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && attached == true || Input.GetKeyDown(KeyCode.LeftControl) && attached == true) //
-        {
-            if (operationDone != true)
-            {
-                detach();
-            }
-            
+
+        if(attached && Input.GetButtonDown("Player1 Attach")){
+            if (operationDone != true)            
+                detach();            
         }
         operationDone = false;
     }
-    void playerOneLogMovement() //
+    void playerOneLogMovement(float deltaX) 
     {
-        if (Input.GetKey(KeyCode.A))
-        {
+        if (deltaX > 0)
             attachPoint.GetComponent<AttachPoint>().moveLogHorizontal("right");
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
+        else if (deltaX < 0)
             attachPoint.GetComponent<AttachPoint>().moveLogHorizontal("left");
-        }
+
     }
-    void checkPlayerTwoKeys()
+    void checkPlayerTwoKeys(float deltaX, float deltaY)
     {
         if (attached == false)
         {
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (deltaX > 0 || deltaX < 0)
             {
-                movementVector.y += 1;
-                spriteRendererComponent.sprite = UpSprite;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                movementVector.x += -1;
-                spriteRendererComponent.sprite = LeftSprite;
-            }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                movementVector.y += -1;
-                spriteRendererComponent.sprite = DownSprite;
-            }
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                movementVector.x += 1;
-                spriteRendererComponent.sprite = RightSprite;
+                movementVector.x = deltaX;
+                if (deltaX < 0)
+                    spriteRendererComponent.sprite = LeftSprite;
+                else
+                    spriteRendererComponent.sprite = RightSprite;
             }
 
-            if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+            if (deltaY > 0 || deltaY < 0)
             {
-                movementVector.y = 0;
-            }
-            if (!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
-            {
-                movementVector.x = 0;
+                movementVector.y = deltaY;
+                if (deltaY < 0)
+                    spriteRendererComponent.sprite = DownSprite;
+                else
+                    spriteRendererComponent.sprite = UpSprite;
             }
 
-            if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.RightArrow))
+            if (deltaY > 0 && deltaX < 0 || deltaY > 0 && deltaX > 0)
             {
                 spriteRendererComponent.sprite = UpSprite;
             }
-            if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
+            if (deltaY < 0 && deltaX < 0 || deltaY < 0 && deltaX > 0)
             {
                 spriteRendererComponent.sprite = DownSprite;
             }
@@ -197,32 +174,27 @@ public class PlayerMain : MonoBehaviour
         }
         else if (attached == true)
         {
-            playerTwoLogMovement();
+            playerTwoLogMovement(deltaY);
         }
-        if (Input.GetKeyDown(KeyCode.Keypad0) && attached == false || Input.GetKeyDown(KeyCode.RightControl) && attached == false) //
+        if (!attached && Input.GetButtonDown("Player2 Attach"))
         {
             attach();
             operationDone = true;
         }
-        if (Input.GetKeyDown(KeyCode.Keypad0) && attached == true || Input.GetKeyDown(KeyCode.RightControl) && attached == true) //
+
+        if (attached && Input.GetButtonDown("Player2 Attach"))
         {
             if (operationDone != true)
-            {
                 detach();
-            } 
         }
         operationDone = false;
     }
-    void playerTwoLogMovement() //
+    void playerTwoLogMovement(float deltaY) //
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
+        if (deltaY > 0)
             attachPoint.GetComponent<AttachPoint>().moveLogVertical("up");
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
+        else if (deltaY < 0)
             attachPoint.GetComponent<AttachPoint>().moveLogVertical("down");
-        }
     }
 
     void attack()

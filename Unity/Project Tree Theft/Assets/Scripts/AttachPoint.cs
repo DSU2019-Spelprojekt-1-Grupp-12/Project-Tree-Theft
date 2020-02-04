@@ -58,11 +58,11 @@ public class AttachPoint : MonoBehaviour
     {
         if (direction == "right")
         {
-            logMain.moveVector.x = -1;
+            logMain.moveVector.x = 1;
         }
         else
         {
-            logMain.moveVector.x = 1;
+            logMain.moveVector.x = -1;
         }
 
     }

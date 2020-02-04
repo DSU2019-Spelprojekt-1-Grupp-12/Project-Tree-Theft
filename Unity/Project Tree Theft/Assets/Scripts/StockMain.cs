@@ -24,6 +24,7 @@ public class StockMain : MonoBehaviour
     void Update()
     {
         moveLog();
+        unlockLog();
     }
     #endregion
 
@@ -41,6 +42,17 @@ public class StockMain : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().velocity = moveVector * calcMoveSpeed;
         moveVector.x = 0;
         moveVector.y = 0;
+    }
+    void unlockLog()
+    {
+        if (numberOfPlayersAttached == 2)
+        {
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+        }
+        else
+        {
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
 
     #endregion

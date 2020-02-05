@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum DirectionIndex{
     up,
@@ -245,7 +247,32 @@ public class PlayerMain : MonoBehaviour
     [HideInInspector] public int GetDirectionSprite(){
         return directionIndex;
     }
+    #endregion
+    #region New Input System
+    //private PlayerControls _playerControlsScript;
 
+    //private void Awake(){
+        
+    //}
+
+    //private void OnEnable(){
+    //    _playerControlsScript.Player1.Chop.performed += NewControlChop;
+    //}
+    //private void OnDisable(){
+    //    _playerControlsScript.Player1.Chop.performed -= NewControlChop;
+    //}
+
+    //private void NewControlChop(InputAction.CallbackContext context){
+    //    Debug.Log("Chop Chop!");
+    //}
+
+    
+    //private void InitNewControlTest(){
+    //    PlayerControls player1Controls = new PlayerControls();
+    //    player1Controls.Player1.Chop.performed +=  => 
+    //}
+
+
+    #endregion
 }
 
-#endregion

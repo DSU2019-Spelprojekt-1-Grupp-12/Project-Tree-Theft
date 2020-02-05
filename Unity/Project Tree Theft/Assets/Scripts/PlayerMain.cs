@@ -37,6 +37,8 @@ public class PlayerMain : MonoBehaviour
     private int directionIndex;
     #endregion
 
+
+
     #region Core Functions
     void Start()
     {

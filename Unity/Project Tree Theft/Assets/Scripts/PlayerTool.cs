@@ -27,6 +27,8 @@ public class PlayerTool : MonoBehaviour
     private Quaternion downRotation;
     private Quaternion leftRotation;
 
+    float cooldownTimer = 0;
+
     Rigidbody2D myRigidBody;
 
     // Start is called before the first frame update
@@ -51,25 +53,28 @@ public class PlayerTool : MonoBehaviour
     }
 
     private void CheckSprite(int direction) {
-        switch (direction) {
-            case 0:
-                transform.localRotation = upRotation;
-                transform.localPosition = standardPosition;
-                break;
-            case 1:
-                transform.localRotation = rightRotation;
-                transform.localPosition = standardPosition;
-                break;
-            case 2:
-                transform.localRotation = downRotation;
-                transform.localPosition = standardPosition;
-                break;
-            case 3:
-                transform.localRotation = leftRotation;
-                transform.localPosition = standardPosition;
-                break;
+        if (cooldownTimer < Time.time)
+        {
+            switch (direction)
+            {
+                case 0:
+                    transform.localRotation = upRotation;
+                    transform.localPosition = standardPosition;
+                    break;
+                case 1:
+                    transform.localRotation = rightRotation;
+                    transform.localPosition = standardPosition;
+                    break;
+                case 2:
+                    transform.localRotation = downRotation;
+                    transform.localPosition = standardPosition;
+                    break;
+                case 3:
+                    transform.localRotation = leftRotation;
+                    transform.localPosition = standardPosition;
+                    break;
+            }
         }
-
     }
 
     public int GetDirection(){ return player.GetDirectionSprite(); }
@@ -112,6 +117,7 @@ public class PlayerTool : MonoBehaviour
                 transform.localPosition = standardPosition;                
                 break;
         }
+        cooldownTimer = Time.time + 0.01f;
     }
 
     public int GetDamage(){ return damage; }

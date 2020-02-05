@@ -21,14 +21,14 @@ public class PlayerMain : MonoBehaviour
     public int playerNumber;
     public float movementSpeed;
 
-    public Sprite UpSprite;
-    public Sprite DownSprite;
-    public Sprite LeftSprite;
-    public Sprite RightSprite;
+    public Sprite upSprite;
+    public Sprite downSprite;
+    public Sprite leftSprite;
+    public Sprite rightSprite;
 
     public PlayerTool tool;
 
-    List<TreeMain> Tree = null;
+    List<TreeMain> trees = null;
     GameObject attachPoint = null;
     bool operationDone = false;
     Vector2 movementVector = new Vector2(0f, 0f);
@@ -40,11 +40,11 @@ public class PlayerMain : MonoBehaviour
     #region Core Functions
     void Start()
     {
-        initializePlayerMain();
+        InitializePlayerMain();
     }
     void Update()
     {
-        checkKeys();
+        CheckKeys();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -67,12 +67,12 @@ public class PlayerMain : MonoBehaviour
     #endregion
 
     #region Functions
-    void initializePlayerMain()
+    void InitializePlayerMain()
     {
         spriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
-    void checkKeys()
+    void CheckKeys()
     {
         var deltaXplayer1 = Input.GetAxis("Player1 Horizontal");
         var deltaYplayer1 = Input.GetAxis("Player1 Vertical");
@@ -82,14 +82,14 @@ public class PlayerMain : MonoBehaviour
 
         if (playerNumber == 1)
         {
-            checkPlayerOneKeys(deltaXplayer1, deltaYplayer1, tool);            
+            CheckPlayerOneKeys(deltaXplayer1, deltaYplayer1, tool);            
         }
         if (playerNumber == 2)
         {
-            checkPlayerTwoKeys(deltaXplayer2, deltaYplayer2, tool);
+            CheckPlayerTwoKeys(deltaXplayer2, deltaYplayer2, tool);
         }
     }
-    void checkPlayerOneKeys(float deltaX, float deltaY, PlayerTool tool)
+    void CheckPlayerOneKeys(float deltaX, float deltaY, PlayerTool tool)
     {
         if (attached == false)
         {                    
@@ -97,27 +97,27 @@ public class PlayerMain : MonoBehaviour
             {
                 movementVector.x = deltaX;
                 if (deltaX < 0)
-                    SetDirectionSprite(LeftSprite, (int)DirectionIndex.left);
+                    SetDirectionSprite(leftSprite, (int)DirectionIndex.left);
                 else
-                    SetDirectionSprite(RightSprite, (int)DirectionIndex.right);
+                    SetDirectionSprite(rightSprite, (int)DirectionIndex.right);
             }
 
             if(deltaY > 0 || deltaY < 0)
             {
                 movementVector.y = deltaY;
                 if (deltaY < 0)
-                    SetDirectionSprite(DownSprite, (int)DirectionIndex.down);
+                    SetDirectionSprite(downSprite, (int)DirectionIndex.down);
                 else
-                    SetDirectionSprite(UpSprite, (int)DirectionIndex.up);
+                    SetDirectionSprite(upSprite, (int)DirectionIndex.up);
             }
 
             if (deltaY > 0 && deltaX < 0 || deltaY > 0 && deltaX > 0)
             {
-                spriteRendererComponent.sprite = UpSprite;
+                spriteRendererComponent.sprite = upSprite;
             }
             if (deltaY < 0 && deltaX < 0 || deltaY < 0 && deltaX > 0)
             {
-                spriteRendererComponent.sprite = DownSprite;
+                spriteRendererComponent.sprite = downSprite;
             }
 
             rigidBody.velocity = movementVector * movementSpeed;
@@ -126,25 +126,25 @@ public class PlayerMain : MonoBehaviour
         }
         else if(attached == true)
         {
-            playerOneLogMovement(deltaX);
+            PlayerOneLogMovement(deltaX);
         }
 
 
         if(!attached && Input.GetButtonDown("Player1 Attach")){
-            attach();
+            Attach();
             operationDone = true;
         }
 
         if(attached && Input.GetButtonDown("Player1 Attach")){
             if (operationDone != true)            
-                detach();            
+                Detach();            
         }
 
         if (!attached && Input.GetButtonDown("Player1 Chop"))
             tool.ChopEvent(playerNumber);
         operationDone = false;
     }
-    void playerOneLogMovement(float deltaX) 
+    void PlayerOneLogMovement(float deltaX) 
     {
         if (deltaX > 0)
             attachPoint.GetComponent<AttachPoint>().moveLogHorizontal("right");
@@ -152,7 +152,7 @@ public class PlayerMain : MonoBehaviour
             attachPoint.GetComponent<AttachPoint>().moveLogHorizontal("left");
 
     }
-    void checkPlayerTwoKeys(float deltaX, float deltaY, PlayerTool tool)
+    void CheckPlayerTwoKeys(float deltaX, float deltaY, PlayerTool tool)
     {
         if (attached == false)
         {
@@ -160,27 +160,27 @@ public class PlayerMain : MonoBehaviour
             {
                 movementVector.x = deltaX;
                 if (deltaX < 0)
-                    SetDirectionSprite(LeftSprite, (int)DirectionIndex.left);
+                    SetDirectionSprite(leftSprite, (int)DirectionIndex.left);
                 else
-                    SetDirectionSprite(RightSprite,(int)DirectionIndex.right);
+                    SetDirectionSprite(rightSprite,(int)DirectionIndex.right);
             }
 
             if (deltaY > 0 || deltaY < 0)
             {
                 movementVector.y = deltaY;
                 if (deltaY < 0)
-                    SetDirectionSprite(DownSprite, (int)DirectionIndex.down);
+                    SetDirectionSprite(downSprite, (int)DirectionIndex.down);
                 else
-                    SetDirectionSprite(UpSprite, (int)DirectionIndex.up);
+                    SetDirectionSprite(upSprite, (int)DirectionIndex.up);
             }
 
             if (deltaY > 0 && deltaX < 0 || deltaY > 0 && deltaX > 0)
             {
-                spriteRendererComponent.sprite = UpSprite;
+                spriteRendererComponent.sprite = upSprite;
             }
             if (deltaY < 0 && deltaX < 0 || deltaY < 0 && deltaX > 0)
             {
-                spriteRendererComponent.sprite = DownSprite;
+                spriteRendererComponent.sprite = downSprite;
             }
             rigidBody.velocity = movementVector * movementSpeed;
             movementVector.x = 0;
@@ -188,25 +188,25 @@ public class PlayerMain : MonoBehaviour
         }
         else if (attached == true)
         {
-            playerTwoLogMovement(deltaY);
+            PlayerTwoLogMovement(deltaY);
         }
         if (!attached && Input.GetButtonDown("Player2 Attach"))
         {
-            attach();
+            Attach();
             operationDone = true;
         }
 
         if (attached && Input.GetButtonDown("Player2 Attach"))
         {
             if (operationDone != true)
-                detach();
+                Detach();
         }
         if (!attached && Input.GetButton("Player2 Chop"))
             tool.ChopEvent(playerNumber);
         else { }
         operationDone = false;
     }
-    void playerTwoLogMovement(float deltaY) //
+    void PlayerTwoLogMovement(float deltaY) //
     {
         if (deltaY > 0)
             attachPoint.GetComponent<AttachPoint>().moveLogVertical("up");
@@ -214,12 +214,12 @@ public class PlayerMain : MonoBehaviour
             attachPoint.GetComponent<AttachPoint>().moveLogVertical("down");
     }
 
-    void attack()
+    void Attack()
     {
 
     }
 
-    void attach() //
+    void Attach() //
     {
         if (attachPoint != null)
         {
@@ -228,7 +228,7 @@ public class PlayerMain : MonoBehaviour
             Debug.Log(attached);
         }
     }
-    void detach()
+    void Detach()
     {
         attachPoint.GetComponent<AttachPoint>().detachFromPlayer();
         attached = false;

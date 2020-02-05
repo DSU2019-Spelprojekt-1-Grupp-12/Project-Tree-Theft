@@ -140,7 +140,7 @@ public class PlayerMain : MonoBehaviour
                 Detach();            
         }
 
-        if (!attached && Input.GetButtonDown("Player1 Chop"))
+        if (!attached && Input.GetButton("Player1 Chop"))
             tool.ChopEvent(playerNumber);
         operationDone = false;
     }

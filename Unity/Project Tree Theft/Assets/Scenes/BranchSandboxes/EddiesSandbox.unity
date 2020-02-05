@@ -4458,28 +4458,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &393093405 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 441287131590928332, guid: 3108851084764114786ea04b34fe8fad,
-    type: 3}
-  m_PrefabInstance: {fileID: 874970201}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &393093407
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393093405}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.13333334
 --- !u!1 &393612874
 GameObject:
   m_ObjectHideFlags: 0
@@ -8963,28 +8941,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &798184670 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 441287131590928332, guid: 3108851084764114786ea04b34fe8fad,
-    type: 3}
-  m_PrefabInstance: {fileID: 76077762}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &798184672
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798184670}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.13333334
 --- !u!1 &801179685
 GameObject:
   m_ObjectHideFlags: 0
@@ -13909,28 +13865,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1309465391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 441287131590928332, guid: 3108851084764114786ea04b34fe8fad,
-    type: 3}
-  m_PrefabInstance: {fileID: 8326000633502164338}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &1309465393
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309465391}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.13333334
 --- !u!1 &1309922270
 GameObject:
   m_ObjectHideFlags: 0
@@ -19079,16 +19013,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6974392923533769083, guid: 755a44f1ef5028447954a6e7fd93b857,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1599437665}
-    - target: {fileID: 6696482529047618231, guid: 755a44f1ef5028447954a6e7fd93b857,
-        type: 3}
-      propertyPath: m_Name
-      value: Player2 Tool
-      objectReference: {fileID: 0}
     - target: {fileID: 5720056119819364970, guid: 755a44f1ef5028447954a6e7fd93b857,
         type: 3}
       propertyPath: m_Name
@@ -19179,6 +19103,16 @@ PrefabInstance:
       propertyPath: tool
       value: 
       objectReference: {fileID: 1398223647}
+    - target: {fileID: 6696482529047618231, guid: 755a44f1ef5028447954a6e7fd93b857,
+        type: 3}
+      propertyPath: m_Name
+      value: Player2 Tool
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974392923533769083, guid: 755a44f1ef5028447954a6e7fd93b857,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1599437665}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 755a44f1ef5028447954a6e7fd93b857, type: 3}
 --- !u!1 &1791025434
@@ -22985,28 +22919,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2145711408 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 441287131590928332, guid: 3108851084764114786ea04b34fe8fad,
-    type: 3}
-  m_PrefabInstance: {fileID: 1821051728}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &2145711410
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145711408}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.13333334
 --- !u!1001 &2338390346413793464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23093,16 +23005,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6974392923533769083, guid: 755a44f1ef5028447954a6e7fd93b857,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 100615580}
-    - target: {fileID: 6696482529047618231, guid: 755a44f1ef5028447954a6e7fd93b857,
-        type: 3}
-      propertyPath: m_Name
-      value: Player1 Tool
-      objectReference: {fileID: 0}
     - target: {fileID: 5720056119819364970, guid: 755a44f1ef5028447954a6e7fd93b857,
         type: 3}
       propertyPath: m_Name
@@ -23178,6 +23080,16 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6696482529047618231, guid: 755a44f1ef5028447954a6e7fd93b857,
+        type: 3}
+      propertyPath: m_Name
+      value: Player1 Tool
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974392923533769083, guid: 755a44f1ef5028447954a6e7fd93b857,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 100615580}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 755a44f1ef5028447954a6e7fd93b857, type: 3}
 --- !u!1001 &8326000633502164338

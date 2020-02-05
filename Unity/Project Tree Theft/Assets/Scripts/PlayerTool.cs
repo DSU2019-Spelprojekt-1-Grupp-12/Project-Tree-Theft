@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerTool : MonoBehaviour
 {
-    [SerializeField] PlayerMain player;
+    [Tooltip("Add Parent here")]
+    [SerializeField] PlayerMain player;    
+    [Header("Stats")]
     public int damage = 2;
+    public int price = 20;
+    
 
     private Vector3 standardPosition = new Vector3(0, 0, 0);
     private Vector3 upPosition = new Vector3(0, 0.7f, 0);
@@ -111,4 +115,11 @@ public class PlayerTool : MonoBehaviour
     }
 
     public int GetDamage(){ return damage; }
+
+    private void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.CompareTag("Tree")){            
+            TreeMain tree = other.gameObject.GetComponent<TreeBody>().GetTreeMain();
+            tree.SetDamage(GetDamage());
+        }
+    }
 }

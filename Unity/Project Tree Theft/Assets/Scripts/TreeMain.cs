@@ -5,14 +5,17 @@ using UnityEngine;
 public class TreeMain : MonoBehaviour
 {
     [SerializeField] GameObject logPrefab;
-    [SerializeField] int hitPoints = 20;    
+    [SerializeField] int hitPoints = 20;
+    private TreeBody myBody;
 
-    // Start is called before the first frame update
-    void Start(){
-        //Test();
+    private void Awake(){
+        myBody = GetComponentInChildren<TreeBody>();
     }
 
-    // Update is called once per frame
+    void Start(){
+        //Test();        
+    }
+
     void Update(){
         Chopped();
     }
@@ -26,6 +29,8 @@ public class TreeMain : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    [HideInInspector] public TreeBody GetTreeBody() { return myBody; }
 
     //Function for testing
     //private void Test(){
@@ -41,19 +46,4 @@ public class TreeMain : MonoBehaviour
     //        SetDamage(2);
     //    }
     //}
-
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Tools"))
-        {
-            var damage = FindObjectOfType<PlayerTool>().GetDamage();
-            SetDamage(damage);
-            Debug.Log("Tree Hit");
-        }
-        else
-        {
-            Debug.Log("Tree Not Hit");
-        }
-    }
 }

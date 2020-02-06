@@ -40,7 +40,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""f4dcfc9b-9721-4637-be7c-49f414e44613"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold""
+                    ""interactions"": ""Hold(duration=0.2)""
                 }
             ],
             ""bindings"": [
@@ -182,7 +182,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""350875e5-a978-4b22-a388-0bb13c7db616"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Hold(duration=0.2)""
                 }
             ],
             ""bindings"": [

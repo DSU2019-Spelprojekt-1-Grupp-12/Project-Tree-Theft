@@ -20,7 +20,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""a687545e-007d-4f81-811d-a2a514ed51a6"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -36,11 +36,11 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Chop"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""f4dcfc9b-9721-4637-be7c-49f414e44613"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Hold""
                 }
             ],
             ""bindings"": [
@@ -59,7 +59,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""0770a3e1-2239-4731-8421-4c5722b2c1b1"",
                     ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Key&Mouse"",
                     ""action"": ""Attach"",
@@ -81,7 +81,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""84108ba9-ea7a-42bc-8231-8e89d1ee2cb8"",
                     ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Key&Mouse"",
                     ""action"": ""Chop"",
@@ -162,7 +162,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""c85a61e6-9db0-46ec-93d8-5b9894e5d3dc"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -201,7 +201,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""f0c40880-c1ae-44fd-8810-2b3df68d4d7a"",
                     ""path"": ""<Keyboard>/rightCtrl"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Key&Mouse"",
                     ""action"": ""Attach"",
@@ -223,7 +223,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""1968aeee-b55a-42c2-981d-30d1fe40cbd9"",
                     ""path"": ""<Keyboard>/rightShift"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Key&Mouse"",
                     ""action"": ""Chop"",

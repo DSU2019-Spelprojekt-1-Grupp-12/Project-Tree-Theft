@@ -135,6 +135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tool
       objectReference: {fileID: 0}
+    - target: {fileID: 2518027570602063573, guid: 705a6f2f404c7804fb7c20bc8b7af48e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 5720056119819364974}
     - target: {fileID: 4500211781125022140, guid: 705a6f2f404c7804fb7c20bc8b7af48e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -189,11 +194,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2518027570602063573, guid: 705a6f2f404c7804fb7c20bc8b7af48e,
-        type: 3}
-      propertyPath: player
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 705a6f2f404c7804fb7c20bc8b7af48e, type: 3}

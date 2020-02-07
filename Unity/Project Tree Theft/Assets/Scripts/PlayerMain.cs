@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum DirectionIndex{
     up,
@@ -46,6 +48,7 @@ public class PlayerMain : MonoBehaviour
     }
     void Update()
     {
+        //CooldownHandler();
         CheckKeys();
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -76,11 +79,16 @@ public class PlayerMain : MonoBehaviour
     }
     void CheckKeys()
     {
-        var deltaXplayer1 = Input.GetAxis("Player1 Horizontal");
-        var deltaYplayer1 = Input.GetAxis("Player1 Vertical");
+        //var deltaXplayer1 = Input.GetAxis("Player1 Horizontal");
+        //var deltaYplayer1 = Input.GetAxis("Player1 Vertical");
 
-        var deltaXplayer2 = Input.GetAxis("Player2 Horizontal");
-        var deltaYplayer2 = Input.GetAxis("Player2 Vertical");
+        //var deltaXplayer2 = Input.GetAxis("Player2 Horizontal");
+        //var deltaYplayer2 = Input.GetAxis("Player2 Vertical");
+
+        var deltaXplayer1 = _movementVectorP1.x;
+        var deltaXplayer2 = _movementVectorP2.x;
+        var deltaYplayer1 = _movementVectorP1.y;
+        var deltaYplayer2 = _movementVectorP2.y;
 
         if (playerNumber == 1)
         {
@@ -245,7 +253,108 @@ public class PlayerMain : MonoBehaviour
     [HideInInspector] public int GetDirectionSprite(){
         return directionIndex;
     }
+    #endregion
 
+    #region New Input System
+
+    
+    PlayerControls _player1Controls;
+    PlayerControls _player2Controls;
+
+    private Vector2 _movementVectorP1 = new Vector2(0f, 0f);
+    private Vector2 _movementVectorP2 = new Vector2(0f, 0f);
+    
+
+    void Awake(){
+        _player1Controls = new PlayerControls();
+        _player2Controls = new PlayerControls();
+        _player1Controls.Player1.Move.performed += ctx => _movementVectorP1 = ctx.ReadValue<Vector2>();
+        _player2Controls.Player2.Move.performed += ctx => _movementVectorP2 = ctx.ReadValue<Vector2>();
+        
+    }
+
+    private void Attach_P1(InputAction.CallbackContext obj){
+        if (playerNumber != 1) return;
+        if (!attached){
+            Attach();
+            operationDone = true;
+        }if (attached){
+            if (operationDone != true)
+                Detach();            
+        }        
+    }
+
+    private void Attach_P2(InputAction.CallbackContext obj){
+        if (playerNumber != 2) return;
+        if (!attached){
+            Attach();
+            operationDone = true;
+        }
+        if (attached){
+            if (operationDone != true)
+                Detach();            
+        }
+    }
+
+    private void Chop_P1(InputAction.CallbackContext obj)
+    {
+        if(!attached && playerNumber == 1)
+            tool.ChopEvent(playerNumber);        
+    }
+
+    private void Chop_P2(InputAction.CallbackContext obj)
+    {
+        if(!attached && playerNumber == 2)
+            tool.ChopEvent(playerNumber);
+    }
+
+    private void OnEnable(){
+        _player1Controls.Enable();
+        _player2Controls.Enable();
+
+        _player1Controls.Player1.Chop.performed += Chop_P1;
+        _player2Controls.Player2.Chop.performed += Chop_P2;
+
+        _player1Controls.Player1.Attach.performed += Attach_P1;
+        _player2Controls.Player2.Attach.performed += Attach_P2;
+    }
+
+    private void OnDisable(){
+        _player1Controls.Player1.Attach.performed -= Attach_P1;
+        _player2Controls.Player2.Attach.performed -= Attach_P2;
+
+        _player1Controls.Player1.Chop.performed -= Chop_P1;
+        _player2Controls.Player2.Chop.performed -= Chop_P2;
+
+        _player1Controls.Disable();
+        _player2Controls.Disable();        
+    }
+
+
+    //private PlayerControls _playerControlsScript;
+
+    //private void Awake(){
+
+    //}
+
+    //private void OnEnable(){
+    //    _playerControlsScript.Player1.Chop.performed += NewControlChop;
+    //}
+    //private void OnDisable(){
+    //    _playerControlsScript.Player1.Chop.performed -= NewControlChop;
+    //}
+
+    //private void NewControlChop(InputAction.CallbackContext context){
+    //    Debug.Log("Chop Chop!");
+    //}
+
+
+    //private void InitNewControlTest(){
+    //    PlayerControls player1Controls = new PlayerControls();
+    //    player1Controls.Player1.Chop.performed +=  => 
+    //}
+
+
+    #endregion
 }
 
-#endregion

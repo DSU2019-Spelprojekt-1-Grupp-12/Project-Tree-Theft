@@ -117,7 +117,7 @@ public class PlayerTool : MonoBehaviour
                 transform.localPosition = standardPosition;                
                 break;
         }
-        cooldownTimer = Time.time + 0.01f;
+        cooldownTimer = Time.time + 0.5f;
     }
 
     public int GetDamage(){ return damage; }

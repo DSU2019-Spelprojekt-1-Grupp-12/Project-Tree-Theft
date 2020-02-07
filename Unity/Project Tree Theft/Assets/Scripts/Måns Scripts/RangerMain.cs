@@ -9,13 +9,14 @@ public class RangerMain : MonoBehaviour
     #endregion
 
     #region Variables
+    public float chaseRange;
+    public float chaseSpeed;
 
     GameObject[] players;
     GameObject playerOne;
     GameObject playerTwo;
     Vector3 headingPlayerOne;
     Vector3 headingPlayerTwo;
-    Vector3 facing;
     #endregion
 
     #region Core Functions
@@ -25,7 +26,8 @@ public class RangerMain : MonoBehaviour
     }
     void Update()
     {
-        testDirectionFind();
+        DirectionFind();
+        Chase();
     }
     #endregion
 
@@ -36,13 +38,31 @@ public class RangerMain : MonoBehaviour
         playerOne = players[0];
         playerTwo = players[1];
     }
-    void testDirectionFind()
+    void DirectionFind()
     {
-        facing.x = transform.rotation.x;
-        facing.y = transform.rotation.y;
-        facing.z = 0;
-        transform.LookAt(facing);
-        transform.Rotate(new Vector3(-transform.rotation.eulerAngles.x, -transform.rotation.eulerAngles.y,0f));
+        headingPlayerOne = playerOne.transform.position - gameObject.transform.position;
+        headingPlayerTwo = playerTwo.transform.position - gameObject.transform.position;
+        if (headingPlayerOne.magnitude > headingPlayerTwo.magnitude)
+        {
+            transform.right = playerTwo.transform.position - gameObject.transform.position;
+        }
+        else
+        {
+            transform.right = playerOne.transform.position - gameObject.transform.position;
+        }
+    }
+    void Chase()
+    {
+        headingPlayerOne = playerOne.transform.position - gameObject.transform.position;
+        headingPlayerTwo = playerTwo.transform.position - gameObject.transform.position;
+        if (headingPlayerOne.magnitude < headingPlayerTwo.magnitude && headingPlayerOne.magnitude < chaseRange)
+        {
+            transform.position += headingPlayerOne.normalized * chaseSpeed;
+        }
+        if(headingPlayerTwo.magnitude < headingPlayerOne.magnitude && headingPlayerTwo.magnitude < chaseRange)
+        {
+            transform.position += headingPlayerTwo.normalized * chaseSpeed;
+        }
     }
 
     #endregion

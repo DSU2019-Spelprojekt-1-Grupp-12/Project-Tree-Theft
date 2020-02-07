@@ -6,6 +6,7 @@ public class RangerMain : MonoBehaviour
 {
     #region Components
 
+    GuardPatrol pathingScript;
     #endregion
 
     #region Variables
@@ -17,23 +18,26 @@ public class RangerMain : MonoBehaviour
     GameObject playerTwo;
     Vector3 headingPlayerOne;
     Vector3 headingPlayerTwo;
+    bool chasing = false; 
     #endregion
 
     #region Core Functions
     void Start()
     {
-        initializeRanger();
+        InitializeRanger();
     }
     void Update()
     {
-        DirectionFind();
+        //DirectionFind();
         Chase();
+        TogglePathing();
     }
     #endregion
 
     #region Functions
-    void initializeRanger()
+    void InitializeRanger()
     {
+        pathingScript = gameObject.GetComponent<GuardPatrol>();
         players = GameObject.FindGameObjectsWithTag("Player");
         playerOne = players[0];
         playerTwo = players[1];
@@ -57,11 +61,39 @@ public class RangerMain : MonoBehaviour
         headingPlayerTwo = playerTwo.transform.position - gameObject.transform.position;
         if (headingPlayerOne.magnitude < headingPlayerTwo.magnitude && headingPlayerOne.magnitude < chaseRange)
         {
+            DirectionFind();
             transform.position += headingPlayerOne.normalized * chaseSpeed;
         }
         if(headingPlayerTwo.magnitude < headingPlayerOne.magnitude && headingPlayerTwo.magnitude < chaseRange)
         {
+            DirectionFind();
             transform.position += headingPlayerTwo.normalized * chaseSpeed;
+        }
+
+        if (headingPlayerOne.magnitude < chaseRange || headingPlayerTwo.magnitude < chaseRange)
+        {
+            chasing = true;
+        }
+        else
+        {
+            chasing = false;
+        }
+    }
+    void TogglePathing()
+    {
+        if (chasing)
+        {
+            pathingScript.SetSpeed(0);
+            pathingScript.active = false;
+            //pathingScript.speed = 0;
+            Debug.Log("chaseon");
+        }
+        else
+        {
+            pathingScript.SetSpeed(pathingScript.GetOriginalSpeed());
+            pathingScript.active = true;
+            //pathingScript.speed = 0;
+            Debug.Log("chaseoff");
         }
     }
 

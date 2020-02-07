@@ -13,6 +13,9 @@ public class RangerMain : MonoBehaviour
     GameObject[] players;
     GameObject playerOne;
     GameObject playerTwo;
+    Vector3 headingPlayerOne;
+    Vector3 headingPlayerTwo;
+    Vector3 facing;
     #endregion
 
     #region Core Functions
@@ -22,7 +25,7 @@ public class RangerMain : MonoBehaviour
     }
     void Update()
     {
-
+        testDirectionFind();
     }
     #endregion
 
@@ -32,6 +35,14 @@ public class RangerMain : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player");
         playerOne = players[0];
         playerTwo = players[1];
+    }
+    void testDirectionFind()
+    {
+        facing.x = transform.rotation.x;
+        facing.y = transform.rotation.y;
+        facing.z = 0;
+        transform.LookAt(facing);
+        transform.Rotate(new Vector3(-transform.rotation.eulerAngles.x, -transform.rotation.eulerAngles.y,0f));
     }
 
     #endregion

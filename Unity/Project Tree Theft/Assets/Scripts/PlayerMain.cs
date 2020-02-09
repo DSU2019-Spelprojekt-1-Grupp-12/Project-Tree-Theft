@@ -20,8 +20,8 @@ public class PlayerMain : MonoBehaviour
     #endregion
 
     #region Variables
-    public int playerNumber;
-    public float movementSpeed;
+    [SerializeField] private int playerNumber;
+    [SerializeField] private float movementSpeed;
 
     public Sprite upSprite;
     public Sprite downSprite;
@@ -72,6 +72,11 @@ public class PlayerMain : MonoBehaviour
     #endregion
 
     #region Functions
+    
+    public void SetMovementSpeed(float movementSpeed) { this.movementSpeed = movementSpeed; }
+    public float GetMovementSpeed() { return movementSpeed; }
+    [HideInInspector] public int GetPlayerNumber() { return playerNumber; }
+
     void InitializePlayerMain()
     {
         spriteRendererComponent = gameObject.GetComponent<SpriteRenderer>();

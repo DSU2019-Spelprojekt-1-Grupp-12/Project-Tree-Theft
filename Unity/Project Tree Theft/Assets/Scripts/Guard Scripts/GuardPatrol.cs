@@ -6,7 +6,7 @@ public class GuardPatrol : MonoBehaviour
 {
     public Rigidbody2D body = null;
 
-    public bool active = false;
+    [HideInInspector] public bool active = false;
 
     public float speed;
     private float originalSpeed;
@@ -44,15 +44,15 @@ public class GuardPatrol : MonoBehaviour
             Vector2 targetToNext = nextPosition - targetPosition;
             if (active)
             {
-                transform.right = direction;
-            }
-            if (0.0f < Vector3.Dot(targetToSource, targetToNext))
-            {
-                body.velocity = velocity;
-            }
-            else
-            {
-                currentCheckpoint = currentCheckpoint.Path.GetNextCheckpoint(currentCheckpoint);
+                //transform.right = direction;
+                if (0.0f < Vector3.Dot(targetToSource, targetToNext))
+                {
+                    body.velocity = velocity;
+                }
+                else
+                {
+                    currentCheckpoint = currentCheckpoint.Path.GetNextCheckpoint(currentCheckpoint);
+                }
             }
         }
         else

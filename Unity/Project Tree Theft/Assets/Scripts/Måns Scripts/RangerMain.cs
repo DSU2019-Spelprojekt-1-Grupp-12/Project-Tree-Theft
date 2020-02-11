@@ -5,8 +5,14 @@ using UnityEngine;
 public class RangerMain : MonoBehaviour
 {
     #region Components
+    public Sprite upSprite;
+    public Sprite rightSprite;
+    public Sprite downSprite;
+    public Sprite leftSprite;
 
     GuardPatrol pathingScript;
+    Rigidbody2D rb;
+    SpriteRenderer spriteComponent;
     #endregion
 
     #region Variables
@@ -16,9 +22,11 @@ public class RangerMain : MonoBehaviour
     GameObject[] players;
     GameObject playerOne;
     GameObject playerTwo;
-    Vector3 headingPlayerOne;
-    Vector3 headingPlayerTwo;
-    bool chasing = false; 
+    Vector2 headingPlayerOne;
+    Vector2 headingPlayerTwo;
+    Vector2 movementDirection;
+    bool chasing = false;
+    bool spriteOrientationDone = false;
     #endregion
 
     #region Core Functions
@@ -28,9 +36,16 @@ public class RangerMain : MonoBehaviour
     }
     void Update()
     {
-        //DirectionFind();
         Chase();
         TogglePathing();
+        spriteOrientation();
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GameLogic.GameOverLose();
+        }
     }
     #endregion
 
@@ -38,6 +53,8 @@ public class RangerMain : MonoBehaviour
     void InitializeRanger()
     {
         pathingScript = gameObject.GetComponent<GuardPatrol>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        spriteComponent = gameObject.GetComponent<SpriteRenderer>();
         players = GameObject.FindGameObjectsWithTag("Player");
         playerOne = players[0];
         playerTwo = players[1];
@@ -46,28 +63,21 @@ public class RangerMain : MonoBehaviour
     {
         headingPlayerOne = playerOne.transform.position - gameObject.transform.position;
         headingPlayerTwo = playerTwo.transform.position - gameObject.transform.position;
-        if (headingPlayerOne.magnitude > headingPlayerTwo.magnitude)
-        {
-            transform.right = playerTwo.transform.position - gameObject.transform.position;
-        }
-        else
-        {
-            transform.right = playerOne.transform.position - gameObject.transform.position;
-        }
     }
     void Chase()
     {
-        headingPlayerOne = playerOne.transform.position - gameObject.transform.position;
-        headingPlayerTwo = playerTwo.transform.position - gameObject.transform.position;
+        DirectionFind();
         if (headingPlayerOne.magnitude < headingPlayerTwo.magnitude && headingPlayerOne.magnitude < chaseRange)
         {
             DirectionFind();
-            transform.position += headingPlayerOne.normalized * chaseSpeed;
+            rb.velocity = headingPlayerOne.normalized * chaseSpeed;
+            Debug.Log(headingPlayerOne.normalized);
         }
         if(headingPlayerTwo.magnitude < headingPlayerOne.magnitude && headingPlayerTwo.magnitude < chaseRange)
         {
             DirectionFind();
-            transform.position += headingPlayerTwo.normalized * chaseSpeed;
+            rb.velocity = headingPlayerTwo.normalized * chaseSpeed;
+            Debug.Log(headingPlayerTwo.normalized);
         }
 
         if (headingPlayerOne.magnitude < chaseRange || headingPlayerTwo.magnitude < chaseRange)
@@ -94,6 +104,31 @@ public class RangerMain : MonoBehaviour
             pathingScript.active = true;
             //pathingScript.speed = 0;
             Debug.Log("chaseoff");
+        }
+    }
+    void spriteOrientation()
+    {
+        spriteOrientationDone = false;
+        movementDirection = rb.velocity.normalized;
+        if (movementDirection.y > 0.2 && spriteOrientationDone == false)
+        {
+            spriteComponent.sprite = upSprite;
+            spriteOrientationDone = true;
+        }
+        if (movementDirection.y < -0.2 && spriteOrientationDone == false || movementDirection.x == 0 && movementDirection.y == 0)
+        {
+            spriteComponent.sprite = downSprite;
+            spriteOrientationDone = true;
+        }
+        if (movementDirection.x > 0 && spriteOrientationDone == false)
+        {
+            spriteComponent.sprite = rightSprite;
+            spriteOrientationDone = true;
+        }
+        if (movementDirection.x < 0 && spriteOrientationDone == false)
+        {
+            spriteComponent.sprite = leftSprite;
+            spriteOrientationDone = true;
         }
     }
 

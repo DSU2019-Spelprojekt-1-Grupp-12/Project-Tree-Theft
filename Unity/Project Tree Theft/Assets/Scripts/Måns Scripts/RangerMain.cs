@@ -18,6 +18,7 @@ public class RangerMain : MonoBehaviour
     #region Variables
     public float chaseRange;
     public float chaseSpeed;
+    public float spriteUpDownTolerance;
 
     GameObject[] players;
     GameObject playerOne;
@@ -37,7 +38,7 @@ public class RangerMain : MonoBehaviour
     void Update()
     {
         Chase();
-        TogglePathing();
+        TogglePatrolPathing();
         spriteOrientation();
     }
     private void OnCollisionEnter2D(Collision2D other)
@@ -89,7 +90,7 @@ public class RangerMain : MonoBehaviour
             chasing = false;
         }
     }
-    void TogglePathing()
+    void TogglePatrolPathing()
     {
         if (chasing)
         {
@@ -110,12 +111,12 @@ public class RangerMain : MonoBehaviour
     {
         spriteOrientationDone = false;
         movementDirection = rb.velocity.normalized;
-        if (movementDirection.y > 0.2 && spriteOrientationDone == false)
+        if (movementDirection.y > spriteUpDownTolerance && spriteOrientationDone == false)
         {
             spriteComponent.sprite = upSprite;
             spriteOrientationDone = true;
         }
-        if (movementDirection.y < -0.2 && spriteOrientationDone == false || movementDirection.x == 0 && movementDirection.y == 0)
+        if (movementDirection.y < -spriteUpDownTolerance && spriteOrientationDone == false || movementDirection.x == 0 && movementDirection.y == 0)
         {
             spriteComponent.sprite = downSprite;
             spriteOrientationDone = true;
@@ -131,6 +132,7 @@ public class RangerMain : MonoBehaviour
             spriteOrientationDone = true;
         }
     }
+
 
     #endregion
 

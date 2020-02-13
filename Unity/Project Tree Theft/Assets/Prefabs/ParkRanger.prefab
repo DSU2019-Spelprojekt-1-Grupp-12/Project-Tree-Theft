@@ -72,8 +72,9 @@ MonoBehaviour:
   rightSprite: {fileID: 21300000, guid: 6a03881b89fe61f4a9246e96f57a0c75, type: 3}
   downSprite: {fileID: 21300000, guid: b540611cac5eb0a4ca940e155685c8b0, type: 3}
   leftSprite: {fileID: 21300000, guid: b51a743c5b840b74aad3e897f7958db0, type: 3}
-  chaseRange: 2
+  chaseRange: 3
   chaseSpeed: 1
+  spriteUpDownTolerance: 0.5
 --- !u!114 &742847863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6e9a3161d5444654483d36457e18251b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

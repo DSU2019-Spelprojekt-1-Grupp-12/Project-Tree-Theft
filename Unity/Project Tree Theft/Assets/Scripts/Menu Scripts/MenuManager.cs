@@ -24,6 +24,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private string s_GOWin = "GameOverWin";
     [Rename("Game Over Lose")]
     [SerializeField] private string s_GOlose = "GameOverLoss";
+    [Rename("Level Select")]
+    [SerializeField] private string s_LVLselect = "LevelSelect";
     
     private string s_LoadLevel_n = "Level";
 
@@ -42,6 +44,8 @@ public class MenuManager : MonoBehaviour
     public void MainMenu() { Load(s_Main); }    
     public void LoadGameOverWin() { Load(s_GOWin); }
     public void LoadGameOverLose() { Load(s_GOlose); }
+    public void LevelSelect() { Load(s_LVLselect); }
+    public void NextLevel() { LoadLevel(StaticData.NextLevel); }
 
     public void LoadLevel(int levelNumber){
         s_LoadLevel_n += levelNumber;

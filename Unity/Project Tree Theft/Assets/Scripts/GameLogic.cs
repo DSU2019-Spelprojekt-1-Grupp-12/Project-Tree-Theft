@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameLogic : MonoBehaviour
 {
@@ -18,10 +19,19 @@ public class GameLogic : MonoBehaviour
     public Text timerText;
 
 
+
+    [SerializeField] int levelNumber;
+    //[SerializeField] GameObject menuManager;
+    //[SerializeField] MenuManager _menuManager;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //menuManager = FindObjectOfType<MenuManager>().gameObject;
+        //_menuManager = menuManager.GetComponent<MenuManager>();
+        StaticData.CurrentLevel = levelNumber;
     }
 
     // Update is called once per frame
@@ -41,8 +51,6 @@ public class GameLogic : MonoBehaviour
         {
             GameOverWin();
         }
-
-
     }
 
 

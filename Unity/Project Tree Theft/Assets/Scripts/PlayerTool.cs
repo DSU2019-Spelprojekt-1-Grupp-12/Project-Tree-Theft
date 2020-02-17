@@ -79,14 +79,20 @@ public class PlayerTool : MonoBehaviour
 
     public int GetDirection(){ return player.GetDirectionSprite(); }
 
+    [HideInInspector] public void ChopCharge(int playerNumber){
+        Debug.Log("Charging");
+    }
+
     [HideInInspector] public void ChopEvent(int playerNumber) {
-        if(playerNumber == 1) {
+        if (playerNumber == 1)
+        {
+            SetPosition(GetDirection());
+            Debug.Log("CHOP!!");
+        }
+        if (playerNumber == 2)
+        {
             SetPosition(GetDirection());
         }
-            
-        if (playerNumber == 2){
-            SetPosition(GetDirection());
-        }            
     }
 
     [HideInInspector] public void ChopEvent(){

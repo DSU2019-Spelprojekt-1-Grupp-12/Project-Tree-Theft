@@ -5,9 +5,9 @@ using UnityEngine;
 public static class StaticData
 {
 
-    private static int currentLevel = 0;
+    private static int currentLevel;
 
-    public static int currentScore = 0;
+    public static int currentScore;
 
 
     public static int CurrentLevel

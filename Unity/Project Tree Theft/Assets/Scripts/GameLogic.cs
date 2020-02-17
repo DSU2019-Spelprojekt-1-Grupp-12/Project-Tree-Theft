@@ -51,7 +51,6 @@ public class GameLogic : MonoBehaviour
         }
         if (collectedLogs >= logsToWin)
         {
-            StaticData.Score = StaticData.Score + collectedLogs + (int)timer;
             GameOverWin();
         }
     }

@@ -46,6 +46,7 @@ public class MenuManager : MonoBehaviour
     public void LoadGameOverLose() { Load(s_GOlose); }
     public void LevelSelect() { Load(s_LVLselect); }
     public void NextLevel() { LoadLevel(StaticData.NextLevel); }
+    public void RestartLevel() { LoadLevel(StaticData.CurrentLevel); }
 
     public void LoadLevel(int levelNumber){
         s_LoadLevel_n += levelNumber;

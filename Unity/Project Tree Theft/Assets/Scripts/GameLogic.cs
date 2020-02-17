@@ -52,6 +52,7 @@ public class GameLogic : MonoBehaviour
         if (collectedLogs >= logsToWin)
         {
             GameOverWin();
+            StaticData.currentScore += 5;
         }
     }
 

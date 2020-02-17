@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RangerMain : MonoBehaviour
 {
@@ -13,13 +14,16 @@ public class RangerMain : MonoBehaviour
     GuardPatrol pathingScript;
     Rigidbody2D rb;
     SpriteRenderer spriteComponent;
+    NavMeshAgent agent;
     #endregion
 
     #region Variables
     public float chaseRange;
     public float chaseSpeed;
     public float spriteUpDownTolerance;
+    public float chaseStopRange;
 
+    Vector3 destination;
     GameObject[] players;
     GameObject playerOne;
     GameObject playerTwo;
@@ -28,6 +32,9 @@ public class RangerMain : MonoBehaviour
     Vector2 movementDirection;
     bool chasing = false;
     bool spriteOrientationDone = false;
+    bool chaseStopped = false;
+    Vector3 agentVelocity;
+    Vector3 previousPosition;
     #endregion
 
     #region Core Functions
@@ -39,7 +46,7 @@ public class RangerMain : MonoBehaviour
     {
         Chase();
         TogglePatrolPathing();
-        spriteOrientation();
+        SpriteOrientation();
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -53,12 +60,18 @@ public class RangerMain : MonoBehaviour
     #region Functions
     void InitializeRanger()
     {
-        pathingScript = gameObject.GetComponent<GuardPatrol>();
+        pathingScript = gameObject.GetComponent<GuardPatrol>(); 
         rb = gameObject.GetComponent<Rigidbody2D>();
         spriteComponent = gameObject.GetComponent<SpriteRenderer>();
         players = GameObject.FindGameObjectsWithTag("Player");
         playerOne = players[0];
         playerTwo = players[1];
+
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        destination = new Vector3(playerOne.transform.position.x, playerOne.transform.position.y, 0f);
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.Warp(new Vector3(-5f, 0f, 0f));
     }
     void DirectionFind()
     {
@@ -71,19 +84,22 @@ public class RangerMain : MonoBehaviour
         if (headingPlayerOne.magnitude < headingPlayerTwo.magnitude && headingPlayerOne.magnitude < chaseRange)
         {
             DirectionFind();
-            rb.velocity = headingPlayerOne.normalized * chaseSpeed;
+            //rb.velocity = headingPlayerOne.normalized * chaseSpeed;
+            agent.SetDestination(new Vector3 (playerOne.transform.position.x, playerOne.transform.position.y, 0f));
             Debug.Log(headingPlayerOne.normalized);
         }
         if(headingPlayerTwo.magnitude < headingPlayerOne.magnitude && headingPlayerTwo.magnitude < chaseRange)
         {
             DirectionFind();
-            rb.velocity = headingPlayerTwo.normalized * chaseSpeed;
+            agent.SetDestination(new Vector3(playerTwo.transform.position.x, playerTwo.transform.position.y, 0f));
+            //rb.velocity = headingPlayerTwo.normalized * chaseSpeed;
             Debug.Log(headingPlayerTwo.normalized);
         }
 
         if (headingPlayerOne.magnitude < chaseRange || headingPlayerTwo.magnitude < chaseRange)
         {
             chasing = true;
+            chaseStopped = false;
         }
         else
         {
@@ -92,25 +108,39 @@ public class RangerMain : MonoBehaviour
     }
     void TogglePatrolPathing()
     {
-        if (chasing)
+        if (!chaseStopped)
         {
-            pathingScript.SetSpeed(0);
+            //pathingScript.SetSpeed(0);
             pathingScript.active = false;
-            //pathingScript.speed = 0;
-            Debug.Log("chaseon");
         }
         else
         {
-            pathingScript.SetSpeed(pathingScript.GetOriginalSpeed());
+            //pathingScript.SetSpeed(pathingScript.GetOriginalSpeed());
             pathingScript.active = true;
-            //pathingScript.speed = 0;
-            Debug.Log("chaseoff");
+        }
+        if ((agent.destination - agent.transform.position).magnitude <= chaseStopRange && headingPlayerOne.magnitude > chaseRange && headingPlayerTwo.magnitude > chaseRange && chaseStopped == false)
+        {
+            agent.SetDestination(gameObject.GetComponent<GuardPatrol>().currentCheckpoint.transform.position);
+            chaseStopped = true;
+        }
+        if ((agent.destination - agent.transform.position).magnitude <= chaseStopRange && headingPlayerOne.magnitude > chaseRange && headingPlayerTwo.magnitude > chaseRange && chaseStopped == true)
+        {
+            agent.ResetPath();
         }
     }
-    void spriteOrientation()
+    void SpriteOrientation()
     {
         spriteOrientationDone = false;
-        movementDirection = rb.velocity.normalized;
+        if (!chaseStopped)
+        {
+            movementDirection = agent.desiredVelocity.normalized;
+            Debug.DrawLine(gameObject.transform.position , gameObject.transform.position + agent.desiredVelocity, Color.red);
+        }
+        else
+        {
+            movementDirection = rb.velocity.normalized;
+        }
+
         if (movementDirection.y > spriteUpDownTolerance && spriteOrientationDone == false)
         {
             spriteComponent.sprite = upSprite;
@@ -132,8 +162,6 @@ public class RangerMain : MonoBehaviour
             spriteOrientationDone = true;
         }
     }
-
-
     #endregion
 
 }

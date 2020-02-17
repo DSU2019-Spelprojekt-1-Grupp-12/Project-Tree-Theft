@@ -20,6 +20,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverLoss.unity
     guid: 4d23abbbacc25db4fb165ec88bd68005
+  - enabled: 1
+    path: Assets/Scenes/MenuSystem/Credits.unity
+    guid: e0a19125244ed144aaf61069c260f18a
+  - enabled: 1
+    path: Assets/Scenes/MenuSystem/LoadGame.unity
+    guid: 37fd1b7ef9be15945bc12252490ab942
+  - enabled: 1
+    path: Assets/Scenes/MenuSystem/NewGame.unity
+    guid: e59e0df5cc96a5949bb5ac63bb701007
+  - enabled: 1
+    path: Assets/Scenes/MenuSystem/Options.unity
+    guid: b849e045031bdcb4b97e1acc415589fc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ed8bf902c3416464faf3d07bfca48ab4,
       type: 2}

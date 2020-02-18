@@ -8,6 +8,7 @@ TagManager:
   - AttachPoint
   - Tree
   - Tools
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - 
   - Log
-  - 
+  - Ranger
   - 
   - 
   - 

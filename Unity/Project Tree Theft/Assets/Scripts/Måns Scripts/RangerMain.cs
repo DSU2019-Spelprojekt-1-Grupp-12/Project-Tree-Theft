@@ -30,10 +30,11 @@ public class RangerMain : MonoBehaviour
     Vector2 headingPlayerOne;
     Vector2 headingPlayerTwo;
     Vector2 movementDirection;
-    bool chasing = false;
     bool spriteOrientationDone = false;
     bool chaseStopped = false;
     bool returning = false;
+    bool playerOneObstructed = false;
+    bool playerTwoObstructed = false;
     Vector3 agentVelocity;
     Vector3 previousPosition;
     #endregion
@@ -47,7 +48,8 @@ public class RangerMain : MonoBehaviour
     {
         Chase();
         TogglePatrolPathing();
-        SpriteOrientation();       
+        SpriteOrientation();
+        CheckObstruction();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -69,10 +71,10 @@ public class RangerMain : MonoBehaviour
         playerTwo = players[1];
 
         agent = gameObject.GetComponent<NavMeshAgent>();
-        destination = new Vector3(playerOne.transform.position.x, playerOne.transform.position.y, 0f);
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        agent.Warp(new Vector3(-5f, 0f, 0f));
+        agent.Warp(transform.position);
+        agent.SetDestination(gameObject.GetComponent<GuardPatrol>().currentCheckpoint.transform.position);
         agent.speed = chaseSpeed;
     }
     void DirectionFind()
@@ -83,24 +85,22 @@ public class RangerMain : MonoBehaviour
     void Chase()
     {
         DirectionFind();
-        if (headingPlayerOne.magnitude < headingPlayerTwo.magnitude && headingPlayerOne.magnitude < chaseRange)
+        if (headingPlayerOne.magnitude < headingPlayerTwo.magnitude && headingPlayerOne.magnitude < chaseRange && playerOneObstructed == false)
         {
             DirectionFind();
-            //rb.velocity = headingPlayerOne.normalized * chaseSpeed;
             agent.SetDestination(new Vector3 (playerOne.transform.position.x, playerOne.transform.position.y, 0f));
             chaseStopped = false;
         }
-        if(headingPlayerTwo.magnitude < headingPlayerOne.magnitude && headingPlayerTwo.magnitude < chaseRange)
+        if(headingPlayerTwo.magnitude < headingPlayerOne.magnitude && headingPlayerTwo.magnitude < chaseRange && playerTwoObstructed == false)
         {
             DirectionFind();
             agent.SetDestination(new Vector3(playerTwo.transform.position.x, playerTwo.transform.position.y, 0f));
             chaseStopped = false;
-            //rb.velocity = headingPlayerTwo.normalized * chaseSpeed;
         }
     }
     void TogglePatrolPathing()
     {
-        if (!chaseStopped)
+        if (chaseStopped == false)
         {
             pathingScript.active = false;
         }
@@ -124,7 +124,6 @@ public class RangerMain : MonoBehaviour
     void SpriteOrientation()
     {
         spriteOrientationDone = false;
-        Debug.Log(chaseStopped);
         if (chaseStopped == false || returning == true)
         {
             movementDirection = agent.desiredVelocity.normalized;
@@ -153,6 +152,35 @@ public class RangerMain : MonoBehaviour
         {
             spriteComponent.sprite = leftSprite;
             spriteOrientationDone = true;
+        }
+    }
+    void CheckObstruction()
+    {
+        RaycastHit2D playerOneHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), headingPlayerOne);
+        RaycastHit2D playerTwoHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), headingPlayerTwo);
+        if (playerOneHit.collider != null)
+        {
+            Debug.Log("Empty");
+        }
+        {
+
+        }
+
+        if (playerOneHit.collider != null && playerOneHit.collider.CompareTag("Wall"))
+        {
+            playerOneObstructed = true;
+        }
+        else
+        {
+            playerOneObstructed = false;
+        }
+        if (playerTwoHit.collider != null && playerTwoHit.collider.CompareTag("Wall"))
+        {
+            playerTwoObstructed = true;
+        }
+        else
+        {
+            playerTwoObstructed = false;
         }
     }
     #endregion

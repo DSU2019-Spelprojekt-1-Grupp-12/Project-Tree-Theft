@@ -73,6 +73,7 @@ public class RangerMain : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.Warp(new Vector3(-5f, 0f, 0f));
+        agent.speed = chaseSpeed;
     }
     void DirectionFind()
     {

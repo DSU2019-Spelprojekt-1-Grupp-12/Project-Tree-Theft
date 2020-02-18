@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 742847863}
   - component: {fileID: 4223366959744015468}
   - component: {fileID: 5311192823518126429}
+  - component: {fileID: 118954032}
   m_Layer: 0
   m_Name: ParkRanger
   m_TagString: Untagged
@@ -73,8 +74,9 @@ MonoBehaviour:
   downSprite: {fileID: 21300000, guid: b540611cac5eb0a4ca940e155685c8b0, type: 3}
   leftSprite: {fileID: 21300000, guid: b51a743c5b840b74aad3e897f7958db0, type: 3}
   chaseRange: 3
-  chaseSpeed: 1
+  chaseSpeed: 3
   spriteUpDownTolerance: 0.5
+  chaseStopRange: 0.5
 --- !u!114 &742847863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +104,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -167,3 +169,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!195 &118954032
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193111473746507517}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.49999997
+  m_Speed: 3
+  m_Acceleration: 12
+  avoidancePriority: 50
+  m_AngularSpeed: 1000
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.99999994
+  m_BaseOffset: 0.49999997
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

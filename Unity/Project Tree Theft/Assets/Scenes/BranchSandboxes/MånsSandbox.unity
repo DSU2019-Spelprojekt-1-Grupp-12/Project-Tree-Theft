@@ -5155,6 +5155,7 @@ MonoBehaviour:
   logsToWin: 1
   timer: 60
   timerText: {fileID: 1677026437}
+  levelNumber: 0
 --- !u!4 &365321087
 Transform:
   m_ObjectHideFlags: 0
@@ -10583,21 +10584,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2338390346436623185, guid: e03310fe7ae9cf54ca2e60593c118a9d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891063485668454003, guid: e03310fe7ae9cf54ca2e60593c118a9d,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891063485668454003, guid: e03310fe7ae9cf54ca2e60593c118a9d,
-        type: 3}
-      propertyPath: m_Mass
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e03310fe7ae9cf54ca2e60593c118a9d, type: 3}
@@ -84817,21 +84803,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2338390346436623185, guid: e03310fe7ae9cf54ca2e60593c118a9d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891063485668454003, guid: e03310fe7ae9cf54ca2e60593c118a9d,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891063485668454003, guid: e03310fe7ae9cf54ca2e60593c118a9d,
-        type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e03310fe7ae9cf54ca2e60593c118a9d, type: 3}
 --- !u!1001 &3595859789279916292
@@ -84921,7 +84892,7 @@ PrefabInstance:
     - target: {fileID: 4338976815892650888, guid: 1eaecc1a09ed36b49aa66ddaf575c9be,
         type: 3}
       propertyPath: chaseStopRange
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4338976815892650888, guid: 1eaecc1a09ed36b49aa66ddaf575c9be,
         type: 3}
@@ -84931,6 +84902,11 @@ PrefabInstance:
     - target: {fileID: 5311192823518126429, guid: 1eaecc1a09ed36b49aa66ddaf575c9be,
         type: 3}
       propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223366959744015468, guid: 1eaecc1a09ed36b49aa66ddaf575c9be,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

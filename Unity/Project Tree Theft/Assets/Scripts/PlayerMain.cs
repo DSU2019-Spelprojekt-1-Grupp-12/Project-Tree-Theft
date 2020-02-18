@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public enum DirectionIndex{
     up,
@@ -263,6 +264,7 @@ public class PlayerMain : MonoBehaviour
     #region New Input System
 
     
+
     PlayerControls _player1Controls;
     PlayerControls _player2Controls;
 
@@ -270,6 +272,7 @@ public class PlayerMain : MonoBehaviour
     private Vector2 _movementVectorP2 = new Vector2(0f, 0f);
 
     bool isCharging = false;
+
     
 
     void Awake(){
@@ -303,17 +306,14 @@ public class PlayerMain : MonoBehaviour
     }
 
     private void Chop_P1(InputAction.CallbackContext obj){
-        if(!attached && playerNumber == 1)
-            tool.ChopEvent(playerNumber);        
+        if (!attached && playerNumber == 1)
+            tool.ChopEvent(playerNumber);
     }
 
     private void Chop_P2(InputAction.CallbackContext obj){
         if(!attached && playerNumber == 2)
             tool.ChopEvent(playerNumber);
     }
-
-    private void SetChargingTrue() { isCharging = true; }
-    private void SetChargingFalse() { isCharging = false; }
 
     private void Charge_P1(InputAction.CallbackContext obj){
         if(!attached && playerNumber == 1)
@@ -328,24 +328,23 @@ public class PlayerMain : MonoBehaviour
         _player1Controls.Enable();
         _player2Controls.Enable();
 
-        _player1Controls.Player1.Chop.started += Charge_P1;
-        _player2Controls.Player2.Chop.started += Charge_P2;
-
-        _player1Controls.Player1.Chop.canceled -= Charge_P1;
-        _player2Controls.Player2.Chop.canceled -= Charge_P1;
-        _player1Controls.Player1.Chop.canceled += Chop_P1;
-        _player2Controls.Player2.Chop.canceled += Chop_P2;
+        _player1Controls.Player1.Charge.performed += Charge_P1;
+        _player1Controls.Player1.Chop.performed += Chop_P1;
+        _player2Controls.Player2.Charge.performed += Charge_P2;
+        _player2Controls.Player2.Chop.performed += Chop_P2;
 
         _player1Controls.Player1.Attach.performed += Attach_P1;
-        _player2Controls.Player2.Attach.performed += Attach_P2;
+        _player2Controls.Player2.Attach.performed += Attach_P2;        
     }    
-
+        
     private void OnDisable(){
         _player1Controls.Player1.Attach.performed -= Attach_P1;
         _player2Controls.Player2.Attach.performed -= Attach_P2;
-                
-        _player1Controls.Player1.Chop.canceled -= Chop_P1;
-        _player2Controls.Player2.Chop.canceled -= Chop_P2;
+
+        _player1Controls.Player1.Charge.performed -= Charge_P1;
+        _player1Controls.Player1.Chop.performed -= Chop_P1;
+        _player2Controls.Player2.Charge.performed -= Charge_P2;
+        _player2Controls.Player2.Chop.performed -= Chop_P2;
 
         _player1Controls.Disable();
         _player2Controls.Disable();        

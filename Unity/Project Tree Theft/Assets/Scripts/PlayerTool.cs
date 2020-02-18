@@ -87,12 +87,14 @@ public class PlayerTool : MonoBehaviour
         if (playerNumber == 1)
         {
             SetPosition(GetDirection());
-            Debug.Log("CHOP!!");
+            Debug.Log("P1: CHOP!!");
         }
         if (playerNumber == 2)
         {
             SetPosition(GetDirection());
+            Debug.Log("P2: CHOP!!");
         }
+        Debug.Log("CHOP!!");
     }
 
     [HideInInspector] public void ChopEvent(){

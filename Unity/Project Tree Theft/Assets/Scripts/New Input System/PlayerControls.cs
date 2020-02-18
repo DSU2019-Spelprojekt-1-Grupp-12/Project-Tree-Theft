@@ -40,7 +40,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""f4dcfc9b-9721-4637-be7c-49f414e44613"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold""
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""Charge"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""37c4cc0f-5304-4d3b-983c-91cae06a64dd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -153,6 +161,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2cfba0f-c9ff-4e49-b4ae-f3734039c3b3"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Key&Mouse"",
+                    ""action"": ""Charge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -178,11 +197,19 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Chop"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""350875e5-a978-4b22-a388-0bb13c7db616"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold""
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""Charge"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""91b7f429-0422-4f15-8105-d01388662b7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -295,6 +322,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc3c5f7d-d641-4a1f-9cfe-dae526132562"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Key&Mouse"",
+                    ""action"": ""Charge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -361,11 +399,13 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player1_Move = m_Player1.FindAction("Move", throwIfNotFound: true);
         m_Player1_Attach = m_Player1.FindAction("Attach", throwIfNotFound: true);
         m_Player1_Chop = m_Player1.FindAction("Chop", throwIfNotFound: true);
+        m_Player1_Charge = m_Player1.FindAction("Charge", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Move = m_Player2.FindAction("Move", throwIfNotFound: true);
         m_Player2_Attach = m_Player2.FindAction("Attach", throwIfNotFound: true);
         m_Player2_Chop = m_Player2.FindAction("Chop", throwIfNotFound: true);
+        m_Player2_Charge = m_Player2.FindAction("Charge", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Newaction = m_Menus.FindAction("New action", throwIfNotFound: true);
@@ -421,6 +461,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player1_Move;
     private readonly InputAction m_Player1_Attach;
     private readonly InputAction m_Player1_Chop;
+    private readonly InputAction m_Player1_Charge;
     public struct Player1Actions
     {
         private @PlayerControls m_Wrapper;
@@ -428,6 +469,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player1_Move;
         public InputAction @Attach => m_Wrapper.m_Player1_Attach;
         public InputAction @Chop => m_Wrapper.m_Player1_Chop;
+        public InputAction @Charge => m_Wrapper.m_Player1_Charge;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -446,6 +488,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Chop.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnChop;
                 @Chop.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnChop;
                 @Chop.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnChop;
+                @Charge.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnCharge;
+                @Charge.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnCharge;
+                @Charge.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnCharge;
             }
             m_Wrapper.m_Player1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -459,6 +504,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Chop.started += instance.OnChop;
                 @Chop.performed += instance.OnChop;
                 @Chop.canceled += instance.OnChop;
+                @Charge.started += instance.OnCharge;
+                @Charge.performed += instance.OnCharge;
+                @Charge.canceled += instance.OnCharge;
             }
         }
     }
@@ -470,6 +518,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player2_Move;
     private readonly InputAction m_Player2_Attach;
     private readonly InputAction m_Player2_Chop;
+    private readonly InputAction m_Player2_Charge;
     public struct Player2Actions
     {
         private @PlayerControls m_Wrapper;
@@ -477,6 +526,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player2_Move;
         public InputAction @Attach => m_Wrapper.m_Player2_Attach;
         public InputAction @Chop => m_Wrapper.m_Player2_Chop;
+        public InputAction @Charge => m_Wrapper.m_Player2_Charge;
         public InputActionMap Get() { return m_Wrapper.m_Player2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -495,6 +545,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Chop.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnChop;
                 @Chop.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnChop;
                 @Chop.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnChop;
+                @Charge.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnCharge;
+                @Charge.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnCharge;
+                @Charge.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnCharge;
             }
             m_Wrapper.m_Player2ActionsCallbackInterface = instance;
             if (instance != null)
@@ -508,6 +561,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Chop.started += instance.OnChop;
                 @Chop.performed += instance.OnChop;
                 @Chop.canceled += instance.OnChop;
+                @Charge.started += instance.OnCharge;
+                @Charge.performed += instance.OnCharge;
+                @Charge.canceled += instance.OnCharge;
             }
         }
     }
@@ -568,12 +624,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnAttach(InputAction.CallbackContext context);
         void OnChop(InputAction.CallbackContext context);
+        void OnCharge(InputAction.CallbackContext context);
     }
     public interface IPlayer2Actions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnAttach(InputAction.CallbackContext context);
         void OnChop(InputAction.CallbackContext context);
+        void OnCharge(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

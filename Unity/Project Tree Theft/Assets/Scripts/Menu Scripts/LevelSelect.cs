@@ -10,7 +10,12 @@ public class LevelSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //levels = new GameObject[StaticData.ClearedLevels];
+
+        //for (int i = 0; levels.Length < StaticData.ClearedLevels || levels.Length == 1;i++)
+        //{
+        //    levels[i] = GameObject.Find("Level1");
+        //}
 
         for (int i = 0; i != levels.Length; i++)
         {
@@ -19,10 +24,10 @@ public class LevelSelect : MonoBehaviour
 
         levels[currentSelectLevel].SetActive(true);
 
-        if (Input.GetKeyDown("space"))
-        {
-            NextSelect();
-        }
+        //if (Input.GetKeyDown("space"))
+        //{
+        //    NextSelect();
+        //}
         
     }
 
@@ -36,7 +41,7 @@ public class LevelSelect : MonoBehaviour
         Debug.Log("Pressed");
         levels[currentSelectLevel].SetActive(false);
         currentSelectLevel++;
-        if (currentSelectLevel == levels.Length)
+        if (currentSelectLevel == levels.Length || currentSelectLevel == StaticData.ClearedLevels)
         {
             currentSelectLevel = 0;
         }
@@ -49,7 +54,7 @@ public class LevelSelect : MonoBehaviour
         currentSelectLevel--;
         if (currentSelectLevel < 0)
         {
-            currentSelectLevel = levels.Length -1;
+            currentSelectLevel = StaticData.ClearedLevels - 1;
         }
         levels[currentSelectLevel].SetActive(true);
     }

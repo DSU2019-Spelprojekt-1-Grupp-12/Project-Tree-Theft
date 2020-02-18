@@ -30,8 +30,19 @@ public class PlayerTool : MonoBehaviour
 
     float cooldownTimer = 0;
     private bool isCharging = false;
+    private int chargeLevel = 1;
+    private int minCharge = 1;
+    private int maxCharge = 100;
+    private int chargeMidConstant;
+    private int chargeCounter;
+    private bool chargeUp = false;
 
     Rigidbody2D myRigidBody;
+
+    private void Awake(){
+        chargeMidConstant = (maxCharge - minCharge) / 2;
+        chargeCounter = minCharge-1;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -52,10 +63,34 @@ public class PlayerTool : MonoBehaviour
     {
         var direction = GetDirection();
         CheckSprite(direction);
-        if (isCharging){
-            //Charge bar - ASin(x)+k
+        if (isCharging)
+        {
+            //Charge bar - ASin(x)+k            
+            ChargeUpTool();
         }
     }
+
+    private void ChargeUpTool()
+    {
+        if (!chargeUp && chargeCounter <= minCharge)
+        {
+            chargeCounter++;
+            chargeUp = true;
+        }
+        else if (chargeUp && chargeCounter < maxCharge)
+            chargeCounter++;
+        else if (chargeUp && chargeCounter >= maxCharge)
+        {
+            chargeCounter--;
+            chargeUp = false;
+        }
+        else if (!chargeUp && chargeCounter > minCharge)
+            chargeCounter--;
+        chargeLevel = chargeCounter;
+        Debug.Log("Charge Level: " + chargeLevel + "\nCharge counter: " + chargeCounter);
+    }
+
+    public int GetChargeLevel() { return chargeLevel; }
 
     private void CheckSprite(int direction) {
         if (cooldownTimer < Time.time)
@@ -94,6 +129,8 @@ public class PlayerTool : MonoBehaviour
 
     [HideInInspector] public void ChopEvent(int playerNumber) {
         isCharging = false;
+        chargeLevel = minCharge;
+        chargeCounter = minCharge - 1;
         if (playerNumber == 1)
         {
             SetPosition(GetDirection());

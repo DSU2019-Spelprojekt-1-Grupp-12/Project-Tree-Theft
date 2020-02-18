@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Slider : MonoBehaviour
+public class SliderBehaviour : MonoBehaviour
 {
     [SerializeField] int myPlayerNumber;
     private GameObject myPlayer;
@@ -15,17 +16,16 @@ public class Slider : MonoBehaviour
                 myPlayer = players[n].gameObject;
         myNumber = myPlayer.GetComponent<PlayerMain>().GetPlayerNumber();
         Debug.Log("Player" + myPlayer.GetComponent<PlayerMain>().GetPlayerNumber() + " is bound to Slider" + myNumber);
+        //slider = gameObject.GetComponent<Slider>();
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        GetComponent<Slider>().value = myPlayer.GetComponentInChildren<PlayerTool>().GetChargeLevel();
     }
 }

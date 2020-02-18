@@ -7,6 +7,8 @@ public static class StaticData
 
     private static int currentLevel;
 
+    public static int currentScore;
+
 
     public static int CurrentLevel
     {
@@ -26,6 +28,17 @@ public static class StaticData
             return currentLevel + 1;
         }
 
+    }
+    public static int Score
+    {
+        get
+        {
+            return Score;
+        }
+        set
+        {
+            currentScore = value;
+        }
     }
 
 

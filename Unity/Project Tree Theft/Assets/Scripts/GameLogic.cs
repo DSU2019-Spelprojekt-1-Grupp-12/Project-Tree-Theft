@@ -18,6 +18,8 @@ public class GameLogic : MonoBehaviour
     public float timer;
     public Text timerText;
 
+    
+
 
 
     [SerializeField] int levelNumber;
@@ -50,6 +52,7 @@ public class GameLogic : MonoBehaviour
         if (collectedLogs >= logsToWin)
         {
             GameOverWin();
+            StaticData.currentScore += 5;
         }
     }
 

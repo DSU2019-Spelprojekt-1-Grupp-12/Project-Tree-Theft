@@ -17,6 +17,7 @@ public class PathingTest : MonoBehaviour
         //agent.SetDestination(new Vector3(-8f, 3.25f, 0f));
         agent.SetDestination(nodePosition);
 
+
     }
 
     // Update is called once per frame

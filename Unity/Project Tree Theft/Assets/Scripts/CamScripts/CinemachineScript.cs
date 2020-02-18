@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class CinemachineScript : MonoBehaviour
 {
+    [SerializeField] private float zoomBoundary = 1.75f;
     private GameObject centerPoint;
     private float defaultOrtSize;
 
@@ -17,8 +18,8 @@ public class CinemachineScript : MonoBehaviour
 
     private void SetOrtographicSize(){
         var playerDistance = centerPoint.GetComponent<CamCenterPoint>().GetDistance();
-        var newOrtSize = playerDistance / 1.75f;
-        var minimumDistance = defaultOrtSize * 1.75f;        
+        var newOrtSize = playerDistance / zoomBoundary;
+        var minimumDistance = defaultOrtSize * zoomBoundary;
 
         if (playerDistance <= minimumDistance)
             gameObject.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = defaultOrtSize;

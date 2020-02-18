@@ -9,7 +9,7 @@ public class WriteStatic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = ("score:" + StaticData.currentScore);
+        scoreText.text = ("score:" + StaticData.PlayerScore);
     }
 
     // Update is called once per frame

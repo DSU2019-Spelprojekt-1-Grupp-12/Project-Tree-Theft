@@ -47,12 +47,15 @@ public class GameLogic : MonoBehaviour
         //Victory and Lose Conditions
         if (timer <= 0)
         {
+            StaticData.Score = 0;
             GameOverLose();
         }
         if (collectedLogs >= logsToWin)
         {
+            StaticData.SetPlayerScore();
+            StaticData.Score = 0;
+            StaticData.ClearLevel();
             GameOverWin();
-            StaticData.currentScore += 5;
         }
     }
 

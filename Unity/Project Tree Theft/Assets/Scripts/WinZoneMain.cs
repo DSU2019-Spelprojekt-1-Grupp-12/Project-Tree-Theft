@@ -25,6 +25,7 @@ public class WinZoneMain : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Log"))
         {
+            StaticData.AddScore(other.GetComponent<StockMain>().pointValue);
             GameLogic.AddLog();
             Debug.Log("LogAdded");
         }

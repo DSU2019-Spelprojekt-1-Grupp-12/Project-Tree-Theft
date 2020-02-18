@@ -9,6 +9,7 @@ public class StockMain : MonoBehaviour
     #endregion
 
     #region Variables
+    public int pointValue;
     public float moveSpeed;
     [HideInInspector] public Vector2 moveVector;
     [HideInInspector] public int numberOfPlayersAttached = 0;

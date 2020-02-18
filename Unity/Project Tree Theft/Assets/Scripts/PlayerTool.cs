@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerTool : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class PlayerTool : MonoBehaviour
     private Quaternion leftRotation;
 
     float cooldownTimer = 0;
+    private bool isCharging = false;
 
     Rigidbody2D myRigidBody;
 
@@ -50,6 +52,9 @@ public class PlayerTool : MonoBehaviour
     {
         var direction = GetDirection();
         CheckSprite(direction);
+        if (isCharging){
+            //Charge bar - ASin(x)+k
+        }
     }
 
     private void CheckSprite(int direction) {
@@ -80,10 +85,15 @@ public class PlayerTool : MonoBehaviour
     public int GetDirection(){ return player.GetDirectionSprite(); }
 
     [HideInInspector] public void ChopCharge(int playerNumber){
-        Debug.Log("Charging");
+        if (!isCharging){
+            //Instantiate charge
+        }
+        isCharging = true;        
+        Debug.Log("Player" + playerNumber + " is Charging");
     }
 
     [HideInInspector] public void ChopEvent(int playerNumber) {
+        isCharging = false;
         if (playerNumber == 1)
         {
             SetPosition(GetDirection());
@@ -94,7 +104,7 @@ public class PlayerTool : MonoBehaviour
             SetPosition(GetDirection());
             Debug.Log("P2: CHOP!!");
         }
-        Debug.Log("CHOP!!");
+        Debug.Log("Player" + playerNumber + ": CHOP!!");
     }
 
     [HideInInspector] public void ChopEvent(){

@@ -326,7 +326,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fc3c5f7d-d641-4a1f-9cfe-dae526132562"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/rightShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Key&Mouse"",

@@ -8,6 +8,7 @@ TagManager:
   - AttachPoint
   - Tree
   - Tools
+  - TowerSight
   layers:
   - Default
   - TransparentFX
@@ -17,12 +18,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Hinder
+  - Trees/Logs
+  - Enemies
+  - Players
+  - Pickups
   - 
   - 
   - 

@@ -37,16 +37,21 @@ public class PlayerTool : MonoBehaviour
     private int chargeCounter;
     private bool chargeUp = false;
 
+    [Header("Charge stats")]
+    int chargeSweetspotMax = 100;
+    int chargeSweetspotMin = 50;
+    private int sweetSpot;
+
     Rigidbody2D myRigidBody;
 
     private void Awake(){
         chargeMidConstant = (maxCharge - minCharge) / 2;
         chargeCounter = minCharge-1;
+        sweetSpot = chargeSweetspotMin;
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         myRigidBody = gameObject.GetComponent<Rigidbody2D>();
         InitQuaternions();
     }
@@ -121,7 +126,7 @@ public class PlayerTool : MonoBehaviour
 
     [HideInInspector] public void ChopCharge(int playerNumber){
         if (!isCharging){
-            //Instantiate charge
+            RandomizeSweetSpot();
         }
         isCharging = true;        
         Debug.Log("Player" + playerNumber + " is Charging");
@@ -183,4 +188,10 @@ public class PlayerTool : MonoBehaviour
             tree.SetDamage(GetDamage());
         }
     }
+
+    public void RandomizeSweetSpot() {
+        sweetSpot = Random.Range(chargeSweetspotMin, chargeSweetspotMax + 1);
+        Debug.Log(sweetSpot);
+    }
+    public int GetSweetSpot() { return sweetSpot; }
 }

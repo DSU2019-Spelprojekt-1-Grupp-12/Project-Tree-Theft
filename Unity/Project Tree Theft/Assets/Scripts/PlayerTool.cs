@@ -31,6 +31,7 @@ public class PlayerTool : MonoBehaviour
     float cooldownTimer = 0;
     private bool isCharging = false;
     private int chargeLevel = 1;
+    private int chargeLevelWhenHit;
     private int minCharge = 1;
     private int maxCharge = 100;
     private int chargeMidConstant;
@@ -38,13 +39,20 @@ public class PlayerTool : MonoBehaviour
     private bool chargeUp = false;
 
     [Header("Charge stats")]
-    int chargeSweetspotMax = 100;
-    int chargeSweetspotMin = 50;
+    int chargeSweetspotMax = 80;
+    int chargeSweetspotMin = 40;
     private int sweetSpot;
+
+    private GameObject mySlider;
 
     Rigidbody2D myRigidBody;
 
     private void Awake(){
+        SliderBehaviour[] sliders = FindObjectsOfType<SliderBehaviour>();
+        for (int n = 0; n < sliders.Length; n++)
+            if (sliders[n].GetPlayerNumber() == GetComponentInParent<PlayerMain>().GetPlayerNumber())
+                mySlider = sliders[n].gameObject;
+
         chargeMidConstant = (maxCharge - minCharge) / 2;
         chargeCounter = minCharge-1;
         sweetSpot = chargeSweetspotMin;
@@ -73,6 +81,11 @@ public class PlayerTool : MonoBehaviour
             //Charge bar - ASin(x)+k            
             ChargeUpTool();
         }
+        if (!isCharging)
+        {
+            chargeLevel = minCharge;
+            chargeCounter = minCharge - 1;
+        }
     }
 
     private void ChargeUpTool()
@@ -92,7 +105,8 @@ public class PlayerTool : MonoBehaviour
         else if (!chargeUp && chargeCounter > minCharge)
             chargeCounter--;
         chargeLevel = chargeCounter;
-        Debug.Log("Charge Level: " + chargeLevel + "\nCharge counter: " + chargeCounter);
+        chargeLevelWhenHit = chargeLevel;
+        //Debug.Log("Charge Level: " + chargeLevel + "\nCharge counter: " + chargeCounter);
     }
 
     public int GetChargeLevel() { return chargeLevel; }
@@ -134,8 +148,6 @@ public class PlayerTool : MonoBehaviour
 
     [HideInInspector] public void ChopEvent(int playerNumber) {
         isCharging = false;
-        chargeLevel = minCharge;
-        chargeCounter = minCharge - 1;
         if (playerNumber == 1)
         {
             SetPosition(GetDirection());
@@ -183,9 +195,24 @@ public class PlayerTool : MonoBehaviour
     public int GetDamage(){ return damage; }
 
     private void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.CompareTag("Tree")){            
+        if (other.gameObject.CompareTag("Tree")){
+            var SweetSpotMax = GetSweetSpot() + 20;
+            var getCharge = mySlider.GetComponent<SliderBehaviour>().GetCharge();
             TreeMain tree = other.gameObject.GetComponent<TreeBody>().GetTreeMain();
-            tree.SetDamage(GetDamage());
+            if (chargeLevelWhenHit > GetSweetSpot() && chargeLevelWhenHit <= SweetSpotMax)
+            {
+                tree.SetDamage(GetDamage());
+                Debug.Log("HIT");
+                Debug.Log("Charge Level: " + chargeLevelWhenHit + " Sweetspot: " + GetSweetSpot() + " - " + SweetSpotMax);
+            }
+            else
+            {
+                Debug.Log("Charge Level: " + chargeLevelWhenHit + " Sweetspot: " + GetSweetSpot() + " - " + SweetSpotMax);
+                Debug.Log(GetChargeLevel() > GetSweetSpot());
+            }
+            chargeLevel = minCharge;
+            chargeCounter = minCharge - 1;
+            //tree.SetDamage(GetDamage());
         }
     }
 

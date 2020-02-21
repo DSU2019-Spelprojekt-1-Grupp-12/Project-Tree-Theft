@@ -8884,6 +8884,11 @@ PrefabInstance:
       propertyPath: myPlayerNumber
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 482861638156775404, guid: 1a6a75d8dd514a243a96161eb3407611,
+        type: 3}
+      propertyPath: hc_Green
+      value: 255
+      objectReference: {fileID: 0}
     - target: {fileID: 482861638185244996, guid: 1a6a75d8dd514a243a96161eb3407611,
         type: 3}
       propertyPath: m_AnchoredPosition.x

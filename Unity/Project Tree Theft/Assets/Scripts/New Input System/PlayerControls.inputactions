@@ -27,7 +27,15 @@
                     "id": "f4dcfc9b-9721-4637-be7c-49f414e44613",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold(duration=0.2)"
+                    "interactions": "Press(behavior=1)"
+                },
+                {
+                    "name": "Charge",
+                    "type": "PassThrough",
+                    "id": "37c4cc0f-5304-4d3b-983c-91cae06a64dd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -140,6 +148,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e2cfba0f-c9ff-4e49-b4ae-f3734039c3b3",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Key&Mouse",
+                    "action": "Charge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -165,11 +184,19 @@
                 },
                 {
                     "name": "Chop",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "350875e5-a978-4b22-a388-0bb13c7db616",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold(duration=0.2)"
+                    "interactions": "Press(behavior=1)"
+                },
+                {
+                    "name": "Charge",
+                    "type": "PassThrough",
+                    "id": "91b7f429-0422-4f15-8105-d01388662b7e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -282,6 +309,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fc3c5f7d-d641-4a1f-9cfe-dae526132562",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Key&Mouse",
+                    "action": "Charge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

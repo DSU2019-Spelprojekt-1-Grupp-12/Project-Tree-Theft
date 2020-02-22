@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerTool : MonoBehaviour
 {
@@ -28,12 +29,37 @@ public class PlayerTool : MonoBehaviour
     private Quaternion leftRotation;
 
     float cooldownTimer = 0;
+    private bool isCharging = false;
+    private int chargeLevel = 1;
+    private int chargeLevelWhenHit;
+    private int minCharge = 1;
+    private int maxCharge = 100;
+    private int chargeMidConstant;
+    private int chargeCounter;
+    private bool chargeUp = false;
+
+    [Header("Charge stats")]
+    int chargeSweetspotMax = 80;
+    int chargeSweetspotMin = 40;
+    private int sweetSpot;
+
+    private GameObject mySlider;
 
     Rigidbody2D myRigidBody;
 
+    private void Awake(){
+        SliderBehaviour[] sliders = FindObjectsOfType<SliderBehaviour>();
+        for (int n = 0; n < sliders.Length; n++)
+            if (sliders[n].GetPlayerNumber() == GetComponentInParent<PlayerMain>().GetPlayerNumber())
+                mySlider = sliders[n].gameObject;
+
+        chargeMidConstant = (maxCharge - minCharge) / 2;
+        chargeCounter = minCharge-1;
+        sweetSpot = chargeSweetspotMin;
+    }
+
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         myRigidBody = gameObject.GetComponent<Rigidbody2D>();
         InitQuaternions();
     }
@@ -50,7 +76,40 @@ public class PlayerTool : MonoBehaviour
     {
         var direction = GetDirection();
         CheckSprite(direction);
+        if (isCharging)
+        {
+            //Charge bar - ASin(x)+k            
+            ChargeUpTool();
+        }
+        if (!isCharging)
+        {
+            chargeLevel = minCharge;
+            chargeCounter = minCharge - 1;
+        }
     }
+
+    private void ChargeUpTool()
+    {
+        if (!chargeUp && chargeCounter <= minCharge)
+        {
+            chargeCounter++;
+            chargeUp = true;
+        }
+        else if (chargeUp && chargeCounter < maxCharge)
+            chargeCounter++;
+        else if (chargeUp && chargeCounter >= maxCharge)
+        {
+            chargeCounter--;
+            chargeUp = false;
+        }
+        else if (!chargeUp && chargeCounter > minCharge)
+            chargeCounter--;
+        chargeLevel = chargeCounter;
+        chargeLevelWhenHit = chargeLevel;
+        //Debug.Log("Charge Level: " + chargeLevel + "\nCharge counter: " + chargeCounter);
+    }
+
+    public int GetChargeLevel() { return chargeLevel; }
 
     private void CheckSprite(int direction) {
         if (cooldownTimer < Time.time)
@@ -79,14 +138,27 @@ public class PlayerTool : MonoBehaviour
 
     public int GetDirection(){ return player.GetDirectionSprite(); }
 
-    [HideInInspector] public void ChopEvent(int playerNumber) {
-        if(playerNumber == 1) {
-            SetPosition(GetDirection());
+    [HideInInspector] public void ChopCharge(int playerNumber){
+        if (!isCharging){
+            RandomizeSweetSpot();
         }
-            
-        if (playerNumber == 2){
+        isCharging = true;        
+        Debug.Log("Player" + playerNumber + " is Charging");
+    }
+
+    [HideInInspector] public void ChopEvent(int playerNumber) {
+        isCharging = false;
+        if (playerNumber == 1)
+        {
             SetPosition(GetDirection());
-        }            
+            Debug.Log("P1: CHOP!!");
+        }
+        if (playerNumber == 2)
+        {
+            SetPosition(GetDirection());
+            Debug.Log("P2: CHOP!!");
+        }
+        Debug.Log("Player" + playerNumber + ": CHOP!!");
     }
 
     [HideInInspector] public void ChopEvent(){
@@ -123,9 +195,30 @@ public class PlayerTool : MonoBehaviour
     public int GetDamage(){ return damage; }
 
     private void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.CompareTag("Tree")){            
+        if (other.gameObject.CompareTag("Tree")){
+            var SweetSpotMax = GetSweetSpot() + 20;
+            var getCharge = mySlider.GetComponent<SliderBehaviour>().GetCharge();
             TreeMain tree = other.gameObject.GetComponent<TreeBody>().GetTreeMain();
-            tree.SetDamage(GetDamage());
+            if (chargeLevelWhenHit > GetSweetSpot() && chargeLevelWhenHit <= SweetSpotMax)
+            {
+                tree.SetDamage(GetDamage());
+                Debug.Log("HIT");
+                Debug.Log("Charge Level: " + chargeLevelWhenHit + " Sweetspot: " + GetSweetSpot() + " - " + SweetSpotMax);
+            }
+            else
+            {
+                Debug.Log("Charge Level: " + chargeLevelWhenHit + " Sweetspot: " + GetSweetSpot() + " - " + SweetSpotMax);
+                Debug.Log(GetChargeLevel() > GetSweetSpot());
+            }
+            chargeLevel = minCharge;
+            chargeCounter = minCharge - 1;
+            //tree.SetDamage(GetDamage());
         }
     }
+
+    public void RandomizeSweetSpot() {
+        sweetSpot = Random.Range(chargeSweetspotMin, chargeSweetspotMax + 1);
+        Debug.Log(sweetSpot);
+    }
+    public int GetSweetSpot() { return sweetSpot; }
 }

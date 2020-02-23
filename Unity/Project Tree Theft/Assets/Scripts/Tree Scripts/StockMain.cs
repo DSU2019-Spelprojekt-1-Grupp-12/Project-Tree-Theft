@@ -15,9 +15,18 @@ public class StockMain : MonoBehaviour
     [HideInInspector] public int numberOfPlayersAttached = 0;
 
     float calcMoveSpeed;
+
+    [SerializeField] private bool horizontal;
+    private readonly float horizontalAngle = 90f;
+
+
     #endregion
 
     #region Core functions
+    private void Awake(){
+
+    }
+
     void Start()
     {
 
@@ -53,6 +62,28 @@ public class StockMain : MonoBehaviour
         else
         {
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        
+    }
+
+    private void RotateHorizontal(){
+        transform.rotation = Quaternion.Euler(0f, 0f, horizontalAngle);
+        horizontal = true;
+    }
+    private void RotateVertical(){
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        horizontal = false;
+    }
+
+    public void RotateLog(int playerNumber){
+        if(playerNumber == 1 && horizontal){
+            RotateVertical();
+            Debug.Log("Rotate Vertical");
+        }
+        if(playerNumber == 2 && !horizontal){
+            RotateHorizontal();
+            Debug.Log("Rotate Horizontal");
         }
     }
 

@@ -324,6 +324,17 @@ public class PlayerMain : MonoBehaviour
             tool.ChopCharge(playerNumber);
     }
 
+    private void RotateLog_P1(InputAction.CallbackContext obj){
+        if (attached && playerNumber == 1){
+            attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber);            
+        }
+    }
+    private void RotateLog_P2(InputAction.CallbackContext obj){
+        if (attached && playerNumber == 2){
+            attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber);
+        }
+    }
+
     private void OnEnable(){
         _player1Controls.Enable();
         _player2Controls.Enable();
@@ -334,10 +345,16 @@ public class PlayerMain : MonoBehaviour
         _player2Controls.Player2.Chop.performed += Chop_P2;
 
         _player1Controls.Player1.Attach.performed += Attach_P1;
-        _player2Controls.Player2.Attach.performed += Attach_P2;        
+        _player2Controls.Player2.Attach.performed += Attach_P2;
+
+        _player1Controls.Player1.Rotate.performed += RotateLog_P1;
+        _player2Controls.Player2.Rotate.performed += RotateLog_P2;
     }    
         
     private void OnDisable(){
+        _player1Controls.Player1.Rotate.performed -= RotateLog_P1;
+        _player2Controls.Player2.Rotate.performed -= RotateLog_P2;
+
         _player1Controls.Player1.Attach.performed -= Attach_P1;
         _player2Controls.Player2.Attach.performed -= Attach_P2;
 

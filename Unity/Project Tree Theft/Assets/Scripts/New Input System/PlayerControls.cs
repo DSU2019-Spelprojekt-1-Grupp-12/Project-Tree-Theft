@@ -49,6 +49,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee16d69b-0fb9-4a81-ac4c-3296548e5361"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -172,6 +180,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Charge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d04d80d-0691-4de2-8647-a76baa72a42d"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Key&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -210,6 +229,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Button"",
+                    ""id"": ""889576ff-0fc5-457b-98e8-39c733787b2e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -333,6 +360,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Charge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ba577b6-df54-437e-80fe-14932e511d17"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Key&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -400,12 +438,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player1_Attach = m_Player1.FindAction("Attach", throwIfNotFound: true);
         m_Player1_Chop = m_Player1.FindAction("Chop", throwIfNotFound: true);
         m_Player1_Charge = m_Player1.FindAction("Charge", throwIfNotFound: true);
+        m_Player1_Rotate = m_Player1.FindAction("Rotate", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Move = m_Player2.FindAction("Move", throwIfNotFound: true);
         m_Player2_Attach = m_Player2.FindAction("Attach", throwIfNotFound: true);
         m_Player2_Chop = m_Player2.FindAction("Chop", throwIfNotFound: true);
         m_Player2_Charge = m_Player2.FindAction("Charge", throwIfNotFound: true);
+        m_Player2_Rotate = m_Player2.FindAction("Rotate", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Newaction = m_Menus.FindAction("New action", throwIfNotFound: true);
@@ -462,6 +502,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player1_Attach;
     private readonly InputAction m_Player1_Chop;
     private readonly InputAction m_Player1_Charge;
+    private readonly InputAction m_Player1_Rotate;
     public struct Player1Actions
     {
         private @PlayerControls m_Wrapper;
@@ -470,6 +511,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Attach => m_Wrapper.m_Player1_Attach;
         public InputAction @Chop => m_Wrapper.m_Player1_Chop;
         public InputAction @Charge => m_Wrapper.m_Player1_Charge;
+        public InputAction @Rotate => m_Wrapper.m_Player1_Rotate;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -491,6 +533,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Charge.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnCharge;
                 @Charge.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnCharge;
                 @Charge.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnCharge;
+                @Rotate.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnRotate;
             }
             m_Wrapper.m_Player1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -507,6 +552,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Charge.started += instance.OnCharge;
                 @Charge.performed += instance.OnCharge;
                 @Charge.canceled += instance.OnCharge;
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
             }
         }
     }
@@ -519,6 +567,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player2_Attach;
     private readonly InputAction m_Player2_Chop;
     private readonly InputAction m_Player2_Charge;
+    private readonly InputAction m_Player2_Rotate;
     public struct Player2Actions
     {
         private @PlayerControls m_Wrapper;
@@ -527,6 +576,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Attach => m_Wrapper.m_Player2_Attach;
         public InputAction @Chop => m_Wrapper.m_Player2_Chop;
         public InputAction @Charge => m_Wrapper.m_Player2_Charge;
+        public InputAction @Rotate => m_Wrapper.m_Player2_Rotate;
         public InputActionMap Get() { return m_Wrapper.m_Player2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -548,6 +598,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Charge.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnCharge;
                 @Charge.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnCharge;
                 @Charge.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnCharge;
+                @Rotate.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnRotate;
             }
             m_Wrapper.m_Player2ActionsCallbackInterface = instance;
             if (instance != null)
@@ -564,6 +617,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Charge.started += instance.OnCharge;
                 @Charge.performed += instance.OnCharge;
                 @Charge.canceled += instance.OnCharge;
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
             }
         }
     }
@@ -625,6 +681,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnAttach(InputAction.CallbackContext context);
         void OnChop(InputAction.CallbackContext context);
         void OnCharge(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
     }
     public interface IPlayer2Actions
     {
@@ -632,6 +689,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnAttach(InputAction.CallbackContext context);
         void OnChop(InputAction.CallbackContext context);
         void OnCharge(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

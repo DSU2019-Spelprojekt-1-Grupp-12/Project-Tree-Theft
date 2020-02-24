@@ -184,7 +184,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7d04d80d-0691-4de2-8647-a76baa72a42d"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Key&Mouse"",
@@ -365,6 +365,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""2ba577b6-df54-437e-80fe-14932e511d17"",
                     ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Key&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15facb7d-373c-4428-a9b5-dbde3addf51c"",
+                    ""path"": ""<Keyboard>/end"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Key&Mouse"",

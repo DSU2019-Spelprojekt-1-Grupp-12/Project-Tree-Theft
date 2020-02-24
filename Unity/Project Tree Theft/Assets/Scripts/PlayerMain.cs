@@ -255,10 +255,29 @@ public class PlayerMain : MonoBehaviour
         spriteRendererComponent.sprite = directionSprite;
         this.directionIndex = directionIndex;
     }
+    
+    public void SetDirectionSprite(int directionIndex){
+        switch (directionIndex)
+        {
+            case (int) DirectionIndex.up:
+                spriteRendererComponent.sprite = upSprite;                
+                break;
+            case (int)DirectionIndex.right:
+                spriteRendererComponent.sprite = rightSprite;                
+                break;
+            case (int)DirectionIndex.down:
+                spriteRendererComponent.sprite = downSprite;
+                break;
+            case (int)DirectionIndex.left:
+                spriteRendererComponent.sprite = leftSprite;
+                break;
+        }
+        this.directionIndex = directionIndex;
+    }
 
     [HideInInspector] public int GetDirectionSprite(){
         return directionIndex;
-    }
+    }    
     #endregion
 
     #region New Input System

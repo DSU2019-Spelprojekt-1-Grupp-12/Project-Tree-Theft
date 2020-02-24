@@ -19,12 +19,15 @@ public class StockMain : MonoBehaviour
     [SerializeField] private bool horizontal;
     private readonly float horizontalAngle = 90f;
 
-
+    private AttachPoint p1_attachPoint;
+    private AttachPoint p2_attachPoint;
     #endregion
 
     #region Core functions
     private void Awake(){
-
+        AttachPoint[] attachPoints = GetComponentsInChildren<AttachPoint>();
+        p1_attachPoint = attachPoints[0];
+        p2_attachPoint = attachPoints[1];
     }
 
     void Start()
@@ -69,22 +72,30 @@ public class StockMain : MonoBehaviour
 
     private void RotateHorizontal(){
         transform.rotation = Quaternion.Euler(0f, 0f, horizontalAngle);
+        RotatePlayers(-1);
         horizontal = true;
     }
     private void RotateVertical(){
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        RotatePlayers(1);
         horizontal = false;
     }
 
     public void RotateLog(int playerNumber){
-        if(playerNumber == 1 && horizontal){
-            RotateVertical();
+        if (playerNumber == 1 && horizontal){
+            RotateVertical();            
             Debug.Log("Rotate Vertical");
         }
         if(playerNumber == 2 && !horizontal){
             RotateHorizontal();
             Debug.Log("Rotate Horizontal");
         }
+    }
+
+    private void RotatePlayers(int rotationIndex){
+        var player1 = p1_attachPoint.gameObject.GetComponent<PlayerMain>();
+        var player2 = p2_attachPoint.gameObject.GetComponent<PlayerMain>();
+        player1.SetDirectionSprite(player1.GetDirectionSprite() + rotationIndex);
     }
 
     #endregion

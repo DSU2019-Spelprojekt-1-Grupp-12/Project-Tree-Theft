@@ -27,6 +27,8 @@ public class AttachPoint : MonoBehaviour
     #endregion
 
     #region Functions
+    
+
     void initializeAttachPoint()
     {
         logMain = log.GetComponent<StockMain>();

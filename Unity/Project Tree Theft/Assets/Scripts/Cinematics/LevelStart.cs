@@ -6,44 +6,39 @@ public class LevelStart : MonoBehaviour
 {
 
 
-    public GameObject cinematicCamera;
-    public GameObject levelCamera;
+    public GameObject gameLogic;
+    public GameObject canvas;
+    public GameObject canvas2;
+    private bool cutSceneDone = false;
 
-    private float cutsceneTimer;
+    private float introTimer;
+    public float introEndtime;
     //private bool introOver;
     // Start is called before the first frame update
     void Start()
     {
-        levelCamera.SetActive(false);
-        cinematicCamera.SetActive(true);
-        //levelCamera.GetComponentInChildren<Camera>().fieldOfView = 3;
-        //introOver = false;
+        canvas.SetActive(false);
+        gameLogic.SetActive(false);
+        canvas2.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (cinematicCamera.activeInHierarchy == true)
+        if (cutSceneDone == false)
         {
-            cutsceneTimer += Time.deltaTime;
-            cinematicCamera.GetComponentInChildren<Camera>().fieldOfView -= 0.02f;
+            introTimer += Time.deltaTime;
         }
+            
 
-
-        if (cutsceneTimer > 3.0f)
+        if (introTimer > introEndtime)
         {
-            levelCamera.SetActive(true);
-            cinematicCamera.SetActive(false);
+            gameLogic.SetActive(true);
+            canvas.SetActive(true);
+            canvas2.SetActive(true);
         }
-        //if (levelCamera.GetComponentInChildren<Camera>().fieldOfView > 1 && introOver == false)
-        //{
-        //    levelCamera.GetComponentInChildren<Camera>().fieldOfView -= 0.02f;
-        //}
-        //else if (levelCamera.GetComponentInChildren<Camera>().fieldOfView < 1)
-        //{
-        //    introOver = false;
-        //}
+      
 
     }
 }

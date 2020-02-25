@@ -120,10 +120,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   movementSpeed: 4
-  upSprite: {fileID: 21300000, guid: 10648c8d0aa0e8846a753563f18c36b5, type: 3}
-  downSprite: {fileID: 21300000, guid: 10648c8d0aa0e8846a753563f18c36b5, type: 3}
-  leftSprite: {fileID: 21300000, guid: 10648c8d0aa0e8846a753563f18c36b5, type: 3}
-  rightSprite: {fileID: 21300000, guid: 10648c8d0aa0e8846a753563f18c36b5, type: 3}
+  upSprite: {fileID: 21300000, guid: 5130fec0a141ba74ba2f129515f96120, type: 3}
+  downSprite: {fileID: 21300000, guid: 2d07e36ab9b9bc44a85422355bdcc8ef, type: 3}
+  leftSprite: {fileID: 21300000, guid: 2d07e36ab9b9bc44a85422355bdcc8ef, type: 3}
+  rightSprite: {fileID: 21300000, guid: 2d07e36ab9b9bc44a85422355bdcc8ef, type: 3}
   tool: {fileID: 448448642100233838}
 --- !u!114 &3068520680163300496
 MonoBehaviour:

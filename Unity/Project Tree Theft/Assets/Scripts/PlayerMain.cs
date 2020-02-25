@@ -37,7 +37,7 @@ public class PlayerMain : MonoBehaviour
     Vector2 movementVector = new Vector2(0f, 0f);
     bool attached = false;
 
-    private int directionIndex;
+    public int directionIndex;
     #endregion
 
 

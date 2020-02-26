@@ -631,7 +631,7 @@ PrefabInstance:
     - target: {fileID: 2923055778592832823, guid: 4cb0fc89270292849a53b16537d44040,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2923055778592832823, guid: 4cb0fc89270292849a53b16537d44040,
         type: 3}
@@ -663,6 +663,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2923055778592832809, guid: 4cb0fc89270292849a53b16537d44040,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f66daf0200744447a2631248ed81181,
+        type: 3}
+    - target: {fileID: 2923055778592832822, guid: 4cb0fc89270292849a53b16537d44040,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2923055778592832822, guid: 4cb0fc89270292849a53b16537d44040,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -672,6 +683,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LevelSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923055778592832822, guid: 4cb0fc89270292849a53b16537d44040,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923055778592832822, guid: 4cb0fc89270292849a53b16537d44040,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923055778592832822, guid: 4cb0fc89270292849a53b16537d44040,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2018153527616627912, guid: 4b243750eba412d4a836a5e4e248b863,
+        type: 3}
+    - target: {fileID: 2923055778592832822, guid: 4cb0fc89270292849a53b16537d44040,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923055778592832822, guid: 4cb0fc89270292849a53b16537d44040,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2923055779041610477, guid: 4cb0fc89270292849a53b16537d44040,
         type: 3}

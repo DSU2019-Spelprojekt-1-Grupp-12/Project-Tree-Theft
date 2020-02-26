@@ -66,11 +66,17 @@ public class GameLogic : MonoBehaviour
 
     public static void GameOverLose()
     {
+        collectedLogs = 0;
+        collectedLogs = 0;StaticData.Score = 0;
         SceneManager.LoadScene("GameOverLoss");
+
     }
 
     public static void GameOverWin()
     {
+        collectedLogs = 0;
+        StaticData.ClearLevel();
+        StaticData.SetPlayerScore();
         SceneManager.LoadScene("GameOverWin");
     }
     public static void AddLog()

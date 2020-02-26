@@ -103,9 +103,9 @@ public class RangerMain : MonoBehaviour
             gameObject.GetComponent<AudioSource>().Play();
             alertSoundPlayed = true;
         }
-        if (headingPlayerTwo.magnitude < chaseRange && playerTwoObstructed == false|| headingPlayerOne.magnitude < headingPlayerTwo.magnitude && headingPlayerOne.magnitude < chaseRange && playerOneObstructed == false)
+        if (headingPlayerTwo.magnitude > chaseRange && headingPlayerOne.magnitude > chaseRange || playerOneObstructed == true && playerTwoObstructed == true)
         {
-
+            alertSoundPlayed = false;
         }
     }
     void TogglePatrolPathing()

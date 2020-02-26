@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class StaticData
 {
-    private static int currentLevel;
+    private static int currentLevel = 1;
     private static int currentScore;
     private static int overallScore;
 
@@ -32,7 +32,7 @@ public static class StaticData
     {
         get
         {
-            return Score;
+            return currentScore;
         }
         set
         {
@@ -64,6 +64,7 @@ public static class StaticData
     public static void SetPlayerScore()
     {
         overallScore += currentScore;
+        currentScore = 0;
     }
     public static void ClearLevel()
     {

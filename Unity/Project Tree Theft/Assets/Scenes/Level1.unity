@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0fc506004a38a4c98e1c1dcab5ce1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logsToWin: 5
+  logsToWin: 0
   timer: 120
   timerText: {fileID: 648592300}
   levelNumber: 0

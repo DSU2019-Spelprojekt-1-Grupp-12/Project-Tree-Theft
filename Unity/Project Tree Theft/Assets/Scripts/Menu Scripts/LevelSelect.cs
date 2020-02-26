@@ -23,12 +23,6 @@ public class LevelSelect : MonoBehaviour
         }
 
         levels[currentSelectLevel].SetActive(true);
-
-        //if (Input.GetKeyDown("space"))
-        //{
-        //    NextSelect();
-        //}
-        
     }
 
     // Update is called once per frame
@@ -41,7 +35,7 @@ public class LevelSelect : MonoBehaviour
         Debug.Log("Pressed");
         levels[currentSelectLevel].SetActive(false);
         currentSelectLevel++;
-        if (currentSelectLevel == levels.Length || currentSelectLevel == StaticData.ClearedLevels)
+        if (currentSelectLevel == levels.Length || currentSelectLevel > StaticData.ClearedLevels)
         {
             currentSelectLevel = 0;
         }

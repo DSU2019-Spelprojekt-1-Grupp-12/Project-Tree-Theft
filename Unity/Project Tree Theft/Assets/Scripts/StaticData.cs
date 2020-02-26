@@ -8,7 +8,7 @@ public static class StaticData
     private static int currentScore;
     private static int overallScore;
 
-    private static int clearedLevels = 1;
+    private static int clearedLevels = 0;
     public static int CurrentLevel
     {
         get

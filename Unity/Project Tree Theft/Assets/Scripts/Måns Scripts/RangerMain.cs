@@ -35,6 +35,7 @@ public class RangerMain : MonoBehaviour
     bool returning = false;
     bool playerOneObstructed = false;
     bool playerTwoObstructed = false;
+    bool alertSoundPlayed = false;
     Vector3 agentVelocity;
     Vector3 previousPosition;
     #endregion
@@ -96,6 +97,15 @@ public class RangerMain : MonoBehaviour
             DirectionFind();
             agent.SetDestination(new Vector3(playerTwo.transform.position.x, playerTwo.transform.position.y, 0f));
             chaseStopped = false;
+        }
+        if (headingPlayerTwo.magnitude < chaseRange && playerTwoObstructed == false && alertSoundPlayed == false  || headingPlayerOne.magnitude < chaseRange && playerOneObstructed == false && alertSoundPlayed == false)
+        {
+            gameObject.GetComponent<AudioSource>().Play();
+            alertSoundPlayed = true;
+        }
+        if (headingPlayerTwo.magnitude < chaseRange && playerTwoObstructed == false|| headingPlayerOne.magnitude < headingPlayerTwo.magnitude && headingPlayerOne.magnitude < chaseRange && playerOneObstructed == false)
+        {
+
         }
     }
     void TogglePatrolPathing()

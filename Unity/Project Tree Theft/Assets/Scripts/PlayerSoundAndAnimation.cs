@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSound : MonoBehaviour
+public class PlayerSoundAndAnimation : MonoBehaviour
 {
     #region Components
     [SerializeField] AudioClip cutGood;
@@ -13,6 +13,7 @@ public class PlayerSound : MonoBehaviour
 
 
     AudioSource audio;
+    Animator animator;
     #endregion
 
     #region Variables
@@ -34,6 +35,7 @@ public class PlayerSound : MonoBehaviour
     void initializePlayerSound()
     {
         audio = gameObject.GetComponent<AudioSource>();
+        animator = gameObject.GetComponent<Animator>();
     }
     void playCutSound(int cutTier)
     {
@@ -60,6 +62,17 @@ public class PlayerSound : MonoBehaviour
     {
         audio.clip = rotation;
         audio.Play();
+    }
+    void toggleWalking(bool walking)
+    {
+        if (walking == false)
+        {
+            animator.SetBool("Walking", false);
+        }
+        if (walking == true)
+        {
+            animator.SetBool("Walking", true);
+        }
     }
 
     #endregion

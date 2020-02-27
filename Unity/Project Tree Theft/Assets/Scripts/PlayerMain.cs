@@ -139,6 +139,14 @@ public class PlayerMain : MonoBehaviour
             rigidBody.velocity = movementVector * movementSpeed;
             movementVector.x = 0;
             movementVector.y = 0;
+            if (GetDirectionSprite() == 2 && rigidBody.velocity.magnitude > 0)
+            {
+                SendMessage("toggleWalking", true);
+            }
+            else
+            {
+                SendMessage("toggleWalking", false);
+            }
         }
         else if(attached == true)
         {
@@ -201,6 +209,14 @@ public class PlayerMain : MonoBehaviour
             rigidBody.velocity = movementVector * movementSpeed;
             movementVector.x = 0;
             movementVector.y = 0;
+            if (GetDirectionSprite() == 2 && rigidBody.velocity.magnitude > 0)
+            {
+                SendMessage("toggleWalking", true);
+            }
+            else
+            {
+                SendMessage("toggleWalking", false);
+            }
         }
         else if (attached == true)
         {

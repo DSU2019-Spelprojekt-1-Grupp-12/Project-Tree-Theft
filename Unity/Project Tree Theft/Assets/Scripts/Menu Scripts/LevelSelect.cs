@@ -49,6 +49,10 @@ public class LevelSelect : MonoBehaviour
         if (currentSelectLevel < 0)
         {
             currentSelectLevel = StaticData.ClearedLevels - 1;
+            if (currentSelectLevel < 0)
+            {
+                currentSelectLevel = 0;
+            }
         }
         levels[currentSelectLevel].SetActive(true);
     }

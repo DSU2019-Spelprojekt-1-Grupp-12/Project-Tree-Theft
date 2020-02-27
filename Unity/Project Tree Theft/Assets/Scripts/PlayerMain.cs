@@ -307,31 +307,46 @@ public class PlayerMain : MonoBehaviour
 
     private void Chop_P1(InputAction.CallbackContext obj){
         if (!attached && playerNumber == 1)
+        {
             tool.ChopEvent(playerNumber);
+            SendMessage("playCutSound", 1);
+        }
     }
 
     private void Chop_P2(InputAction.CallbackContext obj){
         if(!attached && playerNumber == 2)
+        {
             tool.ChopEvent(playerNumber);
+            SendMessage("playCutSound", 1);
+        }
+
     }
 
     private void Charge_P1(InputAction.CallbackContext obj){
         if(!attached && playerNumber == 1)
+        {
             tool.ChopCharge(playerNumber);
+            SendMessage("playChargeSound");
+        }
     }
     private void Charge_P2(InputAction.CallbackContext obj){
         if (!attached && playerNumber == 2)
+        {
             tool.ChopCharge(playerNumber);
+            SendMessage("playChargeSound");
+        }
     }
 
     private void RotateLog_P1(InputAction.CallbackContext obj){
         if (attached && playerNumber == 1){
-            attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber);            
+            attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber);
+            SendMessage("playRotationSound");
         }
     }
     private void RotateLog_P2(InputAction.CallbackContext obj){
         if (attached && playerNumber == 2){
             attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber);
+            SendMessage("playRotationSound");
         }
     }
 

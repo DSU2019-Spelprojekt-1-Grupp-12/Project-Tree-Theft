@@ -24,10 +24,10 @@ public class PlayerSound : MonoBehaviour
     {
         initializePlayerSound();
     }
-    void Update()
-    {
+    //void Update()
+    //{
 
-    }
+    //}
     #endregion
 
     #region Functions

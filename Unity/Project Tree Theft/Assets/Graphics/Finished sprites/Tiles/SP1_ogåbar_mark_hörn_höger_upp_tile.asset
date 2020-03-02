@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: "SP1_og\xE5bar_mark_h\xF6rn_h\xF6ger_upp_tile"
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: e42e31235e16f7843950cb51630f8587, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e549d27289b933a4b9ed88da8c420eed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

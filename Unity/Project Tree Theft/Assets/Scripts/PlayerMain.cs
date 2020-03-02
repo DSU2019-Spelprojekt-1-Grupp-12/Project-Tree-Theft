@@ -70,6 +70,8 @@ public class PlayerMain : MonoBehaviour
             attachPoint = other.gameObject;
         }
     }
+
+    public void SetPlayerNumber(int playerNumber) { this.playerNumber = playerNumber; }
     #endregion
 
     #region Functions

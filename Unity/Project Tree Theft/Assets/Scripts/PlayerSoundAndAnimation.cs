@@ -67,11 +67,11 @@ public class PlayerSoundAndAnimation : MonoBehaviour
     {
         if (walking == false)
         {
-            animator.SetBool("Walking", false);
+            animator.SetBool("WalkingDown", false);
         }
         if (walking == true)
         {
-            animator.SetBool("Walking", true);
+            animator.SetBool("WalkingDown", true);
         }
     }
 

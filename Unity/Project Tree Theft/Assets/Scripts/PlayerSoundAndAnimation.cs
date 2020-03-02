@@ -63,7 +63,7 @@ public class PlayerSoundAndAnimation : MonoBehaviour
         audio.clip = rotation;
         audio.Play();
     }
-    void toggleWalking(bool walking)
+    void toggleWalkingDown(bool walking)
     {
         if (walking == false)
         {

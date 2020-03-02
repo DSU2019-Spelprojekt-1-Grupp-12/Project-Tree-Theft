@@ -12,16 +12,19 @@ public class AttachPoint : MonoBehaviour
     #endregion
 
     #region Variables
-
+    [Header("Debug Purpose, don't mess!")]
+    [SerializeField] string getName = "";
     #endregion
 
     #region Core Functions
-    void Start()
-    {
+
+    private void Awake(){
+        getName = gameObject.name.ToString();
+    }
+    void Start(){
         initializeAttachPoint();
     }
-    void Update()
-    {
+    void Update(){
         syncPlayerLocation();
     }
     #endregion
@@ -35,6 +38,18 @@ public class AttachPoint : MonoBehaviour
     {
         attachedPlayer = player;
         logMain.numberOfPlayersAttached++;
+        if (!logMain.GetHorizontalAlignment()){
+            if (getName == "AttachPointOne")
+                attachedPlayer.GetComponent<PlayerMain>().SetDirectionSprite(2);
+            else if (getName == "AttachPointTwo")
+                attachedPlayer.GetComponent<PlayerMain>().SetDirectionSprite(0);
+        }
+        else if (logMain.GetHorizontalAlignment()){
+            if (getName == "AttachPointOne")
+                attachedPlayer.GetComponent<PlayerMain>().SetDirectionSprite(3);
+            else if (getName == "AttachPointTwo")
+                attachedPlayer.GetComponent<PlayerMain>().SetDirectionSprite(1);
+        }
     }
     public void detachFromPlayer()
     {
@@ -74,5 +89,7 @@ public class AttachPoint : MonoBehaviour
             attachedPlayer.transform.position = gameObject.transform.position;
         }
     }
+
+    [HideInInspector] public GameObject GetAttachedPlayer() { return attachedPlayer; }
     #endregion
 }

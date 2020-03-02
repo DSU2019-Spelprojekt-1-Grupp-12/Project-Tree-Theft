@@ -274,6 +274,25 @@ public class PlayerMain : MonoBehaviour
         this.directionIndex = directionIndex;
     }
 
+    public void SetDirectionSprite(int directionIndex){
+        switch (directionIndex)
+        {
+            case 0:
+                spriteRendererComponent.sprite = upSprite;
+                break;
+            case 1:
+                spriteRendererComponent.sprite = rightSprite;
+                break;
+            case 2:
+                spriteRendererComponent.sprite = downSprite;
+                break;
+            case 3:
+                spriteRendererComponent.sprite = leftSprite;
+                break;
+        }
+        this.directionIndex = directionIndex;
+    }
+
     [HideInInspector] public int GetDirectionSprite(){
         return directionIndex;
     }

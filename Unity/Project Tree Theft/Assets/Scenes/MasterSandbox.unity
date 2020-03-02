@@ -91187,27 +91187,27 @@ PrefabInstance:
     - target: {fileID: 7692281158798270173, guid: 55a316145a1dbe74f9d265fc5d9a2155,
         type: 3}
       propertyPath: orthographic size
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7692281158798270173, guid: 55a316145a1dbe74f9d265fc5d9a2155,
         type: 3}
       propertyPath: field of view
-      value: 40
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7692281158798269986, guid: 55a316145a1dbe74f9d265fc5d9a2155,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7692281158798269986, guid: 55a316145a1dbe74f9d265fc5d9a2155,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7692281158798269986, guid: 55a316145a1dbe74f9d265fc5d9a2155,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 981337129, guid: 55a316145a1dbe74f9d265fc5d9a2155, type: 3}
       propertyPath: m_RootOrder
@@ -91633,6 +91633,11 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4345305948239106344, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: charge
+      value: 
+      objectReference: {fileID: 8300000, guid: 21b55fa328b825d42a4603ac5cdd51fa, type: 3}
     - target: {fileID: 2995606770904175995, guid: 812113b3246e42d41b3368e51e92b1f9,
         type: 3}
       propertyPath: playerNumber
@@ -91667,11 +91672,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2 Tool
       objectReference: {fileID: 0}
-    - target: {fileID: 4345305948239106344, guid: 812113b3246e42d41b3368e51e92b1f9,
+    - target: {fileID: 7961714051264454322, guid: 812113b3246e42d41b3368e51e92b1f9,
         type: 3}
-      propertyPath: charge
+      propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 8300000, guid: 21b55fa328b825d42a4603ac5cdd51fa, type: 3}
+      objectReference: {fileID: 9100000, guid: 4fba8ea78d2d60b4896b361a3cec4e2f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812113b3246e42d41b3368e51e92b1f9, type: 3}
 --- !u!1 &2111696197

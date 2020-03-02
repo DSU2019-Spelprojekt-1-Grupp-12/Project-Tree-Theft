@@ -23051,7 +23051,7 @@ PrefabInstance:
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
@@ -23071,17 +23071,17 @@ PrefabInstance:
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
@@ -23294,7 +23294,7 @@ PrefabInstance:
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
@@ -23319,7 +23319,7 @@ PrefabInstance:
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
@@ -23344,7 +23344,7 @@ PrefabInstance:
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
@@ -23365,6 +23365,70 @@ PrefabInstance:
         type: 3}
       propertyPath: m_DefaultControlScheme
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 37c4cc0f-5304-4d3b-983c-91cae06a64dd
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: Player1/Charge[/Keyboard/leftShift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: ee16d69b-0fb9-4a81-ac4c-3296548e5361
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
+      value: Player1/Rotate[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionId
+      value: 91b7f429-0422-4f15-8105-d01388662b7e
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionName
+      value: Player2/Charge[/Keyboard/rightShift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: 889576ff-0fc5-457b-98e8-39c733787b2e
+      objectReference: {fileID: 0}
+    - target: {fileID: 4707518716000674848, guid: 42ba2051fcc491b4581becb6e8bb10a6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: Player2/Rotate[/Keyboard/numpad1,/Keyboard/end]
       objectReference: {fileID: 0}
     - target: {fileID: 7966503183408548607, guid: 42ba2051fcc491b4581becb6e8bb10a6,
         type: 3}
@@ -23444,22 +23508,22 @@ PrefabInstance:
     - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
         type: 3}
@@ -23669,6 +23733,70 @@ PrefabInstance:
       propertyPath: m_DefaultControlScheme
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 37c4cc0f-5304-4d3b-983c-91cae06a64dd
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: Player1/Charge[/Keyboard/leftShift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: ee16d69b-0fb9-4a81-ac4c-3296548e5361
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
+      value: Player1/Rotate[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionId
+      value: 91b7f429-0422-4f15-8105-d01388662b7e
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionName
+      value: Player2/Charge[/Keyboard/rightShift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_TypeName
+      value: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: 889576ff-0fc5-457b-98e8-39c733787b2e
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068520680163300496, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: Player2/Rotate[/Keyboard/numpad1,/Keyboard/end]
+      objectReference: {fileID: 0}
     - target: {fileID: 2995606770904175993, guid: 812113b3246e42d41b3368e51e92b1f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23739,6 +23867,11 @@ PrefabInstance:
         type: 3}
       propertyPath: chargeSweetspotMin
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455255522564211941, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 812113b3246e42d41b3368e51e92b1f9, type: 3}

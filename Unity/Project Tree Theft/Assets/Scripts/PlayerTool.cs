@@ -12,11 +12,11 @@ public class PlayerTool : MonoBehaviour
     public int price = 20;
     
 
-    private Vector3 standardPosition = new Vector3(0, 0, 0);
-    private Vector3 upPosition = new Vector3(0, 0.7f, 0);
-    private Vector3 rightPosition = new Vector3(0.7f, 0);
-    private Vector3 downPosition = new Vector3(0, -0.7f, 0);
-    private Vector3 leftPosition = new Vector3(-0.7f, 0, 0);
+    private Vector3 standardPosition = new Vector3(0, 0.4f, 0);
+    private Vector3 upPosition = new Vector3(0, 0.35f+0.4f, 0);
+    private Vector3 rightPosition = new Vector3(0.35f, 0.4f, 0);
+    private Vector3 downPosition = new Vector3(0, -0.35f+0.4f, 0);
+    private Vector3 leftPosition = new Vector3(-0.35f, 0+0.4f, 0);
 
     private Vector3 upRotationVector = new Vector3(0, 0, 0);
     private Vector3 rightRotationVector = new Vector3(0, 0, 270f);

@@ -70,6 +70,8 @@ public class PlayerMain : MonoBehaviour
             attachPoint = other.gameObject;
         }
     }
+
+    public void SetPlayerNumber(int playerNumber) { this.playerNumber = playerNumber; }
     #endregion
 
     #region Functions
@@ -141,11 +143,11 @@ public class PlayerMain : MonoBehaviour
             movementVector.y = 0;
             if (GetDirectionSprite() == 2 && rigidBody.velocity.magnitude > 0)
             {
-                SendMessage("toggleWalking", true);
+                SendMessage("toggleWalkingDown", true);
             }
             else
             {
-                SendMessage("toggleWalking", false);
+                SendMessage("toggleWalkingDown", false);
             }
         }
         else if(attached == true)
@@ -211,11 +213,11 @@ public class PlayerMain : MonoBehaviour
             movementVector.y = 0;
             if (GetDirectionSprite() == 2 && rigidBody.velocity.magnitude > 0)
             {
-                SendMessage("toggleWalking", true);
+                SendMessage("toggleWalkingDown", true);
             }
             else
             {
-                SendMessage("toggleWalking", false);
+                SendMessage("toggleWalkingDown", false);
             }
         }
         else if (attached == true)

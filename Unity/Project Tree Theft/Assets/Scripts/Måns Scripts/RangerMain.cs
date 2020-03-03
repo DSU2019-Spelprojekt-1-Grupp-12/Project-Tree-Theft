@@ -118,14 +118,14 @@ public class RangerMain : MonoBehaviour
         {
             pathingScript.active = true;
         }
-        if ((agent.destination - agent.transform.position).magnitude <= chaseStopRange && headingPlayerOne.magnitude > chaseRange && headingPlayerTwo.magnitude > chaseRange && chaseStopped == false)
+        if ((agent.destination - agent.transform.position).magnitude <= chaseStopRange && headingPlayerOne.magnitude > chaseRange && headingPlayerTwo.magnitude > chaseRange && chaseStopped == false || (agent.destination - agent.transform.position).magnitude <= chaseStopRange && playerOneObstructed && playerTwoObstructed && chaseStopped == false)
         {
             agent.SetDestination(gameObject.GetComponent<GuardPatrol>().currentCheckpoint.transform.position);
             chaseStopped = true;
             returning = true;
 
         }
-        if ((agent.destination - agent.transform.position).magnitude <= chaseStopRange && headingPlayerOne.magnitude > chaseRange && headingPlayerTwo.magnitude > chaseRange && chaseStopped == true)
+        if ((agent.destination - agent.transform.position).magnitude <= chaseStopRange && chaseStopped == true)
         {
             agent.ResetPath();
             returning = false;
@@ -168,13 +168,6 @@ public class RangerMain : MonoBehaviour
     {
         RaycastHit2D playerOneHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), headingPlayerOne);
         RaycastHit2D playerTwoHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), headingPlayerTwo);
-        if (playerOneHit.collider != null)
-        {
-            Debug.Log("Empty");
-        }
-        {
-
-        }
 
         if (playerOneHit.collider != null && playerOneHit.collider.CompareTag("Wall"))
         {

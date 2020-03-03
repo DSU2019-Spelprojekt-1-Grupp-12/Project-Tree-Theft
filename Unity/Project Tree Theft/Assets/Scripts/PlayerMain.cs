@@ -141,14 +141,7 @@ public class PlayerMain : MonoBehaviour
             rigidBody.velocity = movementVector * movementSpeed;
             movementVector.x = 0;
             movementVector.y = 0;
-            if (GetDirectionSprite() == 2 && rigidBody.velocity.magnitude > 0)
-            {
-                SendMessage("toggleWalkingDown", true);
-            }
-            else
-            {
-                SendMessage("toggleWalkingDown", false);
-            }
+            checkAnimation();
         }
         else if(attached == true)
         {
@@ -211,14 +204,7 @@ public class PlayerMain : MonoBehaviour
             rigidBody.velocity = movementVector * movementSpeed;
             movementVector.x = 0;
             movementVector.y = 0;
-            if (GetDirectionSprite() == 2 && rigidBody.velocity.magnitude > 0)
-            {
-                SendMessage("toggleWalkingDown", true);
-            }
-            else
-            {
-                SendMessage("toggleWalkingDown", false);
-            }
+            checkAnimation();
         }
         else if (attached == true)
         {
@@ -291,6 +277,26 @@ public class PlayerMain : MonoBehaviour
                 break;
         }
         this.directionIndex = directionIndex;
+    }
+
+    void checkAnimation()
+    {
+        if (GetDirectionSprite() == 2 && rigidBody.velocity.magnitude > 0) // Down Walk
+        {
+            SendMessage("toggleWalkingDown", true);
+        }
+        else
+        {
+            SendMessage("toggleWalkingDown", false);
+        }
+        if (GetDirectionSprite() == 0 && rigidBody.velocity.magnitude > 0) // Up Walk
+        {
+            SendMessage("toggleWalkingUp", true);
+        }
+        else
+        {
+            SendMessage("toggleWalkingUp", false);
+        }
     }
 
     [HideInInspector] public int GetDirectionSprite(){

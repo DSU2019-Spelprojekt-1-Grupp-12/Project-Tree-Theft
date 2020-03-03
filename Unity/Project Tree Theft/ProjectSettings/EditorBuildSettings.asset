@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MenuSystem/MainMenu.unity
     guid: ecb742d8553f6fe47955b7fcc672e6cd
   - enabled: 1
@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/BranchSandboxes/HugoSandbox.unity
     guid: 96534d5669b10b64ea6b5c57c852a651
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameOverWin.unity
     guid: 82e406b0ae7c46b48a45bb17bf8e636f
   - enabled: 1
@@ -36,8 +36,17 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 6bdb6ba95ce541440aa48dcf0f8cde74
   - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/793770cc71655ce40830a0d3f9ddb611
+    guid: 793770cc71655ce40830a0d3f9ddb611
+  - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/d50eaaa61b0959b4f901146f04d2f315
+    guid: d50eaaa61b0959b4f901146f04d2f315
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 71e54ae5e0f9754459e65bad375c5e48
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: a738bf052c942da46af8682d588d8457

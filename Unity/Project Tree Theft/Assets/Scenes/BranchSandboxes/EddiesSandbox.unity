@@ -23868,6 +23868,11 @@ PrefabInstance:
       propertyPath: chargeSweetspotMin
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 448448642100233838, guid: 812113b3246e42d41b3368e51e92b1f9,
+        type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4455255522564211941, guid: 812113b3246e42d41b3368e51e92b1f9,
         type: 3}
       propertyPath: m_Enabled
@@ -23902,9 +23907,24 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5947157841682499197, guid: b79968a6580e694419c44f474eb8c333,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947157841682499197, guid: b79968a6580e694419c44f474eb8c333,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5947157842490064472, guid: b79968a6580e694419c44f474eb8c333,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947157842490064472, guid: b79968a6580e694419c44f474eb8c333,
+        type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7343879366161024235, guid: b79968a6580e694419c44f474eb8c333,
@@ -24017,6 +24037,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1894933555}
+    - target: {fileID: 5947157842510545997, guid: b79968a6580e694419c44f474eb8c333,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b79968a6580e694419c44f474eb8c333, type: 3}
 --- !u!1001 &8326000633502164338

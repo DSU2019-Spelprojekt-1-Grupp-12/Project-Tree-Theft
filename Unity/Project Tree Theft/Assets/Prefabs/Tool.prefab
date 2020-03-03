@@ -48,6 +48,10 @@ MonoBehaviour:
   player: {fileID: 0}
   damage: 2
   price: 20
+  mamaLumber: 10
+  grandpaJoe: 7
+  logan: 8
+  leaf: 2
 --- !u!212 &8084702477264075676
 SpriteRenderer:
   m_ObjectHideFlags: 0

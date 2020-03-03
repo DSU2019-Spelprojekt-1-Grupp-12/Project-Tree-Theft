@@ -12,6 +12,8 @@ public class SliderBehaviour : MonoBehaviour
 
     private Color defaultColor;    
     private Vector4 hitColor = new Vector4(157f/255f, 190f/255f, 0f/255f, 255f/255f);
+    private Color betterHitColor = Color.blue;
+    private Color bestHitColor = Color.black;
 
     private void Awake(){
         PlayerMain[] players = FindObjectsOfType<PlayerMain>();
@@ -33,15 +35,24 @@ public class SliderBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update() {
         var playerTool = myPlayer.GetComponentInChildren<PlayerTool>();
         var filler = GetComponentInChildren<SliderFiller>();
         GetComponent<Slider>().value = playerTool.GetChargeLevel();
         myCharge = GetComponent<Slider>().value;
-        if (playerTool.GetChargeLevel() > playerTool.GetSweetSpot() && playerTool.GetChargeLevel() <= playerTool.GetSweetSpot()+20)
+        //if (playerTool.GetChargeLevel() > playerTool.GetSweetSpot() && playerTool.GetChargeLevel() <= playerTool.GetSweetSpot() + 20)
+        //    filler.SetColor(hitColor);
+        //else
+        //    filler.SetColor(defaultColor);
+
+        if (playerTool.GetChargeLevel() >= playerTool.GetSweetSpots()[0] && playerTool.GetChargeLevel() < playerTool.GetSweetSpots()[1])
             filler.SetColor(hitColor);
+        else if (playerTool.GetChargeLevel() >= playerTool.GetSweetSpots()[1] && playerTool.GetChargeLevel() < playerTool.GetSweetSpots()[2])
+            filler.SetColor(betterHitColor);
+        else if (playerTool.GetChargeLevel() >= playerTool.GetSweetSpots()[2] && playerTool.GetChargeLevel() <= playerTool.GetMaxCharge())
+            filler.SetColor(bestHitColor);
         else
-            filler.SetColor(defaultColor);        
+            filler.SetColor(defaultColor);
     }
 
     public int GetCharge() { return (int) myCharge; }

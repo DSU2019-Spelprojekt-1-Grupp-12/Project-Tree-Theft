@@ -100,7 +100,7 @@ public class PlayerTool : MonoBehaviour
         {
             chargeLevel = minCharge;
             chargeCounter = minCharge - 1;
-            chargeLevelWhenHit = minCharge;
+            StartCoroutine(ResetChargeLevelWhenHit());
         }
         Debug.Log("Is charging: " + isCharging);
     }
@@ -259,5 +259,8 @@ public class PlayerTool : MonoBehaviour
         sweetSpots[2] = Random.Range(bestChop[0], goodChop[1] + 1);
     }
 
-
+    private IEnumerator ResetChargeLevelWhenHit(){
+        yield return new WaitForSecondsRealtime(0.1f);
+        chargeLevelWhenHit = minCharge;
+    }
 }

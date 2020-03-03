@@ -32,6 +32,8 @@ public class TreeMain : MonoBehaviour
 
     [HideInInspector] public TreeBody GetTreeBody() { return myBody; }
 
+  
+
     //Function for testing
     //private void Test(){
     //    StartCoroutine(TestDecreasingHealth());

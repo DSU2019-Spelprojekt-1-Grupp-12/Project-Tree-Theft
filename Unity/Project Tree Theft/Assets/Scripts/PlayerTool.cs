@@ -71,6 +71,7 @@ public class PlayerTool : MonoBehaviour
 
         //"if" character name = "mamaLumber"
         damage = grandpaJoe;
+        SetRandomSweetSpots();
     }
 
     // Start is called before the first frame update
@@ -100,6 +101,7 @@ public class PlayerTool : MonoBehaviour
             chargeLevel = minCharge;
             chargeCounter = minCharge - 1;
         }
+        Debug.Log("Is charging: " + isCharging);
     }
 
     private void ChargeUpTool()
@@ -119,7 +121,7 @@ public class PlayerTool : MonoBehaviour
         else if (!chargeUp && chargeCounter > minCharge)
             chargeCounter--;
         chargeLevel = chargeCounter;
-        chargeLevelWhenHit = chargeLevel;
+        chargeLevelWhenHit = chargeLevel;        
         //Debug.Log("Charge Level: " + chargeLevel + "\nCharge counter: " + chargeCounter);
     }
 
@@ -213,30 +215,32 @@ public class PlayerTool : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Tree")){
             var SweetSpotMax = GetSweetSpot() + 20;
-            var getCharge = mySlider.GetComponent<SliderBehaviour>().GetCharge();
             TreeMain tree = other.gameObject.GetComponent<TreeBody>().GetTreeMain();
             if (chargeLevelWhenHit >= GetSweetSpots()[0] && chargeLevelWhenHit < GetSweetSpots()[1])
             {
                 tree.SetDamage(GetDamage());
-                Debug.Log("HIT");
+                Debug.Log(tree.name + ": HIT");
             }
             else if(chargeLevelWhenHit >= GetSweetSpots()[1] && chargeLevelWhenHit < GetSweetSpots()[2])
             {
                 tree.SetDamage(GetDamage() * multiplier2x);
-                Debug.Log("HIT 2X");
+                Debug.Log(tree.name + ": HIT 2X");
             }
             else if(chargeLevelWhenHit >= GetSweetSpots()[2] && chargeLevelWhenHit < GetMaxCharge())
             {
                 tree.SetDamage(GetDamage() * multiplier4x);
-                Debug.Log("HIT 2X");
+                Debug.Log(tree.name + ": HIT 4X");
             }
             else
             {
                 Debug.Log("Charge Level: " + chargeLevelWhenHit + " Sweetspot: " + GetSweetSpot() + " - " + SweetSpotMax);
                 Debug.Log(GetChargeLevel() > GetSweetSpot());
             }
+            Debug.Log("Charge Level: " + GetChargeLevel().ToString());
             chargeLevel = minCharge;
             chargeCounter = minCharge - 1;
+            chargeLevelWhenHit = minCharge;
+            isCharging = false;
             //tree.SetDamage(GetDamage());
         }
     }

@@ -7,8 +7,36 @@ public static class StaticData
     private static int currentLevel = 1;
     private static int currentScore;
     private static int overallScore;
-
     private static int clearedLevels = 0;
+
+
+    private static GameObject p1Char;
+    private static GameObject p2Char;
+
+
+
+    public static GameObject P1Char
+    {
+        get
+        {
+            return p1Char;
+        }
+        set
+        {
+            p1Char = value;
+        }
+    }
+    public static GameObject P2Char
+    {
+        get
+        {
+            return p2Char;
+        }
+        set
+        {
+            p2Char = value;
+        }
+    }
     public static int CurrentLevel
     {
         get

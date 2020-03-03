@@ -431,6 +431,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4013b49-93f1-4ee0-a40d-5e6635207e82"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -455,6 +463,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f287e9d2-268b-4279-9dc9-6fd22ff2ed94"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -474,6 +493,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Right"",
                     ""type"": ""Button"",
                     ""id"": ""70ae21fc-45a3-4b77-9005-1f18bc4e205b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""be286d91-46ee-46bf-908d-13772153e9d8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -499,6 +526,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Key&Mouse"",
                     ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87dd95c7-dc4f-4b53-8fc7-4f2b820baf2b"",
+                    ""path"": ""<Keyboard>/numpad0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -556,10 +594,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_P1Menu = asset.FindActionMap("P1Menu", throwIfNotFound: true);
         m_P1Menu_Left = m_P1Menu.FindAction("Left", throwIfNotFound: true);
         m_P1Menu_Right = m_P1Menu.FindAction("Right", throwIfNotFound: true);
+        m_P1Menu_Select = m_P1Menu.FindAction("Select", throwIfNotFound: true);
         // P2Menu
         m_P2Menu = asset.FindActionMap("P2Menu", throwIfNotFound: true);
         m_P2Menu_Left = m_P2Menu.FindAction("Left", throwIfNotFound: true);
         m_P2Menu_Right = m_P2Menu.FindAction("Right", throwIfNotFound: true);
+        m_P2Menu_Select = m_P2Menu.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -774,12 +814,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IP1MenuActions m_P1MenuActionsCallbackInterface;
     private readonly InputAction m_P1Menu_Left;
     private readonly InputAction m_P1Menu_Right;
+    private readonly InputAction m_P1Menu_Select;
     public struct P1MenuActions
     {
         private @PlayerControls m_Wrapper;
         public P1MenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Left => m_Wrapper.m_P1Menu_Left;
         public InputAction @Right => m_Wrapper.m_P1Menu_Right;
+        public InputAction @Select => m_Wrapper.m_P1Menu_Select;
         public InputActionMap Get() { return m_Wrapper.m_P1Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -795,6 +837,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Right.started -= m_Wrapper.m_P1MenuActionsCallbackInterface.OnRight;
                 @Right.performed -= m_Wrapper.m_P1MenuActionsCallbackInterface.OnRight;
                 @Right.canceled -= m_Wrapper.m_P1MenuActionsCallbackInterface.OnRight;
+                @Select.started -= m_Wrapper.m_P1MenuActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_P1MenuActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_P1MenuActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_P1MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -805,6 +850,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Right.started += instance.OnRight;
                 @Right.performed += instance.OnRight;
                 @Right.canceled += instance.OnRight;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -815,12 +863,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IP2MenuActions m_P2MenuActionsCallbackInterface;
     private readonly InputAction m_P2Menu_Left;
     private readonly InputAction m_P2Menu_Right;
+    private readonly InputAction m_P2Menu_Select;
     public struct P2MenuActions
     {
         private @PlayerControls m_Wrapper;
         public P2MenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Left => m_Wrapper.m_P2Menu_Left;
         public InputAction @Right => m_Wrapper.m_P2Menu_Right;
+        public InputAction @Select => m_Wrapper.m_P2Menu_Select;
         public InputActionMap Get() { return m_Wrapper.m_P2Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -836,6 +886,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Right.started -= m_Wrapper.m_P2MenuActionsCallbackInterface.OnRight;
                 @Right.performed -= m_Wrapper.m_P2MenuActionsCallbackInterface.OnRight;
                 @Right.canceled -= m_Wrapper.m_P2MenuActionsCallbackInterface.OnRight;
+                @Select.started -= m_Wrapper.m_P2MenuActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_P2MenuActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_P2MenuActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_P2MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -846,6 +899,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Right.started += instance.OnRight;
                 @Right.performed += instance.OnRight;
                 @Right.canceled += instance.OnRight;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -892,10 +948,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnLeft(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
     public interface IP2MenuActions
     {
         void OnLeft(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

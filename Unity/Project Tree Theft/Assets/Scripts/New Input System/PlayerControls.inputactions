@@ -418,6 +418,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "c4013b49-93f1-4ee0-a40d-5e6635207e82",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -442,6 +450,17 @@
                     "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f287e9d2-268b-4279-9dc9-6fd22ff2ed94",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -461,6 +480,14 @@
                     "name": "Right",
                     "type": "Button",
                     "id": "70ae21fc-45a3-4b77-9005-1f18bc4e205b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "be286d91-46ee-46bf-908d-13772153e9d8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -486,6 +513,17 @@
                     "processors": "",
                     "groups": "Key&Mouse",
                     "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87dd95c7-dc4f-4b53-8fc7-4f2b820baf2b",
+                    "path": "<Keyboard>/numpad0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

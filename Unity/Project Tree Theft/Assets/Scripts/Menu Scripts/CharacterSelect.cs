@@ -14,7 +14,10 @@ public class CharacterSelect : MonoBehaviour
 
 
     private int p1Selected = 1;
+    private bool set1;
     private int p2Selected = 2;
+    private bool set2;
+
     public GameObject p1SelectionGraphic = null;
     public GameObject p2SelectionGraphic = null;
 
@@ -30,8 +33,10 @@ public class CharacterSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        
+        SetPosition(1);
+        SetPosition(2);
+        set1 = false;
+        set2 = false;
     }
 
 
@@ -44,10 +49,17 @@ public class CharacterSelect : MonoBehaviour
     {
         _player1Controls.Enable();
         _player2Controls.Enable();
+
         _player1Controls.P1Menu.Right.performed += Next1;
         _player2Controls.P2Menu.Right.performed += Next2;
-        //fill in here
 
+        _player1Controls.P1Menu.Left.performed += Prev1;
+        _player2Controls.P2Menu.Left.performed += Prev2;
+
+
+        _player1Controls.P1Menu.Select.performed += SetP1;
+        _player2Controls.P2Menu.Select.performed += SetP2;
+        //fill in here
     }
 
     private void OnDisable()
@@ -55,6 +67,13 @@ public class CharacterSelect : MonoBehaviour
         //fill in here
         _player1Controls.P1Menu.Right.performed -= Next1;
         _player2Controls.P2Menu.Right.performed -= Next2;
+
+        _player1Controls.P1Menu.Left.performed -= Prev1;
+        _player2Controls.P2Menu.Left.performed -= Prev2;
+
+        _player1Controls.P1Menu.Select.performed -= SetP1;
+        _player2Controls.P2Menu.Select.performed -= SetP2;
+
         _player1Controls.Disable();
         _player2Controls.Disable();
     }
@@ -63,9 +82,10 @@ public class CharacterSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        
+        if (set1 == true && set2 == true)
+        {
+            //Insert Scene Movement. Check the static datas current level. Then become that. Level Select Goes Here after setting currentlevel.
+        }
     }
 
 
@@ -112,15 +132,38 @@ public class CharacterSelect : MonoBehaviour
     }
     private void Next1(InputAction.CallbackContext obj)
     {
-        NextChar(1);
+        if (set1 == false)
+        {
+            NextChar(1, true);
+        }
+        
     }
     private void Next2(InputAction.CallbackContext obj)
     {
-        NextChar(2);
+        if (set2 == false)
+        {
+            NextChar(2, true);
+        }
+            
     }
-    void NextChar(int player)
+    private void Prev1(InputAction.CallbackContext obj)
     {
-
+        if (set1 == false)
+        {
+            NextChar(1, false);
+        }
+            
+    }
+    private void Prev2(InputAction.CallbackContext obj)
+    {
+        if (set2 == false)
+        {
+            NextChar(2, false);
+        }
+            
+    }
+    void NextChar(int player, bool positive)
+    {
         int selected = 0;
         int otherSelected = 0;
         if (player == 1)
@@ -133,18 +176,41 @@ public class CharacterSelect : MonoBehaviour
             selected = p2Selected;
             otherSelected = p1Selected;
         }
-        selected++;
+        if (positive)
+        {
+            selected++;
+        }
+        else if (!positive)
+        {
+            selected--;
+        }
+        
         if (selected > 4)
         {
             selected = 1;
         }
         if (selected == otherSelected)
         {
-            selected++;
+            if (positive)
+            {
+                selected++;
+            }
+            else if (!positive)
+            {
+                selected--;
+            }
         }
         if (selected > 4)
         {
             selected = 1;
+        }
+        if (selected < 1)
+        {
+            selected = 4;
+            if (selected == otherSelected)
+            {
+                selected--;
+            }
         }
         if (player == 1)
         {
@@ -155,6 +221,72 @@ public class CharacterSelect : MonoBehaviour
             p2Selected = selected;
         }
         SetPosition(player);
+    }
+
+
+    private void SetP1(InputAction.CallbackContext obj)
+    {
+        if (set1 == false)
+        {
+            set1 = true;
+            if (p1Selected == 1)
+            {
+                SetPlayer1Character(char1);
+            }
+            if (p1Selected == 2)
+            {
+                SetPlayer1Character(char2);
+            }
+            if (p1Selected == 3)
+            {
+                SetPlayer1Character(char3);
+            }
+            if (p1Selected == 4)
+            {
+                SetPlayer1Character(char4);
+            }
+        }
+        else
+        {
+            set1 = false;
+        }
+        
+    }
+    private void SetP2(InputAction.CallbackContext obj)
+    {
+        if (set2 == false)
+        {
+            set2 = true;
+            if (p2Selected == 1)
+            {
+                SetPlayer2Character(char1);
+            }
+            if (p2Selected == 2)
+            {
+                SetPlayer2Character(char2);
+            }
+            if (p2Selected == 3)
+            {
+                SetPlayer2Character(char3);
+            }
+            if (p2Selected == 4)
+            {
+                SetPlayer2Character(char4);
+            }
+        }
+        else
+        {
+            set2 = false;
+        }
+
+    }
+    private void UnSetP1(InputAction.CallbackContext obj)
+    {
+        set1 = false;
+    }
+    private void UnSetP2(InputAction.CallbackContext obj)
+    {
+        set2 = false;
     }
 
 

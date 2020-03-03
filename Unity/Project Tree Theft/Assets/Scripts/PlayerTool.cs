@@ -100,6 +100,7 @@ public class PlayerTool : MonoBehaviour
         {
             chargeLevel = minCharge;
             chargeCounter = minCharge - 1;
+            chargeLevelWhenHit = minCharge;
         }
         Debug.Log("Is charging: " + isCharging);
     }

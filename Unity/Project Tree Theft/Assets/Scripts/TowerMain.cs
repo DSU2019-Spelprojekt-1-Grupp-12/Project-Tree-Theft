@@ -13,7 +13,7 @@ public class TowerMain : MonoBehaviour
 
     public PolygonCollider2D sight;
 
-
+    public float rotateSpeed;
 
   
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class TowerMain : MonoBehaviour
     void Update()
     {
         
-        sightArea.transform.Rotate(0, 0, 1);
+        sightArea.transform.Rotate(0, 0, rotateSpeed);
         
     }
 

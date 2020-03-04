@@ -6,6 +6,7 @@ public class BushScript : MonoBehaviour
 {
     #region Components
     Animator anim;
+    AudioSource audi;
     #endregion
 
     #region Variables
@@ -19,6 +20,7 @@ public class BushScript : MonoBehaviour
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        audi = gameObject.GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -33,7 +35,9 @@ public class BushScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player") || other.gameObject.GetComponent<RangerMain>() != null)
         {
             anim.SetTrigger("Interact");
+            audi.Play();
             timer = Time.time + animTime;
+            
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -41,6 +45,7 @@ public class BushScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player") || other.gameObject.GetComponent<RangerMain>() != null)
         {
             anim.SetTrigger("Interact");
+            audi.Play();
             timer = Time.time + animTime;
         }
     }

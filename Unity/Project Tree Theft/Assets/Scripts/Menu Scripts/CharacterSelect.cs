@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour
 {
@@ -30,9 +31,14 @@ public class CharacterSelect : MonoBehaviour
     PlayerControls _player1Controls;
     PlayerControls _player2Controls;
 
+    MenuManager menuManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        menuManager = FindObjectOfType<MenuManager>();
+
+        
         SetPosition(1);
         SetPosition(2);
         set1 = false;
@@ -85,6 +91,7 @@ public class CharacterSelect : MonoBehaviour
         if (set1 == true && set2 == true)
         {
             //Insert Scene Movement. Check the static datas current level. Then become that. Level Select Goes Here after setting currentlevel.
+            menuManager.RestartLevel();
         }
     }
 

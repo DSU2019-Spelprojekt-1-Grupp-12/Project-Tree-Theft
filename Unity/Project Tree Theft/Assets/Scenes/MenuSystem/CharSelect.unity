@@ -666,7 +666,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472368961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.34, y: 3.31, z: 0}
+  m_LocalPosition: {x: -7.06, y: 3.99, z: 0}
   m_LocalScale: {x: 0.21077201, y: 0.28301, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -808,7 +808,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f82254aa23254f408173aa81ed9e4b6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.63529414}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -858,19 +858,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2078370085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3a9d7ee03e538a4087572d2cfa61173, type: 3}
+  m_Script: {fileID: 11500000, guid: d7f3b31b6d864b44b9dc08d68b795690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   char1: {fileID: 2995606770904175999, guid: 812113b3246e42d41b3368e51e92b1f9, type: 3}
   char2: {fileID: 7966503183408548601, guid: 42ba2051fcc491b4581becb6e8bb10a6, type: 3}
   char3: {fileID: 2995606770904175999, guid: 812113b3246e42d41b3368e51e92b1f9, type: 3}
-  char4: {fileID: 7966503183408548601, guid: 42ba2051fcc491b4581becb6e8bb10a6, type: 3}
+  char4: {fileID: 2995606770904175999, guid: 812113b3246e42d41b3368e51e92b1f9, type: 3}
   p1SelectionGraphic: {fileID: 517704967}
   p2SelectionGraphic: {fileID: 1472368961}
   char1Pos: {x: -7, y: 4}
   char2Pos: {x: 7, y: 4}
-  char3Pos: {x: -7, y: -1}
-  char4Pos: {x: 7, y: -1}
+  char3Pos: {x: -7, y: -4}
+  char4Pos: {x: 7, y: -4}
 --- !u!4 &2078370087
 Transform:
   m_ObjectHideFlags: 0

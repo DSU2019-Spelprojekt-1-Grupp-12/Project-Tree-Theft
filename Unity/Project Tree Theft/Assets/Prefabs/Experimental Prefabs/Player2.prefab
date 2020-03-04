@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4707518716000674848}
   - component: {fileID: 3069847810407344596}
   - component: {fileID: 8360418107244354481}
+  - component: {fileID: 8383611010208135491}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -136,14 +137,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7966503183408548601}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6ea4b04cef8ed84a85c54da540e27f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 29d42b6a1ade2f74eb2166a150b07496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutGood: {fileID: 0}
-  cutBetter: {fileID: 0}
-  cutBest: {fileID: 0}
-  charge: {fileID: 0}
-  rotation: {fileID: 0}
+  cutGood: {fileID: 8300000, guid: 955f881ca125da94cb2cb479139ccfaa, type: 3}
+  cutBetter: {fileID: 8300000, guid: 8a4c368766cf2654cb66105fed65cbca, type: 3}
+  cutBest: {fileID: 8300000, guid: 138c1a0f2eee77a4d88e5f308ae5cb62, type: 3}
+  charge: {fileID: 8300000, guid: 9194ed7132b97e741a740bba096d6c31, type: 3}
+  rotation: {fileID: 8300000, guid: 293c88b03daf9c7458220a76adaef4db, type: 3}
 --- !u!114 &4707518716000674848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +294,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &8383611010208135491
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7966503183408548601}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e82b8c5e8dad0544856e6ffeebcfb60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &2445187227255270840
 Rigidbody2D:
   serializedVersion: 4

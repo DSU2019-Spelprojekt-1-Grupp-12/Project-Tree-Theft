@@ -55,10 +55,11 @@ public class LevelSelect : MonoBehaviour
             }
         }
         levels[currentSelectLevel].SetActive(true);
+        
     }
     public void Select()
     {
-        StaticData.CurrentLevel = currentSelectLevel;
+        StaticData.CurrentLevel = currentSelectLevel + 1;
     }
 
 

@@ -22,7 +22,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""a687545e-007d-4f81-811d-a2a514ed51a6"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -202,7 +202,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""c85a61e6-9db0-46ec-93d8-5b9894e5d3dc"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },

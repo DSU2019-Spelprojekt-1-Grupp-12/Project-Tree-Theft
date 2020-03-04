@@ -63,15 +63,48 @@ public class PlayerSoundAndAnimation : MonoBehaviour
         audio.clip = rotation;
         audio.Play();
     }
-    void toggleWalking(bool walking)
+    void toggleWalkingDown(bool walking)
     {
         if (walking == false)
         {
-            animator.SetBool("Walking", false);
+            animator.SetBool("WalkingDown", false);
         }
         if (walking == true)
         {
-            animator.SetBool("Walking", true);
+            animator.SetBool("WalkingDown", true);
+        }
+    }
+    void toggleWalkingUp(bool walking)
+    {
+        if (walking == false)
+        {
+            animator.SetBool("WalkingUp", false);
+        }
+        if (walking == true)
+        {
+            animator.SetBool("WalkingUp", true);
+        }
+    }
+    void toggleWalkingLeft(bool walking)
+    {
+        if (walking == false)
+        {
+            animator.SetBool("WalkingLeft", false);
+        }
+        if (walking == true)
+        {
+            animator.SetBool("WalkingLeft", true);
+        }
+    }
+    void toggleWalkingRight(bool walking)
+    {
+        if (walking == false)
+        {
+            animator.SetBool("WalkingRight", false);
+        }
+        if (walking == true)
+        {
+            animator.SetBool("WalkingRight", true);
         }
     }
 

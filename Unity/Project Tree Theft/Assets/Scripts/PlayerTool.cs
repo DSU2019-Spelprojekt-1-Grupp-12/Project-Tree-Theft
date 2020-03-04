@@ -10,13 +10,17 @@ public class PlayerTool : MonoBehaviour
     [Header("Stats")]
     public int damage = 2;
     public int price = 20;
+    [SerializeField] int mamaLumber = 0;
+    [SerializeField] int grandpaJoe = 0;
+    [SerializeField] int logan = 0;
+    [SerializeField] int leaf = 0;
     
 
-    private Vector3 standardPosition = new Vector3(0, 0, 0);
-    private Vector3 upPosition = new Vector3(0, 0.7f, 0);
-    private Vector3 rightPosition = new Vector3(0.7f, 0);
-    private Vector3 downPosition = new Vector3(0, -0.7f, 0);
-    private Vector3 leftPosition = new Vector3(-0.7f, 0, 0);
+    private Vector3 standardPosition = new Vector3(0, 0.4f, 0);
+    private Vector3 upPosition = new Vector3(0, 0.35f+0.4f, 0);
+    private Vector3 rightPosition = new Vector3(0.35f, 0.4f, 0);
+    private Vector3 downPosition = new Vector3(0, -0.35f+0.4f, 0);
+    private Vector3 leftPosition = new Vector3(-0.35f, 0+0.4f, 0);
 
     private Vector3 upRotationVector = new Vector3(0, 0, 0);
     private Vector3 rightRotationVector = new Vector3(0, 0, 270f);
@@ -43,6 +47,14 @@ public class PlayerTool : MonoBehaviour
     int chargeSweetspotMin = 40;
     private int sweetSpot;
 
+    private int[] goodChop = { 40, 69 };
+    private int[] betterChop = { 70, 89 };
+    private int[] bestChop = { 90, 99 };
+    private int[] sweetSpots = new int[3];
+
+    private int multiplier2x = 2;
+    private int multiplier4x = 4;
+    
     private GameObject mySlider;
 
     Rigidbody2D myRigidBody;
@@ -56,6 +68,10 @@ public class PlayerTool : MonoBehaviour
         chargeMidConstant = (maxCharge - minCharge) / 2;
         chargeCounter = minCharge-1;
         sweetSpot = chargeSweetspotMin;
+
+        //"if" character name = "mamaLumber"
+        damage = grandpaJoe;
+        SetRandomSweetSpots();
     }
 
     // Start is called before the first frame update
@@ -77,15 +93,16 @@ public class PlayerTool : MonoBehaviour
         var direction = GetDirection();
         CheckSprite(direction);
         if (isCharging)
-        {
-            //Charge bar - ASin(x)+k            
+        {                   
             ChargeUpTool();
         }
         if (!isCharging)
         {
             chargeLevel = minCharge;
             chargeCounter = minCharge - 1;
+            StartCoroutine(ResetChargeLevelWhenHit());
         }
+        Debug.Log("Is charging: " + isCharging);
     }
 
     private void ChargeUpTool()
@@ -105,11 +122,12 @@ public class PlayerTool : MonoBehaviour
         else if (!chargeUp && chargeCounter > minCharge)
             chargeCounter--;
         chargeLevel = chargeCounter;
-        chargeLevelWhenHit = chargeLevel;
+        chargeLevelWhenHit = chargeLevel;        
         //Debug.Log("Charge Level: " + chargeLevel + "\nCharge counter: " + chargeCounter);
     }
 
     public int GetChargeLevel() { return chargeLevel; }
+    public int GetMaxCharge() { return maxCharge; }
 
     private void CheckSprite(int direction) {
         if (cooldownTimer < Time.time)
@@ -140,7 +158,8 @@ public class PlayerTool : MonoBehaviour
 
     [HideInInspector] public void ChopCharge(int playerNumber){
         if (!isCharging){
-            RandomizeSweetSpot();
+            //RandomizeSweetSpot();
+            SetRandomSweetSpots();
         }
         isCharging = true;        
         Debug.Log("Player" + playerNumber + " is Charging");
@@ -197,21 +216,32 @@ public class PlayerTool : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Tree")){
             var SweetSpotMax = GetSweetSpot() + 20;
-            var getCharge = mySlider.GetComponent<SliderBehaviour>().GetCharge();
             TreeMain tree = other.gameObject.GetComponent<TreeBody>().GetTreeMain();
-            if (chargeLevelWhenHit > GetSweetSpot() && chargeLevelWhenHit <= SweetSpotMax)
+            if (chargeLevelWhenHit >= GetSweetSpots()[0] && chargeLevelWhenHit < GetSweetSpots()[1])
             {
                 tree.SetDamage(GetDamage());
-                Debug.Log("HIT");
-                Debug.Log("Charge Level: " + chargeLevelWhenHit + " Sweetspot: " + GetSweetSpot() + " - " + SweetSpotMax);
+                Debug.Log(tree.name + ": HIT");
+            }
+            else if(chargeLevelWhenHit >= GetSweetSpots()[1] && chargeLevelWhenHit < GetSweetSpots()[2])
+            {
+                tree.SetDamage(GetDamage() * multiplier2x);
+                Debug.Log(tree.name + ": HIT 2X");
+            }
+            else if(chargeLevelWhenHit >= GetSweetSpots()[2] && chargeLevelWhenHit < GetMaxCharge())
+            {
+                tree.SetDamage(GetDamage() * multiplier4x);
+                Debug.Log(tree.name + ": HIT 4X");
             }
             else
             {
                 Debug.Log("Charge Level: " + chargeLevelWhenHit + " Sweetspot: " + GetSweetSpot() + " - " + SweetSpotMax);
                 Debug.Log(GetChargeLevel() > GetSweetSpot());
             }
+            Debug.Log("Charge Level: " + GetChargeLevel().ToString());
             chargeLevel = minCharge;
             chargeCounter = minCharge - 1;
+            chargeLevelWhenHit = minCharge;
+            isCharging = false;
             //tree.SetDamage(GetDamage());
         }
     }
@@ -221,4 +251,16 @@ public class PlayerTool : MonoBehaviour
         Debug.Log(sweetSpot);
     }
     public int GetSweetSpot() { return sweetSpot; }
+
+    public int[] GetSweetSpots() { return sweetSpots; }
+    public void SetRandomSweetSpots() {
+        sweetSpots[0] = Random.Range(goodChop[0], goodChop[1] + 1);
+        sweetSpots[1] = Random.Range(betterChop[0], goodChop[1] + 1);
+        sweetSpots[2] = Random.Range(bestChop[0], goodChop[1] + 1);
+    }
+
+    private IEnumerator ResetChargeLevelWhenHit(){
+        yield return new WaitForSecondsRealtime(0.1f);
+        chargeLevelWhenHit = minCharge;
+    }
 }

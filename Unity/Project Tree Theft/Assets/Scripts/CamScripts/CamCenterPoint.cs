@@ -11,8 +11,7 @@ public class CamCenterPoint : MonoBehaviour
     [SerializeField] private float playerDistance;
 
     private void Awake(){
-        PlayerMain[] playersList = FindObjectsOfType<PlayerMain>();
-        SetPlayers(playersList);
+        
     }
 
     private void SetPlayers(PlayerMain[] playerList){
@@ -24,7 +23,9 @@ public class CamCenterPoint : MonoBehaviour
             player2 = playerList[0].gameObject;
         }        
     }
-    private void Start(){ UpdatePosition(); }
+    private void Start(){
+        PlayerMain[] playersList = FindObjectsOfType<PlayerMain>();
+        SetPlayers(playersList); UpdatePosition(); }
 
     private void Update(){ UpdatePosition(); }   
 

@@ -14,13 +14,7 @@ public class SliderBehaviour : MonoBehaviour
     private Vector4 hitColor = new Vector4(157f/255f, 190f/255f, 0f/255f, 255f/255f);
 
     private void Awake(){
-        PlayerMain[] players = FindObjectsOfType<PlayerMain>();
-        for (int n = 0; n < players.Length; n++)
-            if (players[n].GetPlayerNumber() == myPlayerNumber)
-                myPlayer = players[n].gameObject;
-        myNumber = myPlayer.GetComponent<PlayerMain>().GetPlayerNumber();
-        Debug.Log("Player" + myPlayer.GetComponent<PlayerMain>().GetPlayerNumber() + " is bound to Slider" + myNumber);
-        defaultColor = gameObject.GetComponentInChildren<SliderFiller>().GetComponent<Image>().color;
+        
     }
 
     private void GetFillAreaColor(){
@@ -29,7 +23,13 @@ public class SliderBehaviour : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        
+        PlayerMain[] players = FindObjectsOfType<PlayerMain>();
+        for (int n = 0; n < players.Length; n++)
+            if (players[n].GetPlayerNumber() == myPlayerNumber)
+                myPlayer = players[n].gameObject;
+        myNumber = myPlayer.GetComponent<PlayerMain>().GetPlayerNumber();
+        Debug.Log("Player" + myPlayer.GetComponent<PlayerMain>().GetPlayerNumber() + " is bound to Slider" + myNumber);
+        defaultColor = gameObject.GetComponentInChildren<SliderFiller>().GetComponent<Image>().color;
     }
 
     // Update is called once per frame

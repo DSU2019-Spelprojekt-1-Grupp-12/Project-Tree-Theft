@@ -26,7 +26,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private string s_GOlose = "GameOverLoss";
     [Rename("Level Select")]
     [SerializeField] private string s_LVLselect = "LevelSelect";
-    
+    [Rename("Character Select")]
+    [SerializeField] private string s_CHARselect = "CharSelect";
+
     private string s_LoadLevel_n = "Level";
 
     private void Update(){}
@@ -47,6 +49,7 @@ public class MenuManager : MonoBehaviour
     public void LevelSelect() { Load(s_LVLselect); }
     public void NextLevel() { LoadLevel(StaticData.NextLevel); }
     public void RestartLevel() { LoadLevel(StaticData.CurrentLevel); }
+    public void CharSelect() { Load(s_CHARselect); }
 
     public void LoadLevel(int levelNumber){
         s_LoadLevel_n += levelNumber;

@@ -75,7 +75,7 @@ public class PlayerMain : MonoBehaviour
     #endregion
 
     #region Functions
-    
+    public bool GetAttached() { return attached; }
     public void SetMovementSpeed(float movementSpeed) { this.movementSpeed = movementSpeed; }
     public float GetMovementSpeed() { return movementSpeed; }
     [HideInInspector] public int GetPlayerNumber() { return playerNumber; }

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 674647927249791771, guid: 22657a321ee6bdb47b1c7647fd3da205,
         type: 3}
       propertyPath: m_Name
-      value: WaterWayDown
+      value: WaterWayDown Variant
       objectReference: {fileID: 0}
     - target: {fileID: 674647927249791768, guid: 22657a321ee6bdb47b1c7647fd3da205,
         type: 3}

@@ -12,6 +12,11 @@ public class WaterWayDirection : MonoBehaviour
             other.gameObject.GetComponent<StockMain>().SetDirectionIndex(directionIndex);
         }
     }
+    private void OnTriggerStay2D(Collider2D other){
+        if (other.gameObject.CompareTag("Log")){
+            other.gameObject.GetComponent<StockMain>().SetDirectionIndex(directionIndex);
+        }
+    }
 
     void Start(){
         

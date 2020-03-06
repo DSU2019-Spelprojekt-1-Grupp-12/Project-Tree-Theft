@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13290924960572324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 1.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2338390346436623186}
@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   log: {fileID: 2338390346436623184}
+  getName: 
 --- !u!1 &2338390346436623184
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,10 +170,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.65}
+  m_Offset: {x: 0, y: 0.24}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.0039682, y: 3.7182539}
     newSize: {x: 2.56, y: 5.12}
     adaptiveTilingThreshold: 0.5
@@ -219,6 +220,9 @@ MonoBehaviour:
   moveSpeed: 2
   moveVector: {x: 0, y: 0}
   numberOfPlayersAttached: 0
+  floatingSpeed: 0
+  directionIndex: 0
+  onWater: 0
   horizontal: 0
 --- !u!1 &6281778470815388338
 GameObject:
@@ -246,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6281778470815388338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.6, z: 0}
+  m_LocalPosition: {x: 0, y: -1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2338390346436623186}
@@ -291,3 +295,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   log: {fileID: 2338390346436623184}
+  getName: 

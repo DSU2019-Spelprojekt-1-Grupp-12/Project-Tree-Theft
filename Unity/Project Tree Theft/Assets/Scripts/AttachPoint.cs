@@ -91,5 +91,6 @@ public class AttachPoint : MonoBehaviour
     }
 
     [HideInInspector] public GameObject GetAttachedPlayer() { return attachedPlayer; }
+    [HideInInspector] public bool HasPlayerAttached() { return attachedPlayer; }
     #endregion
 }

@@ -4,10 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Log
-  - AttachPoint
-  - Tree
   - Tools
+  - Wall
+  - Log
+  - Tree
+  - AttachPoint
+  - TowerSight
   layers:
   - Default
   - TransparentFX

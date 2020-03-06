@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 7966503183408548601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.046, y: -0.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.679}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6748410683837271681}
   m_Father: {fileID: 0}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &7966503183408548604
 Rigidbody2D:
   serializedVersion: 4
@@ -341,6 +341,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7966503183408548607}
     m_Modifications:
+    - target: {fileID: 2221821302990466329, guid: 705a6f2f404c7804fb7c20bc8b7af48e,
+        type: 3}
+      propertyPath: m_Name
+      value: Player2 Tool
+      objectReference: {fileID: 0}
     - target: {fileID: 2518027570602063573, guid: 705a6f2f404c7804fb7c20bc8b7af48e,
         type: 3}
       propertyPath: player
@@ -400,11 +405,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2221821302990466329, guid: 705a6f2f404c7804fb7c20bc8b7af48e,
-        type: 3}
-      propertyPath: m_Name
-      value: Player2 Tool
       objectReference: {fileID: 0}
     - target: {fileID: 8084702477264075676, guid: 705a6f2f404c7804fb7c20bc8b7af48e,
         type: 3}

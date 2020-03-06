@@ -11,6 +11,12 @@ public class WaterWay : MonoBehaviour
             other.gameObject.GetComponent<StockMain>().SetOnWater(true);
         }
     }
+    private void OnTriggerStay2D(Collider2D other){
+        if (other.gameObject.CompareTag("Log")){
+            other.gameObject.GetComponent<StockMain>().SetFloatingSpeed(speed);
+            other.gameObject.GetComponent<StockMain>().SetOnWater(true);
+        }
+    }
     private void OnTriggerExit2D(Collider2D other){
         if (other.gameObject.CompareTag("Log")){
             other.gameObject.GetComponent<StockMain>().SetFloatingSpeed(0);

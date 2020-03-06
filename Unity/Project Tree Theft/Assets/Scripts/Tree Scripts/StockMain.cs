@@ -14,6 +14,16 @@ public class StockMain : MonoBehaviour
     [HideInInspector] public Vector2 moveVector;
     [HideInInspector] public int numberOfPlayersAttached = 0;
 
+    public float floatingSpeed = 0f;
+    public int directionIndex = 0;
+    public bool onWater = false;
+    private Vector3 upVector = new Vector3(0f, 1f, 0f);
+    private Vector3 rightVector = new Vector3(1f, 0f, 0f);
+    private Vector3 downVector = new Vector3(0f, -1f, 0f);
+    private Vector3 leftVector = new Vector3(0f, -1f, 0f);
+
+    private Rigidbody2D myRigidBody;
+
     float calcMoveSpeed;
 
     [SerializeField] private bool horizontal;
@@ -31,20 +41,26 @@ public class StockMain : MonoBehaviour
         Debug.Log(attachPoints[0].name.ToString());
     }
 
-    void Start()
-    {
-
+    void Start(){
+        myRigidBody = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
         moveLog();
         unlockLog();
+        WaterMovement();
     }
     #endregion
 
     #region Functions
 
     public bool GetHorizontalAlignment() { return horizontal; }
+    public void SetFloatingSpeed(float floatingSpeed) { this.floatingSpeed = floatingSpeed; }
+    public float GetFloatingSpeed() { return floatingSpeed; }
+    public void SetDirectionIndex(int directionIndex) { this.directionIndex = directionIndex; }
+    public int GetDirectionIndex() { return directionIndex; }
+    public void SetOnWater(bool onWater) { this.onWater = onWater; }
+    public bool GetOnWater() { return onWater; }
     void moveLog()
     {
         if (numberOfPlayersAttached < 2)
@@ -73,6 +89,14 @@ public class StockMain : MonoBehaviour
         
     }
 
+    private void RotateHorizontal(int directionIndex){
+        if (directionIndex == (int)DirectionIndex.right)
+            transform.rotation = Quaternion.Euler(0f, 0f, -horizontalAngle);
+        else if (directionIndex == (int)DirectionIndex.left)
+            transform.rotation = Quaternion.Euler(0f, 0f, horizontalAngle);
+        horizontal = true;
+    }
+
     private void RotateHorizontal(int directionModifier, GameObject p1, GameObject p2){
         var p1_directionIndex = p1.GetComponent<PlayerMain>().GetDirectionSprite();
         var p2_directionIndex = p2.GetComponent<PlayerMain>().GetDirectionSprite();
@@ -84,6 +108,11 @@ public class StockMain : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, horizontalAngle);
         RotatePlayers(directionModifier, p1, p2, p1_directionIndex, p2_directionIndex);
         horizontal = true;
+    }
+
+    private void RotateVertical(int directionIndex){
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        horizontal = false;
     }
     private void RotateVertical(int directionModifier, GameObject p1, GameObject p2){
         var p1_directionIndex = p1.GetComponent<PlayerMain>().GetDirectionSprite();
@@ -117,6 +146,35 @@ public class StockMain : MonoBehaviour
     private void RotatePlayers(int directionModifier, GameObject p1, GameObject p2, int p1_directionIndex, int p2_directionIndex){
         p1.GetComponent<PlayerMain>().SetDirectionSprite(p1_directionIndex + directionModifier);
         p2.GetComponent<PlayerMain>().SetDirectionSprite(p2_directionIndex + directionModifier);
+    }
+
+    private void WaterMovement(){
+        if (GetOnWater()){
+            var p1 = p1_attachPoint.gameObject.GetComponent<AttachPoint>().HasPlayerAttached();
+            var p2 = p2_attachPoint.gameObject.GetComponent<AttachPoint>().HasPlayerAttached();
+            Debug.Log(p1);
+
+            if (!(p1 && p2))
+            {
+                Debug.Log("AttachPoints are null");
+                if (GetDirectionIndex() == (int)DirectionIndex.up){
+                    RotateVertical(GetDirectionIndex());
+                    transform.Translate(upVector * floatingSpeed * Time.deltaTime);
+                }
+                if (GetDirectionIndex() == (int)DirectionIndex.right){
+                    RotateHorizontal(GetDirectionIndex());
+                    transform.Translate(downVector * floatingSpeed * Time.deltaTime);
+                }
+                if (GetDirectionIndex() == (int)DirectionIndex.down){
+                    RotateVertical(GetDirectionIndex());
+                    transform.Translate(downVector * floatingSpeed * Time.deltaTime);
+                }
+                if (GetDirectionIndex() == (int)DirectionIndex.left){
+                    RotateHorizontal(GetDirectionIndex());
+                    transform.Translate(leftVector * floatingSpeed * Time.deltaTime);
+                }
+            }
+        }
     }
 
     #endregion

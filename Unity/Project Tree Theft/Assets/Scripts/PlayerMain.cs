@@ -31,7 +31,6 @@ public class PlayerMain : MonoBehaviour
 
     public PlayerTool tool;
 
-    List<TreeMain> trees = null;
     GameObject attachPoint = null;
     bool operationDone = false;
     Vector2 movementVector = new Vector2(0f, 0f);

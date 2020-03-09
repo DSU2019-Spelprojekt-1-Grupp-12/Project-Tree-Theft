@@ -9,9 +9,7 @@ public class TreeMain : MonoBehaviour
     int maxHP;
     private TreeBody myBody;
     public Sprite treeSpriteFullHealth;
-    public Sprite treeWound1;
-    public Sprite treeWound2;
-    public Sprite treeWound3;
+    public Sprite treeWound;
 
     private void Awake(){
         myBody = GetComponentInChildren<TreeBody>();
@@ -37,21 +35,9 @@ public class TreeMain : MonoBehaviour
     }
     private void UpdateTreeSprite()
     {
-        if (hitPoints / maxHP >= 0.1)
+        if (hitPoints < maxHP)
         {
-            myBody.GetComponent<SpriteRenderer>().sprite = treeWound3;
-        }
-        if (hitPoints / maxHP >= 0.3)
-        {
-            myBody.GetComponent<SpriteRenderer>().sprite = treeWound2;
-        }
-        if (hitPoints / maxHP >= 0.6)
-        {
-            myBody.GetComponent<SpriteRenderer>().sprite = treeWound1;
-        }
-        if (hitPoints/maxHP >= 0.9)
-        {
-            myBody.GetComponent<SpriteRenderer>().sprite = treeSpriteFullHealth;
+            myBody.GetComponent<SpriteRenderer>().sprite = treeWound;
         }
     }
 

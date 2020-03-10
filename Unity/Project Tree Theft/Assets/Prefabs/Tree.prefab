@@ -260,6 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6176675771093151678}
   - component: {fileID: 5539368142602437382}
+  - component: {fileID: 1890737941980563025}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -305,3 +306,19 @@ MonoBehaviour:
     type: 3}
   treeWound3: {fileID: -967749646537184587, guid: bd00b067928c1cd4c924e255254e5f31,
     type: 3}
+--- !u!58 &1890737941980563025
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8411574733269322594}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.04, y: 0.09}
+  serializedVersion: 2
+  m_Radius: 0.17

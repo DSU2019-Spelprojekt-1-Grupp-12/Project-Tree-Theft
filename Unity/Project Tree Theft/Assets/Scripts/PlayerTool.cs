@@ -41,6 +41,7 @@ public class PlayerTool : MonoBehaviour
     private int chargeMidConstant;
     private int chargeCounter;
     private bool chargeUp = false;
+    List<GameObject> trees = new List<GameObject>();
 
     [Header("Charge stats")]
     int chargeSweetspotMax = 80;
@@ -102,7 +103,7 @@ public class PlayerTool : MonoBehaviour
             chargeCounter = minCharge - 1;
             StartCoroutine(ResetChargeLevelWhenHit());
         }
-        Debug.Log("Is charging: " + isCharging);
+        //Debug.Log("Is charging: " + isCharging);
     }
 
     private void ChargeUpTool()
@@ -167,21 +168,40 @@ public class PlayerTool : MonoBehaviour
 
     [HideInInspector] public void ChopEvent(int playerNumber) {
         isCharging = false;
-        if (playerNumber == 1)
+        for (int i = 0; i < trees.Count; i++)
         {
-            SetPosition(GetDirection());
-            Debug.Log("P1: CHOP!!");
+            if (chargeLevelWhenHit >= GetSweetSpots()[0] && chargeLevelWhenHit < GetSweetSpots()[1])
+            {
+                trees[i].GetComponent<TreeMain>().SetDamage(GetDamage());
+            }
+            else if (chargeLevelWhenHit >= GetSweetSpots()[1] && chargeLevelWhenHit < GetSweetSpots()[2])
+            {
+                trees[i].GetComponent<TreeMain>().SetDamage(GetDamage() * multiplier2x);
+            }
+            else if (chargeLevelWhenHit >= GetSweetSpots()[2] && chargeLevelWhenHit < GetMaxCharge())
+            {
+                trees[i].GetComponent<TreeMain>().SetDamage(GetDamage() * multiplier4x);
+            }
+            else
+            {
+
+            }
         }
-        if (playerNumber == 2)
-        {
-            SetPosition(GetDirection());
-            Debug.Log("P2: CHOP!!");
-        }
-        Debug.Log("Player" + playerNumber + ": CHOP!!");
+        //if (playerNumber == 1)
+        //{
+        //    SetPosition(GetDirection());
+        //    Debug.Log("P1: CHOP!!");
+        //}
+        //if (playerNumber == 2)
+        //{
+        //    SetPosition(GetDirection());
+        //    Debug.Log("P2: CHOP!!");
+        //}
+        //Debug.Log("Player" + playerNumber + ": CHOP!!");
     }
 
     [HideInInspector] public void ChopEvent(){
-        SetPosition(-1);
+        //SetPosition(-1);
     }
 
     public void SetPosition(int direction){
@@ -214,35 +234,53 @@ public class PlayerTool : MonoBehaviour
     public int GetDamage(){ return damage; }
 
     private void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.CompareTag("Tree")){
-            var SweetSpotMax = GetSweetSpot() + 20;
-            TreeMain tree = other.gameObject.GetComponent<TreeBody>().GetTreeMain();
-            if (chargeLevelWhenHit >= GetSweetSpots()[0] && chargeLevelWhenHit < GetSweetSpots()[1])
+        if (other.gameObject.GetComponent<TreeMain>())
+        {
+            trees.Add(other.gameObject);
+            Debug.Log("TreeCount: " + trees.Count);
+            //var SweetSpotMax = GetSweetSpot() + 20;
+            //TreeMain tree = other.gameObject.GetComponent<TreeBody>().GetTreeMain();
+            //if (chargeLevelWhenHit >= GetSweetSpots()[0] && chargeLevelWhenHit < GetSweetSpots()[1])
+            //{
+            //    tree.SetDamage(GetDamage());
+            //    Debug.Log(tree.name + ": HIT");
+            //}
+            //else if(chargeLevelWhenHit >= GetSweetSpots()[1] && chargeLevelWhenHit < GetSweetSpots()[2])
+            //{
+            //    tree.SetDamage(GetDamage() * multiplier2x);
+            //    Debug.Log(tree.name + ": HIT 2X");
+            //}
+            //else if(chargeLevelWhenHit >= GetSweetSpots()[2] && chargeLevelWhenHit < GetMaxCharge())
+            //{
+            //    tree.SetDamage(GetDamage() * multiplier4x);
+            //    Debug.Log(tree.name + ": HIT 4X");
+            //}
+            //else
+            //{
+            //    Debug.Log("Charge Level: " + chargeLevelWhenHit + " Sweetspot: " + GetSweetSpot() + " - " + SweetSpotMax);
+            //    Debug.Log(GetChargeLevel() > GetSweetSpot());
+            //}
+            //Debug.Log("Charge Level: " + GetChargeLevel().ToString());
+            //chargeLevel = minCharge;
+            //chargeCounter = minCharge - 1;
+            //chargeLevelWhenHit = minCharge;
+            //isCharging = false;
+            ////tree.SetDamage(GetDamage());
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<TreeMain>())
+        {
+            GameObject tree = other.gameObject;
+            for (int i = 0; i < trees.Count; i++)
             {
-                tree.SetDamage(GetDamage());
-                Debug.Log(tree.name + ": HIT");
+                if (tree.gameObject.transform.position == trees[i].gameObject.transform.position)
+                {
+                    trees.RemoveAt(i);
+                }
             }
-            else if(chargeLevelWhenHit >= GetSweetSpots()[1] && chargeLevelWhenHit < GetSweetSpots()[2])
-            {
-                tree.SetDamage(GetDamage() * multiplier2x);
-                Debug.Log(tree.name + ": HIT 2X");
-            }
-            else if(chargeLevelWhenHit >= GetSweetSpots()[2] && chargeLevelWhenHit < GetMaxCharge())
-            {
-                tree.SetDamage(GetDamage() * multiplier4x);
-                Debug.Log(tree.name + ": HIT 4X");
-            }
-            else
-            {
-                Debug.Log("Charge Level: " + chargeLevelWhenHit + " Sweetspot: " + GetSweetSpot() + " - " + SweetSpotMax);
-                Debug.Log(GetChargeLevel() > GetSweetSpot());
-            }
-            Debug.Log("Charge Level: " + GetChargeLevel().ToString());
-            chargeLevel = minCharge;
-            chargeCounter = minCharge - 1;
-            chargeLevelWhenHit = minCharge;
-            isCharging = false;
-            //tree.SetDamage(GetDamage());
+            Debug.Log("TreeCount: " + trees.Count);
         }
     }
 

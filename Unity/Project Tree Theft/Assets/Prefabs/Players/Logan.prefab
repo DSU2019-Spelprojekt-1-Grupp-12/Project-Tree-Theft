@@ -243,6 +243,7 @@ MonoBehaviour:
   leftSprite: {fileID: 21300000, guid: f5c95ac44113d2d4f9a703255816b318, type: 3}
   rightSprite: {fileID: 21300000, guid: f5c95ac44113d2d4f9a703255816b318, type: 3}
   tool: {fileID: 126953819175191281}
+  rotationSpeed: 1
 --- !u!114 &1500531119575632555
 MonoBehaviour:
   m_ObjectHideFlags: 0

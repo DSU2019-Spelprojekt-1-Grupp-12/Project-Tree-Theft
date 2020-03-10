@@ -31,6 +31,8 @@ public class PlayerMain : MonoBehaviour
 
     public PlayerTool tool;
 
+    public float rotationSpeed;
+
     GameObject attachPoint = null;
     bool operationDone = false;
     Vector2 movementVector = new Vector2(0f, 0f);
@@ -50,6 +52,25 @@ public class PlayerMain : MonoBehaviour
     {
         //CooldownHandler();
         CheckKeys();
+        var rotateP1 = _rotateAxisP1;
+        var rotateP2 = _rotateAxisP2;
+        if (rotateP1 > 0)
+        {
+            if (attached && playerNumber == 1)
+            {
+                attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber, rotationSpeed);
+                SendMessage("playRotationSound");
+            }
+        }
+        if (rotateP2 > 0)
+        {
+            if (attached && playerNumber == 2)
+            {
+                attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber, rotationSpeed);
+                SendMessage("playRotationSound");
+            }
+        }
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -312,6 +333,8 @@ public class PlayerMain : MonoBehaviour
 
     private Vector2 _movementVectorP1 = new Vector2(0f, 0f);
     private Vector2 _movementVectorP2 = new Vector2(0f, 0f);
+    private float _rotateAxisP1 = 0f;
+    private float _rotateAxisP2 = 0f;
 
     bool isCharging = false;
 
@@ -321,7 +344,9 @@ public class PlayerMain : MonoBehaviour
         _player1Controls = new PlayerControls();
         _player2Controls = new PlayerControls();
         _player1Controls.Player1.Move.performed += ctx => _movementVectorP1 = ctx.ReadValue<Vector2>();
-        _player2Controls.Player2.Move.performed += ctx => _movementVectorP2 = ctx.ReadValue<Vector2>();        
+        _player2Controls.Player2.Move.performed += ctx => _movementVectorP2 = ctx.ReadValue<Vector2>();
+        _player1Controls.Player1.Rotate.performed += ctx => _rotateAxisP1 = ctx.ReadValue<float>();
+        _player2Controls.Player2.Rotate.performed += ctx => _rotateAxisP2 = ctx.ReadValue<float>();
     }
 
     private void Attach_P1(InputAction.CallbackContext obj){
@@ -379,18 +404,18 @@ public class PlayerMain : MonoBehaviour
         }
     }
 
-    private void RotateLog_P1(InputAction.CallbackContext obj){
-        if (attached && playerNumber == 1){
-            attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber);
-            SendMessage("playRotationSound");
-        }
-    }
-    private void RotateLog_P2(InputAction.CallbackContext obj){
-        if (attached && playerNumber == 2){
-            attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber);
-            SendMessage("playRotationSound");
-        }
-    }
+    //private void RotateLog_P1(InputAction.CallbackContext obj){
+    //    if (attached && playerNumber == 1){
+    //        attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber, rotationSpeed);
+    //        SendMessage("playRotationSound");
+    //    }
+    //}
+    //private void RotateLog_P2(InputAction.CallbackContext obj){
+    //    if (attached && playerNumber == 2){
+    //        attachPoint.GetComponentInParent<StockMain>().RotateLog(playerNumber, rotationSpeed);
+    //        SendMessage("playRotationSound");
+    //    }
+    //}
 
     private void OnEnable(){
         _player1Controls.Enable();
@@ -404,13 +429,13 @@ public class PlayerMain : MonoBehaviour
         _player1Controls.Player1.Attach.performed += Attach_P1;
         _player2Controls.Player2.Attach.performed += Attach_P2;
 
-        _player1Controls.Player1.Rotate.performed += RotateLog_P1;
-        _player2Controls.Player2.Rotate.performed += RotateLog_P2;
+        //_player1Controls.Player1.Rotate.performed += RotateLog_P1;
+        //_player2Controls.Player2.Rotate.performed += RotateLog_P2;
     }    
         
     private void OnDisable(){
-        _player1Controls.Player1.Rotate.performed -= RotateLog_P1;
-        _player2Controls.Player2.Rotate.performed -= RotateLog_P2;
+        //_player1Controls.Player1.Rotate.performed -= RotateLog_P1;
+        //_player2Controls.Player2.Rotate.performed -= RotateLog_P2;
 
         _player1Controls.Player1.Attach.performed -= Attach_P1;
         _player2Controls.Player2.Attach.performed -= Attach_P2;

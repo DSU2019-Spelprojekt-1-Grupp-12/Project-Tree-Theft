@@ -39,9 +39,9 @@
                 },
                 {
                     "name": "Rotate",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "ee16d69b-0fb9-4a81-ac4c-3296548e5361",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 }
@@ -219,9 +219,9 @@
                 },
                 {
                     "name": "Rotate",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "889576ff-0fc5-457b-98e8-39c733787b2e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 }

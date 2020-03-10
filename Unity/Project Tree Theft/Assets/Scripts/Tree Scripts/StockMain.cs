@@ -127,18 +127,27 @@ public class StockMain : MonoBehaviour
         horizontal = false;
     }
 
-    public void RotateLog(int playerNumber){
-        GameObject player1 = p1_attachPoint.gameObject.GetComponent<AttachPoint>().GetAttachedPlayer();
-        GameObject player2 = p2_attachPoint.gameObject.GetComponent<AttachPoint>().GetAttachedPlayer();
-        int directionModifier = 1;
-        if (playerNumber == 1 && horizontal){
-            RotateVertical(directionModifier, player1, player2);
-            Debug.Log("Rotate Vertical");
+    public void RotateLog(int playerNumber, float rotationSpeed){
+        if (playerNumber == 1)
+        {
+            gameObject.transform.Rotate(new Vector3(0f, 0f, rotationSpeed));
         }
-        if(playerNumber == 2 && !horizontal){
-            RotateHorizontal(directionModifier, player1, player2);
-            Debug.Log("Rotate Horizontal");
+        if (playerNumber == 2)
+        {
+            gameObject.transform.Rotate(new Vector3(0f, 0f, -rotationSpeed));
         }
+        
+        //GameObject player1 = p1_attachPoint.gameObject.GetComponent<AttachPoint>().GetAttachedPlayer();
+        //GameObject player2 = p2_attachPoint.gameObject.GetComponent<AttachPoint>().GetAttachedPlayer();
+        //int directionModifier = 1;
+        //if (playerNumber == 1 && horizontal){
+        //    RotateVertical(directionModifier, player1, player2);
+        //    Debug.Log("Rotate Vertical");
+        //}
+        //if(playerNumber == 2 && !horizontal){
+        //    RotateHorizontal(directionModifier, player1, player2);
+        //    Debug.Log("Rotate Horizontal");
+        //}
 
 
     }

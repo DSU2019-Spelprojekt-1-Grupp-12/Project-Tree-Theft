@@ -377,7 +377,7 @@
             "id": "18afca3d-f196-427e-9bd9-eaf0a1578805",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Click",
                     "type": "Button",
                     "id": "6c0acf17-c075-49df-b3da-ace65fa67384",
                     "expectedControlType": "",
@@ -389,11 +389,11 @@
                 {
                     "name": "",
                     "id": "ce78b8f9-473b-467a-b2c3-abf505d5b153",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "New action",
+                    "groups": "Gamepad;Key&Mouse",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

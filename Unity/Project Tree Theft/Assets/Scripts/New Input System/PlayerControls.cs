@@ -390,7 +390,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""id"": ""18afca3d-f196-427e-9bd9-eaf0a1578805"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Click"",
                     ""type"": ""Button"",
                     ""id"": ""6c0acf17-c075-49df-b3da-ace65fa67384"",
                     ""expectedControlType"": """",
@@ -402,11 +402,11 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ce78b8f9-473b-467a-b2c3-abf505d5b153"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""New action"",
+                    ""groups"": ""Gamepad;Key&Mouse"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -589,7 +589,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player2_Rotate = m_Player2.FindAction("Rotate", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
-        m_Menus_Newaction = m_Menus.FindAction("New action", throwIfNotFound: true);
+        m_Menus_Click = m_Menus.FindAction("Click", throwIfNotFound: true);
         // P1Menu
         m_P1Menu = asset.FindActionMap("P1Menu", throwIfNotFound: true);
         m_P1Menu_Left = m_P1Menu.FindAction("Left", throwIfNotFound: true);
@@ -779,12 +779,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     // Menus
     private readonly InputActionMap m_Menus;
     private IMenusActions m_MenusActionsCallbackInterface;
-    private readonly InputAction m_Menus_Newaction;
+    private readonly InputAction m_Menus_Click;
     public struct MenusActions
     {
         private @PlayerControls m_Wrapper;
         public MenusActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Menus_Newaction;
+        public InputAction @Click => m_Wrapper.m_Menus_Click;
         public InputActionMap Get() { return m_Wrapper.m_Menus; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -794,16 +794,16 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_MenusActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnNewaction;
+                @Click.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnClick;
             }
             m_Wrapper.m_MenusActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
             }
         }
     }
@@ -942,7 +942,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     }
     public interface IMenusActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
     public interface IP1MenuActions
     {

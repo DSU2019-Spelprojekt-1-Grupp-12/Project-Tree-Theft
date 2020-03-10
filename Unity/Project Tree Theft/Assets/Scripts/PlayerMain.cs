@@ -246,13 +246,26 @@ public class PlayerMain : MonoBehaviour
             attachPoint.GetComponent<AttachPoint>().attachToPlayer(gameObject);
             attached = true;
             Debug.Log(attached);
+            GameObject[] marshes = GameObject.FindGameObjectsWithTag("Marsh");
+
+            foreach (GameObject marsh in marshes)
+            {
+                Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), marsh.GetComponent<Collider2D>(), true);
+            }
         }
     }
     void Detach()
     {
+        
         attachPoint.GetComponent<AttachPoint>().detachFromPlayer();
         attached = false;
         Debug.Log(attached);
+        GameObject[] marshes = GameObject.FindGameObjectsWithTag("Marsh");
+
+        foreach (GameObject marsh in marshes)
+        {
+            Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), marsh.GetComponent<Collider2D>(), false);
+        }
     }
 
     private void SetDirectionSprite(Sprite directionSprite, int directionIndex){

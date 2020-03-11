@@ -270,7 +270,7 @@ public class PlayerMain : MonoBehaviour
 
             foreach (GameObject marsh in marshes)
             {
-                Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), marsh.GetComponent<Collider2D>(), true);
+                Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), marsh.GetComponent<Collider2D>(), false);
             }
         }
     }
@@ -284,7 +284,7 @@ public class PlayerMain : MonoBehaviour
 
         foreach (GameObject marsh in marshes)
         {
-            Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), marsh.GetComponent<Collider2D>(), false);
+            Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), marsh.GetComponent<Collider2D>(), true);
         }
     }
 

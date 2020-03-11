@@ -10,6 +10,8 @@ TagManager:
   - Tree
   - AttachPoint
   - TowerSight
+  - Marsh
+  - Ranger
   layers:
   - Default
   - TransparentFX

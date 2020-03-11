@@ -21,7 +21,7 @@ public class MarshMain : MonoBehaviour
         {
             Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
         }
-        
+
 
 
 

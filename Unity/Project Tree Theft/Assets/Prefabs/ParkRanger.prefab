@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 742847862}
   - component: {fileID: 4338976815892650888}
   - component: {fileID: 742847863}
-  - component: {fileID: 4223366959744015468}
   - component: {fileID: 5311192823518126429}
   - component: {fileID: 118954032}
   - component: {fileID: 8879411155628169625}
+  - component: {fileID: 3134883164073080232}
   m_Layer: 0
   m_Name: ParkRanger
   m_TagString: Untagged
@@ -95,32 +95,6 @@ MonoBehaviour:
   speed: 1
   currentCheckpoint: {fileID: 0}
   endingCheckpoint: {fileID: 0}
---- !u!61 &4223366959744015468
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4193111473746507517}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &5311192823518126429
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -289,3 +263,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &3134883164073080232
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193111473746507517}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.54
